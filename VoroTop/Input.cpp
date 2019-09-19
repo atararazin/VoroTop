@@ -21,8 +21,15 @@ void Input::createInputFile(fstream& originalFile) {
     }
 
     try{
+        cout << "stuck" << endl;
         while (getline(originalFile, line)) {
-            istringstream iss(line);
+            cout << "f" << endl;
+            this->getXyzCols(line);
+            cout << "fdsfasf"<<endl;
+            cout << this->xyzCols[0] << endl;
+            cout << this->xyzCols[1] << endl;
+            cout << this->xyzCols[2] << endl;
+
             file << lineWithoutType(line) << endl;
         }
     }
@@ -36,7 +43,22 @@ void Input::createInputFile(fstream& originalFile) {
 }
 
 void Input::getXyzCols(string line) {
-
+    cout <<"gererer"<<endl;
+    istringstream iss(line);
+    string s;
+    int i = 0;
+    while ( getline( iss, s, ' ' ) ) {
+        if(s == "x"){
+            this->xyzCols[0] = i;
+        }
+        if(s == "y"){
+            this->xyzCols[1] = i;
+        }
+        if(s == "z"){
+            this->xyzCols[2] = i;
+        }
+        i++;
+    }
 }
 
 string Input::lineWithoutType(string line) {
