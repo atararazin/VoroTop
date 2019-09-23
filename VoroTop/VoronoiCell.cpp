@@ -19,5 +19,5 @@ void VoronoiCell::openOutputFile() {
 void calc(){
     //for each node in vertexes
     //run weinberg
-    //weinberg:
+    //weinberg:a
 }
