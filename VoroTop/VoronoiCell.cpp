@@ -14,3 +14,10 @@ void VoronoiCell::calcVorCell(Input* inputForVoro) {
 void VoronoiCell::openOutputFile() {
     //
 }
+
+//TO BE ERASED
+void calc(){
+    //for each node in vertexes
+    //run weinberg
+    //weinberg:
+}

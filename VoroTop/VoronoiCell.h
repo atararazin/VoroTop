@@ -14,6 +14,7 @@ class VoronoiCell {
 public:
     void calcVorCell(Input* inputForVoro);
     void openOutputFile();
+    void calc();
 };
 
 

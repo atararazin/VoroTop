@@ -68,14 +68,6 @@ string Input::lineOnlyXYZ(string line) {
     return ret;
 }
 
-void Input::splitNums(string line, string nums[2]) {
-    string s;
-    istringstream iss(line);
-    getline( iss, s, ' ' );
-    nums[0] = s.c_str();
-    getline( iss, s, ' ' );
-    nums[1] = s.c_str();
-}
 
 void Input::updateInputStr() {
     std::stringstream ss;
