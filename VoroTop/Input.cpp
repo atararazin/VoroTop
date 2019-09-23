@@ -5,32 +5,21 @@
 #include "Input.h"
 
 Input::Input(fstream& originalFile){
-    this->initializeMinMaxVars(originalFile);
     this->createInputFile(originalFile);
-    this->inputStr;
+    //this->updateInputStr();
 }
 
 void Input::createInputFile(fstream& originalFile) {
-    fstream file;
+    ofstream file;
     file.open("inputForVoro++.txt");
 
     string line;
-    int lineNum = 1;
-    while (lineNum!= 10 && getline(originalFile, line)) {
-        lineNum++;
-    }
+    getline(originalFile, line);
+    this->getXyzCols(line);
 
     try{
-        cout << "stuck" << endl;
         while (getline(originalFile, line)) {
-            cout << "f" << endl;
-            this->getXyzCols(line);
-            cout << "fdsfasf"<<endl;
-            cout << this->xyzCols[0] << endl;
-            cout << this->xyzCols[1] << endl;
-            cout << this->xyzCols[2] << endl;
-
-            file << lineWithoutType(line) << endl;
+            file << lineOnlyXYZ(line) << endl;
         }
     }
     catch(...){
@@ -43,31 +32,34 @@ void Input::createInputFile(fstream& originalFile) {
 }
 
 void Input::getXyzCols(string line) {
-    cout <<"gererer"<<endl;
     istringstream iss(line);
     string s;
     int i = 0;
     while ( getline( iss, s, ' ' ) ) {
         if(s == "x"){
-            this->xyzCols[0] = i;
+            this->xyzCols[0] = i-2;
         }
         if(s == "y"){
-            this->xyzCols[1] = i;
+            this->xyzCols[1] = i-2;
         }
         if(s == "z"){
-            this->xyzCols[2] = i;
+            this->xyzCols[2] = i-2;
         }
         i++;
     }
 }
 
-string Input::lineWithoutType(string line) {
+string Input::lineOnlyXYZ(string line) {
     istringstream iss(line);
     string s;
     string ret;
+    int x = this->xyzCols[0];
+    int y = this->xyzCols[1];
+    int z = this->xyzCols[2];
+
     int i = 0;
     while ( getline( iss, s, ' ' ) ) {
-        if(i != 1){
+        if(i == x or i == y or i == z){
             ret += s.c_str();
             ret += " ";
         }
@@ -75,31 +67,6 @@ string Input::lineWithoutType(string line) {
     }
     return ret;
 }
-
-void Input::initializeMinMaxVars(fstream &originalFile) {
-    int lineNum = 1;
-    string line;
-    while (lineNum != 6 && getline(originalFile, line)) {
-        lineNum++;
-    }
-
-    string num[2];
-    getline(originalFile, line);
-    this->splitNums(line, num);
-    this->max_x = num[0];
-    this->min_x = num[1];
-
-    getline(originalFile, line);
-    this->splitNums(line, num);
-    this->max_y = num[0];
-    this->min_y = num[1];
-
-    getline(originalFile, line);
-    this->splitNums(line, num);
-    this->max_z = num[0];
-    this->min_z = num[1];
-}
-
 
 void Input::splitNums(string line, string nums[2]) {
     string s;
@@ -112,7 +79,7 @@ void Input::splitNums(string line, string nums[2]) {
 
 void Input::updateInputStr() {
     std::stringstream ss;
-    ss << "./voro++ -c %t" << this->max_x << " " << this->min_x << " " << this->max_y << " " <<
+    ss << "./voro++ -c %t"<< " " << this->max_x << " " << this->min_x << " " << this->max_y << " " <<
        this->min_y << " " << this->max_z << " " << this->min_z << " " << "inputForVoro++.txt";
     std::string s = ss.str();
     cout << s << "------string now " << endl;

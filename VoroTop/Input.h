@@ -14,9 +14,8 @@ using namespace std;
 class Input {
 private:
     int xyzCols[3];
-    fstream* inputFile;
-    string lineWithoutType(string line);
-    void splitNums(string line, string nums[2]);
+    ofstream* inputFile;
+    string lineOnlyXYZ(string line);
     void getXyzCols(string line);
 public:
     string max_x;
@@ -25,10 +24,9 @@ public:
     string min_y;
     string max_z;
     string min_z;
-    Input(fstream& originalFile);
     string inputStr;
+    Input(fstream& originalFile);
     void createInputFile(fstream&);
-    void initializeMinMaxVars(fstream &);
     void updateInputStr();
 
 };

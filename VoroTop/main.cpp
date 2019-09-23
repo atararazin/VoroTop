@@ -15,10 +15,12 @@ int main(int argc, char *argv[]) {
     fstream& fref = file;
 
     Input* input = new Input(fref);
-    //input->max_x = argv[2];
-    //input->min_x = argv[3];
-    //input->max_y = argv[4];
-    //input->min_y =
+    input->max_x = argv[2];
+    input->min_x = argv[3];
+    input->max_y = argv[4];
+    input->min_y = argv[5];
+    input->max_z = argv[6];
+    input->min_z = argv[7];
     file.close();
 
     VoronoiCell* voronoiCell = new VoronoiCell();

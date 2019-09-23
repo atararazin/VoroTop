@@ -6,6 +6,7 @@
 #include "Input.h"
 
 void VoronoiCell::calcVorCell(Input* inputForVoro) {
+    inputForVoro->updateInputStr();
     string params = inputForVoro->inputStr;
     int retCode = system(params.c_str());
 }
