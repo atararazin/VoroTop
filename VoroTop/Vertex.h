@@ -4,6 +4,9 @@
 
 #ifndef VOROTOP_VERTEX_H
 #define VOROTOP_VERTEX_H
+
+#include <vector>
+#include "Edge.h"
 using namespace std;
 
 class Vertex {

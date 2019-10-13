@@ -4,6 +4,7 @@
 
 #include "Face.h"
 
+/*
 long Face::addNum(int num) {
     this->edges.push_back(num);
-}
+}*/

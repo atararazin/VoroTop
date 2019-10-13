@@ -3,3 +3,7 @@
 //
 
 #include "Graph.h"
+
+void Graph::convertFromListFaces(string faces) {
+    
+}

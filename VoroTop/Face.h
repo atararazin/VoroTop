@@ -4,13 +4,14 @@
 
 #ifndef VOROTOP_FACE_H
 #define VOROTOP_FACE_H
-using namespace std;
+
+#include <vector>
 
 class Face {
 private:
-    vector<int> edges;
+    //vector<int> edges;
 public:
-    addNum(int);
+    //addNum(int);
 
 };
 
