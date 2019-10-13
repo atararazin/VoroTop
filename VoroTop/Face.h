@@ -6,13 +6,16 @@
 #define VOROTOP_FACE_H
 
 #include <vector>
+#include <string>
+using namespace std;
 
 class Face {
 private:
-    //vector<int> edges;
-public:
-    //addNum(int);
 
+public:
+    vector<string> edges;
+    void convertStrToVector(string s);
+    void print();
 };
 
 

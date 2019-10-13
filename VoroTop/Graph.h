@@ -16,9 +16,10 @@ class Graph {
 private:
     vector<Vertex> nodes;
     vector<Edge> edges;
-    vector<Face> faces;
+    vector<Face*> faces;
 public:
     void convertFromListFaces(string faces);
+    void printFaces();
 };
 
 
