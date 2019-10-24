@@ -27,7 +27,8 @@ int main(int argc, char *argv[]) {
     VoronoiCell* voronoiCell = new VoronoiCell();
     voronoiCell->calcVorCell(input);
     FacesToGraph* graphConverter = new FacesToGraph();
-    graphConverter->openOutputFile();
+    //graphConverter->openOutputFile();
+    graphConverter->createAllFaces();
 
     delete(input);
     delete(voronoiCell);

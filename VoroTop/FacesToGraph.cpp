@@ -10,15 +10,18 @@ using namespace std;
 void FacesToGraph::openOutputFile() {
     file.open("inputForVoro++.txt.vol");
     std::cout<< "file opened" << std::endl;
-    this->createAllFaces();
+    //this->createAllFaces();
 }
 
 void FacesToGraph::createAllFaces() {
+    this->openOutputFile();
     string line;
     GraphsContainer* graphsContainer = new GraphsContainer();
     while(getline(file, line)){
         Graph* graph = new Graph();
         std::cout<< line << std::endl;
-        graph->convertFromListFaces(line);
+        graph->getFaces(line);
+        graph->getVertices(line);
+        graph->getEdges();
     }
 }

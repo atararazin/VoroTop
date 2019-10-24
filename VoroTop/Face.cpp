@@ -11,13 +11,13 @@ void Face::convertStrToVector(string s) {
     istringstream iss(str);
     string num;
     while (getline(iss, num, ',')) {
-        this->edges.push_back(num);
+        this->nodes.push_back(num);
     }
 }
 
 
 void Face::print() {
-    for(int i=0; i<this->edges.size(); ++i)
-        std::cout << edges[i] << ' ';
+    for(int i=0; i<this->nodes.size(); ++i)
+        std::cout << nodes[i] << ' ';
     std::cout << "" <<std::endl;
 }

@@ -10,6 +10,10 @@ class Edge {
 private:
     int v;
     int u;
+
+public:
+    Edge(int u, int v);
+    void print();
 };
 
 

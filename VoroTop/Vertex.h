@@ -13,6 +13,9 @@ class Vertex {
 private:
     int data;
     vector<Edge> listOfEdges;
+public:
+    Vertex(int data);
+    void print();
 };
 
 
