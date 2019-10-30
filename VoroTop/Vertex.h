@@ -12,9 +12,12 @@ using namespace std;
     class Vertex {
     private:
         int data;
-        vector<Edge> listOfEdges;
+        vector<pair<int,int>> listOfEdges;
     public:
+        bool old = false;
         Vertex(int data);
+        void addEdge(Edge e);
+        Edge getRightMostNeighbor();
         void print();
     };
 

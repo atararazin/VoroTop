@@ -3,46 +3,30 @@
 //
 
 #include "Edge.h"
+#include <set>
 #include <iostream>
 
-Edge::Edge(int u, int v) {
-    this->u= std::min(u,v);
-    this->v = std::max(u,v);
+Edge::Edge(std::pair<int, int> edge) {
+    this->edge = edge;
 }
 
-Edge::Edge(const Edge& e) {
-    this->u = e.u;
-    this->v = e.v;
+std::pair<int,int> Edge::getEdge() {
+    return edge;
 }
 
-int Edge::getU() {
-    return this->u;
-}
-
-int Edge::getV() {
-    return this->v;
-}
-
-/*bool Edge::operator==(const Edge &e) {
-    if(this->u == e.u && this->v == e.v){
-        std::cout << "returning true" << std::endl;
-        return true;
-    }
-
-    std::cout << "returning false" << std::endl;
-    return false;
-
-}*/
-
-bool Edge::operator<(const Edge &other) {
-    if(this->u == other.u){
-        return (this->v < other.v);
+void Edge::updateStatus() {
+    if(this->status == NOTVISITED){
+        this->status = NEW;
     }
     else{
-        return (this->u < other.u);
+        this->status = OLD;
     }
+}
+
+int Edge::getStatus() {
+    return this->status;
 }
 
 void Edge::print() {
-    std::cout << "(" << u << "," << v << ")" << std::endl;
+    std::cout << "(" << edge.first << "," << edge.second << ")" << std::endl;
 }

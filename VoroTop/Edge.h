@@ -6,26 +6,19 @@
 #define VOROTOP_EDGE_H
 
 
+#include <ostream>
+
 class Edge {
-    friend bool operator ==(Edge& a,  Edge& b) {
-        if (a.u == b.u && a.v == b.v){
-            return true;
-        }
-        return false;
-    }
-
-
+    enum Status{NOTVISITED, NEW, OLD};
 private:
-    int u;
-    int v;
+    std::pair<int,int> edge;
+    Status status = NOTVISITED;
 
 public:
-    Edge(int u, int v);
-    Edge(const Edge&);
-    int getV();
-    int getU();
-    //bool operator==(const Edge& edge);
-    bool operator<(const Edge& other);
+    Edge(std::pair<int,int >);
+    std::pair<int,int> getEdge();
+    void updateStatus();
+    int getStatus();
     void print();
 };
 

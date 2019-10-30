@@ -12,3 +12,7 @@ Vertex::Vertex(int data) {
 void Vertex::print() {
     cout << this->data << endl;
 }
+
+void Vertex::addEdge(Edge e) {
+    this->listOfEdges.push_back(e);
+}

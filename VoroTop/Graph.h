@@ -15,14 +15,9 @@ using namespace std;
 
 class Graph {
 private:
-    vector<Vertex*> nodes;
+    vector<Vertex*> vertices;
     vector<Edge*> edges;
     vector<Face*> faces;
-    template<typename T>
-    vector<T> removeDups(vector<T> v, typename vector<T>::iterator ip);
-    void removeDupsEdges(vector<Edge*>);
-    void addEdgesToVertices(vector<Edge>);
-
 public:
     void getFaces(string faces);
     void printFaces();
@@ -30,6 +25,7 @@ public:
     void printV();
     void getEdges();
     void printE();
+    void assignEdgesToVertices();
 };
 
 
