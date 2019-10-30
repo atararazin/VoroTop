@@ -7,12 +7,25 @@
 
 
 class Edge {
+    friend bool operator ==(Edge& a,  Edge& b) {
+        if (a.u == b.u && a.v == b.v){
+            return true;
+        }
+        return false;
+    }
+
+
 private:
-    int v;
     int u;
+    int v;
 
 public:
     Edge(int u, int v);
+    Edge(const Edge&);
+    int getV();
+    int getU();
+    //bool operator==(const Edge& edge);
+    bool operator<(const Edge& other);
     void print();
 };
 

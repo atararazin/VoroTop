@@ -20,6 +20,8 @@ private:
     vector<Face*> faces;
     template<typename T>
     vector<T> removeDups(vector<T> v, typename vector<T>::iterator ip);
+    void removeDupsEdges(vector<Edge*>);
+    void addEdgesToVertices(vector<Edge>);
 
 public:
     void getFaces(string faces);

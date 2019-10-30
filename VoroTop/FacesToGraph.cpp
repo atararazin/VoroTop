@@ -4,7 +4,6 @@
 
 #include "FacesToGraph.h"
 #include "Graph.h"
-#include "GraphsContainer.h"
 using namespace std;
 
 void FacesToGraph::openOutputFile() {
@@ -16,7 +15,6 @@ void FacesToGraph::openOutputFile() {
 void FacesToGraph::createAllFaces() {
     this->openOutputFile();
     string line;
-    GraphsContainer* graphsContainer = new GraphsContainer();
     while(getline(file, line)){
         Graph* graph = new Graph();
         std::cout<< line << std::endl;

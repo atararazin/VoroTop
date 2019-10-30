@@ -3,5 +3,10 @@ project(VoroTop)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp VoronoiCell.cpp Input.cpp FacesToGraph.cpp Face.cpp Edge.cpp Vertex.cpp GraphsContainer.cpp Graph.cpp)
+find_package(Boost 1.58.0 COMPONENTS system filesystem REQUIRED)
+include_directories(${Boost_INCLUDE_DIRS})
+add_executable(BoostTest main.cpp)
+target_link_libraries(BoostTest ${Boost_LIBRARIES})
+
+set(SOURCE_FILES main.cpp VoronoiCell.cpp Input.cpp FacesToGraph.cpp Face.cpp Edge.cpp Vertex.cpp Graph.cpp)
 add_executable(VoroTop ${SOURCE_FILES})

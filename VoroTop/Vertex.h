@@ -9,14 +9,16 @@
 #include "Edge.h"
 using namespace std;
 
-class Vertex {
-private:
-    int data;
-    vector<Edge> listOfEdges;
-public:
-    Vertex(int data);
-    void print();
-};
+    class Vertex {
+    private:
+        int data;
+        vector<Edge> listOfEdges;
+    public:
+        Vertex(int data);
+        void print();
+    };
+
+
 
 
 #endif //VOROTOP_VERTEX_H
