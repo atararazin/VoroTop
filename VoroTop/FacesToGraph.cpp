@@ -3,7 +3,7 @@
 //
 
 #include "FacesToGraph.h"
-#include "Graph.h"
+#include "Graph/Graph.h"
 using namespace std;
 
 void FacesToGraph::openOutputFile() {
@@ -17,9 +17,7 @@ void FacesToGraph::createAllFaces() {
     while(getline(file, line)){
         Graph* graph = new Graph();
         std::cout<< line << std::endl;
-        //line = "(1,2,3) (1,3,4) (1,4,5) (1,5,6,7,8) (9,6,7) (1,2,8) (7,9,2)";
-        graph->getFaces(line);
-        graph->getVertices(line);
-        graph->getEdges();
+        //line = "(0,1,2) (0,2,3) (0,3,4) (0,4,5,6,7) (5,6,8) (0,1,7) (8,6,7,1)";
+        graph->create(line);
     }
 }

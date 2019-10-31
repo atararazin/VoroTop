@@ -10,6 +10,13 @@
 
 bool otherDirIn(set<pair<int,int>> s, pair<int,int> p);
 
+void Graph::create(string faces) {
+    this->getFaces(faces);
+    this->getVertices(faces);
+    this->getEdges();
+    this->assignEdgesToVertices();
+}
+
 void Graph::getFaces(string faces) {
     istringstream iss(faces);
     cout << faces << endl;
@@ -100,9 +107,21 @@ void Graph::printE() {
 }
 
 void Graph::assignEdgesToVertices() {
-    std::vector<int>::iterator it;
+    std::vector<Vertex*>::iterator it;
     for(Edge* e : this->edges){
         int u = e->getEdge().first;
+        vertices.at(u)->addEdge(e);
+        //it = std::find(vertices.begin(), vertices.end(), Vertex(u));
+        //auto index = std::distance(vertices.begin(), it);
+        int v = e->getEdge().second;
+        vertices.at(v)->addEdge(e);
+    }
+
+    for(Vertex* v : vertices){
+        cout << v->data << ":" << endl;
+        for(Edge* e : v->getEdges()){
+            e->print();
+        }
 
     }
 }

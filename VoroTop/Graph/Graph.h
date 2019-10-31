@@ -15,10 +15,6 @@ using namespace std;
 
 class Graph {
 private:
-    vector<Vertex*> vertices;
-    vector<Edge*> edges;
-    vector<Face*> faces;
-public:
     void getFaces(string faces);
     void printFaces();
     void getVertices(string faces);
@@ -26,6 +22,12 @@ public:
     void getEdges();
     void printE();
     void assignEdgesToVertices();
+public:
+    vector<Vertex*> vertices;
+    vector<Edge*> edges;
+    vector<Face*> faces;
+    void create(string faces);
+
 };
 
 
