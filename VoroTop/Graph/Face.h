@@ -13,7 +13,7 @@ class Face {
 private:
 
 public:
-    vector<string> nodes;
+    vector<int> nodes;
     void convertStrToVector(string s);
     void print();
 };

@@ -43,5 +43,6 @@ int Vertex::getWeinNum(int* i) {
 }
 
 Edge* Vertex::getRightMostNeighbor() {
-    return this->listOfEdges.at(0);
+    return this->listOfEdges.at(1);
+
 }

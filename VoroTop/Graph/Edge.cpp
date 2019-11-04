@@ -14,6 +14,11 @@ std::pair<int,int> Edge::getEdge() {
     return edge;
 }
 
+std::pair<int,int> Edge::getOppEdge() {
+    std::pair<int, int> opp(edge.second, edge.second);
+    return opp;
+}
+
 void Edge::updateStatus() {
     if(this->status == NOTVISITED){
         this->status = NEW;

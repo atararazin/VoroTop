@@ -15,9 +15,11 @@ private:
     vector<int> weinbergCode;
     int getVCode(int node);
     int i = 0;
+    Graph* graph;
 public:
-    void calculate(Graph* graph);
-    void recursiveCal(Vertex node, Edge* branch, Edge* original);
+    WeinbergVector(Graph* g);
+    void calculate();
+    void recursiveCal(Vertex* node, Edge* branch, Edge* original);
 
 };
 

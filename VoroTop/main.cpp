@@ -32,13 +32,13 @@ int main(int argc, char *argv[]) {
     FacesToGraph* graphConverter = new FacesToGraph();
     graphConverter->openOutputFile();
     vector<Graph*> allGraphs = graphConverter->createGraph();
-    WeinbergVector* wvector = new WeinbergVector();
-    for(Graph* graph : allGraphs){
-        wvector->calculate(graph);
-    }
+    //for(Graph* graph : allGraphs){
+    //    WeinbergVector* wvector = new WeinbergVector(graph);
+    //    wvector->calculate();
+    //}
 
     delete(input);
     delete(voronoiCell);
     delete(graphConverter);
-    delete(wvector);
+    //delete(wvector);
 }

@@ -13,6 +13,7 @@ public:
     enum Status{NOTVISITED, NEW, OLD};
     Edge(std::pair<int,int >);
     std::pair<int,int> getEdge();
+    std::pair<int,int> getOppEdge();
     void updateStatus();
     int getStatus();
     void print();

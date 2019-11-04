@@ -11,7 +11,7 @@ void Face::convertStrToVector(string s) {
     istringstream iss(str);
     string num;
     while (getline(iss, num, ',')) {
-        this->nodes.push_back(num);
+        this->nodes.push_back(stoi(num));
     }
 }
 
