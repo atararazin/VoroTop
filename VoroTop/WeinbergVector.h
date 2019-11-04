@@ -6,14 +6,18 @@
 #define VOROTOP_WEINBERGVECTOR_H
 
 #include "Graph/Vertex.h"
+#include "Graph/Graph.h"
+
 using namespace std;
 
 class WeinbergVector {
 private:
     vector<int> weinbergCode;
+    int getVCode(int node);
+    int i = 0;
 public:
-    void calculate(Graph graph);
-    void recursiveCal(Vertex node, Edge branch, Edge original);
+    void calculate(Graph* graph);
+    void recursiveCal(Vertex node, Edge* branch, Edge* original);
 
 };
 

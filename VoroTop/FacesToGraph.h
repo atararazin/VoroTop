@@ -6,16 +6,17 @@
 #define VOROTOP_FACESTOGRAPH_H
 #include <fstream>
 #include <iostream>
+#include "Graph/Graph.h"
+
 using namespace std;
 
 class FacesToGraph {
 public:
     void openOutputFile();
-    void createAllFaces();
-    void getAllVertices();
-    void getAllEdges();
+    vector<Graph*>& createGraph();
 private:
     fstream file;
+    vector<Graph*> graphs;
 };
 
 

@@ -125,3 +125,18 @@ void Graph::assignEdgesToVertices() {
 
     }
 }
+
+Graph::~Graph() {
+    for(Edge* e: edges){
+        delete(e);
+    }
+
+    for(Vertex* vertex: vertices){
+        delete(vertex);
+    }
+
+    for(Face* f : faces){
+        delete(f);
+    }
+    delete(this);
+}

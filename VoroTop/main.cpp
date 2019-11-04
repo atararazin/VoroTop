@@ -6,17 +6,12 @@
 #include "FacesToGraph.h"
 #include <boost/graph/graph_traits.hpp>
 #include <boost/graph/adjacency_list.hpp>
-#include <boost/graph/dijkstra_shortest_paths.hpp>
-
-#include "boost/graph/adjacency_list.hpp"
-#include "boost/graph/topological_sort.hpp"
-#include <boost/graph/graph_utility.hpp>
-
+#include "WeinbergVector.h"
 using namespace boost;
 
 using namespace std;
-void foo();
-void bar();
+
+
 int main(int argc, char *argv[]) {
     std::cout << "Hello, Vorotop!" << std::endl;
     fstream file;
@@ -36,8 +31,14 @@ int main(int argc, char *argv[]) {
     voronoiCell->calcVorCell(input);
     FacesToGraph* graphConverter = new FacesToGraph();
     graphConverter->openOutputFile();
-    graphConverter->createAllFaces();
+    vector<Graph*> allGraphs = graphConverter->createGraph();
+    WeinbergVector* wvector = new WeinbergVector();
+    for(Graph* graph : allGraphs){
+        wvector->calculate(graph);
+    }
 
     delete(input);
     delete(voronoiCell);
+    delete(graphConverter);
+    delete(wvector);
 }

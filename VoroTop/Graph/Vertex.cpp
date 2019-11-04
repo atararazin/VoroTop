@@ -33,3 +33,15 @@ vector<Edge*> Vertex::getEdges() {
 bool Vertex::operator()(const Vertex &obj) const {
     return obj.data == data;
 }
+
+int Vertex::getWeinNum(int* i) {
+    if(this->weinNum == -1){
+        this->weinNum = *i+1;
+        i++;
+    }
+    return this->weinNum;
+}
+
+Edge* Vertex::getRightMostNeighbor() {
+    return this->listOfEdges.at(0);
+}

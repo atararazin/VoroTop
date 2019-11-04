@@ -27,7 +27,7 @@ public:
     vector<Edge*> edges;
     vector<Face*> faces;
     void create(string faces);
-
+    ~Graph();
 };
 
 
