@@ -14,7 +14,7 @@ Edge* getRandEdge(vector<Edge*> edges, Vertex* v);
 
 void Graph::create(string faces) {
     this->getFaces(faces);
-    this->getVertices(faces);
+    this->getVertices();
     this->getEdges();
     //this->assignEdgesToVertices();
 }
@@ -33,24 +33,7 @@ void Graph::getFaces(string faces) {
     this->printFaces();
 }
 
-/*for printing only*/
-void Graph::printFaces() {
-    for(int i=0; i<this->faces.size(); ++i)
-        faces[i]->print();
-    std::cout << "" <<std::endl;
-
-}
-
-/*for printing only*/
-void Graph::printV() {
-    for(int i=0; i<this->vertices.size(); ++i)
-        vertices[i]->print();
-    std::cout << "" <<std::endl;
-
-}
-
-
-void Graph::getVertices(string faces) {
+void Graph::getVertices() {
     int max = 0;
     for(Face* f : this->faces){
         for(int edge : f->nodes){
@@ -62,6 +45,8 @@ void Graph::getVertices(string faces) {
         Vertex* vertex = new Vertex(i);
         this->vertices.push_back(vertex);
     }
+
+
     /*for printing only*/
     printf("vertices:");
     printV();
@@ -71,29 +56,23 @@ void Graph::getEdges() {
     std::set<pair<int,int>> tempEdge;
 
     for(Face* f : this->faces){
-        int i;
         long n = f->nodes.size();
-        for(i = 0; i < n - 1; i++){
+        for(int i = 0; i < n - 1; i++){
             int u = f->nodes[i];
-            int v = f->nodes[i + 1];
+            int v = f->nodes[(i + 1) % n];
             pair<int, int> edge(u,v);
             if(!otherDirIn(tempEdge, edge)){
                 tempEdge.insert(edge);
-
             }
         }
-
-        pair<int,int> edge(f->nodes[n-1], f->nodes[0]);
-        if(!otherDirIn(tempEdge, edge)){
-            tempEdge.insert(edge);
-        }
-
     }
 
     for (pair<int,int> e : tempEdge){
         Edge* edge = new Edge(e);
         this->edges.push_back(edge);
     }
+
+    /*for printing only*/
     printf("edges:");
     printE();
 
@@ -105,12 +84,6 @@ bool otherDirIn(set<pair <int,int>> s, pair <int,int> p) {
 }
 
 
-void Graph::printE() {
-    for(int i=0; i<this->edges.size(); ++i)
-        edges[i]->print();
-    std::cout << "" <<std::endl;
-
-}
 
 /*void Graph::assignEdgesToVertices() {
     std::vector<Vertex*>::iterator it;
@@ -167,6 +140,33 @@ Edge* getRandEdge(vector<Edge*> edges, Vertex* v){
         }
     }
 }
+
+
+
+/*for printing only*/
+void Graph::printFaces() {
+    for(int i=0; i<this->faces.size(); ++i)
+        faces[i]->print();
+    std::cout << "" <<std::endl;
+
+}
+
+/*for printing only*/
+void Graph::printV() {
+    for(int i=0; i<this->vertices.size(); ++i)
+        vertices[i]->print();
+    std::cout << "" <<std::endl;
+
+}
+
+/*for printing only*/
+void Graph::printE() {
+    for(int i=0; i<this->edges.size(); ++i)
+        edges[i]->print();
+    std::cout << "" <<std::endl;
+
+}
+
 
 Graph::~Graph() {
     for(Edge* e: edges){

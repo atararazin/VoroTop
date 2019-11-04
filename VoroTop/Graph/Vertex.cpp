@@ -5,25 +5,13 @@
 #include <iostream>
 #include "Vertex.h"
 
-//Vertex::Vertex(int data) {
- //   this->data = data;
-//}
-
-int Vertex::getData() const {
-    return this->data;
-}
-
+/*for printing only*/
 void Vertex::print() {
     cout << this->data << endl;
 }
 
 void Vertex::addEdge(Edge* e) {
     this->listOfEdges.push_back(e);
-}
-
-bool Vertex::operator==(const Vertex &other) const {
-    return other.data == data;
-
 }
 
 vector<Edge*> Vertex::getEdges() {
@@ -34,15 +22,11 @@ bool Vertex::operator()(const Vertex &obj) const {
     return obj.data == data;
 }
 
-int Vertex::getWeinNum(int* i) {
-    if(this->weinNum == -1){
-        this->weinNum = *i+1;
-        i++;
-    }
-    return this->weinNum;
+Edge* Vertex::getRightMostNeighbor() {
+    return NULL;//this->listOfEdges.at(1);
+
 }
 
-Edge* Vertex::getRightMostNeighbor() {
-    return this->listOfEdges.at(1);
-
+bool Vertex::operator==(const Vertex &other) {
+    return this->data == other.data;
 }

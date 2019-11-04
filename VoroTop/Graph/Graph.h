@@ -16,12 +16,15 @@ using namespace std;
 class Graph {
 private:
     void getFaces(string faces);
-    void printFaces();
-    void getVertices(string faces);
-    void printV();
+    void getVertices();
     void getEdges();
-    void printE();
     void assignEdgesToVertices();
+
+    /*for printing only*/
+    void printE();
+    void printFaces();
+    void printV();
+
 public:
     vector<Vertex*> vertices;
     vector<Edge*> edges;
