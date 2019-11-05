@@ -10,13 +10,13 @@
 
 bool otherDirIn(set<pair<int,int>> s, pair<int,int> p);
 Edge* getRandEdge(vector<Edge*> edges, Vertex* v);
-
+Face* findFace(vector<Face*> vectoroffaces, std::pair<int,int> p);
 
 void Graph::create(string faces) {
     this->getFaces(faces);
     this->getVertices();
     this->getEdges();
-    //this->assignEdgesToVertices();
+    this->assignEdgesToVertices();
 }
 
 void Graph::getFaces(string faces) {
@@ -57,7 +57,7 @@ void Graph::getEdges() {
 
     for(Face* f : this->faces){
         long n = f->nodes.size();
-        for(int i = 0; i < n - 1; i++){
+        for(int i = 0; i < n; i++){
             int u = f->nodes[i];
             int v = f->nodes[(i + 1) % n];
             pair<int, int> edge(u,v);
@@ -105,33 +105,49 @@ bool otherDirIn(set<pair <int,int>> s, pair <int,int> p) {
 }*/
 
 /*assigns the list of edges to each vertices, sorted in a counter-clockwise manner*/
-/*void Graph::assignEdgesToVertices() {
-    std::vector<string>::iterator it;
-    std::vector<Edge*>::iterator iter;
+void Graph::assignEdgesToVertices() {
+    std::vector<int>::iterator it;
+    std::vector<Edge*>::iterator edgeIter;
 
     for(Vertex* v: vertices) {
+        cout << "\ncurrent vertex:" << v->data << endl;
         Edge *e = getRandEdge(this->edges, v);
-        for (Face *face: faces) {
-            int size = face->nodes.size();
-            it = std::find (face->nodes.begin(), face->nodes.end(), e->getEdge().first);
-            if (it != face->nodes.end()) {
-                int pos = it - face->nodes.begin() + 1;
-                if(stoi(face->nodes.at((pos+1) % size)) == e->getEdge().second){
-                    std::pair<int,int> p1(stoi(face->nodes.at((pos-1) % size)), v->data);
-                    std::pair<int,int> p2(v->data, stoi(face->nodes.at((pos-1) % size)));
+        //v->addEdge(e);
+        std::pair<int,int> pe(e->edge);
+        do{
+            Face* face = findFace(this->faces,pe);
+            if(face != NULL){
+                it = std::find(face->nodes.begin(), face->nodes.end(), pe.first);
+                int pos = it - face->nodes.begin();
+                int size = face->nodes.size();
+                int next = (pos+1) % size;
+                if(face->nodes.at(next) == pe.second){
+                    int newPos = ((pos-1) % size + size)%size;
+                    std::pair<int,int> p1(face->nodes.at(newPos), v->data);
+                    std::pair<int,int> p2(v->data, face->nodes.at(newPos));
 
-
-                    //get the actual edge found from edges
-                    //v->addEdge(found);
-                    //find next edge (u, i-1) in edges
+                    Edge e1(p1);
+                    auto counter = std::find_if (edges.begin(),
+                                                 edges.end(),
+                                                 [&e1](const Edge *f)->bool
+                                                 { return (f->edge == e1.edge) ||
+                                                          (f->edge.first == e1.edge.second
+                                                           && f->edge.second == e1.edge.first);}
+                    );
+                    int posEdge = counter - edges.begin();
+                    Edge* edge = edges.at(posEdge);
+                    v->addEdge(edge);
+                    pe = p2;
 
                 }
             }
+        }while(pe != e->edge);
+
+        printf("the edges:\n");
+        v->printEdges(v->getEdges());
+            }
 
         }
-    }
-
-}*/
 
 Edge* getRandEdge(vector<Edge*> edges, Vertex* v){
     for(Edge* e : edges){
@@ -141,6 +157,21 @@ Edge* getRandEdge(vector<Edge*> edges, Vertex* v){
     }
 }
 
+Face* findFace(vector<Face*> vectoroffaces, std::pair<int,int> p){
+    std::vector<int>::iterator it;
+    for (Face *face: vectoroffaces) {
+        int size = face->nodes.size();
+        it = std::find(face->nodes.begin(), face->nodes.end(), p.first);
+        if (it != face->nodes.end()) {
+            int pos = it - face->nodes.begin();
+            int next = (pos + 1) % size;
+            if (face->nodes.at(next) == p.second) {
+                return face;
+            }
+        }
+    }
+    return NULL;
+}
 
 
 /*for printing only*/

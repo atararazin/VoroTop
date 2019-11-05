@@ -21,6 +21,7 @@ using namespace std;
         bool operator==(const Vertex& other);
         bool operator()(const Vertex& obj) const;
         void print();
+        void printEdges(vector<Edge*>);
     };
 
 

@@ -47,7 +47,7 @@ int WeinbergVector::getVCode(int node) {
 }
 
 void WeinbergVector::recursiveCal(Vertex* node, Edge* cameFrom, Edge* original) {
-    if(cameFrom->getEdge() == original->getEdge()){
+    /*if(cameFrom->getEdge() == original->getEdge()){
         for(int i : this->weinbergCode){
             cout << i << "," << endl;
         }
@@ -80,5 +80,5 @@ void WeinbergVector::recursiveCal(Vertex* node, Edge* cameFrom, Edge* original) 
             int v = b->getEdge().second;
             recursiveCal(graph->vertices[v], b, original);
         }
-    }
+    }*/
 }
