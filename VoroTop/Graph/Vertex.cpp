@@ -28,10 +28,6 @@ bool Vertex::operator()(const Vertex &obj) const {
     return obj.data == data;
 }
 
-Edge* Vertex::getRightMostNeighbor() {
-    return NULL;//this->listOfEdges.at(1);
-
-}
 
 bool Vertex::operator==(const Vertex &other) {
     return this->data == other.data;

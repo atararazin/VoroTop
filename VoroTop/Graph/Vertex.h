@@ -17,7 +17,6 @@ using namespace std;
         Vertex(const int& data) : data(data) {}
         vector<Edge*> getEdges();
         void addEdge(Edge* e);
-        Edge* getRightMostNeighbor();
         bool operator==(const Vertex& other);
         bool operator()(const Vertex& obj) const;
         void print();

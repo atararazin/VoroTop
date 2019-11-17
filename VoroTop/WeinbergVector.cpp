@@ -3,6 +3,7 @@
 //
 
 #include "WeinbergVector.h"
+#include "WeinbergEdge.h"
 #include <iostream>
 #include <iterator>
 #include <map>
@@ -16,7 +17,7 @@ WeinbergVector::WeinbergVector(Graph *g) {
 
 void WeinbergVector::calculate() {
     printf("\n");
-    printf("calc");
+    printf("calculating");
     this->i = 0;
     for(Vertex* v : graph->vertices){
         vcodes.insert({v->data, -1});
@@ -25,15 +26,15 @@ void WeinbergVector::calculate() {
     //for(Edge* e : graph.edges){
     graph->vertices[0]->print();
 
-    Edge * e = graph->edges.at(0);
+    /*WeinbergEdge * e = graph->edges.at(0);
     e->updateStatus();
     int u = e->getEdge().first;
     int v = e->getEdge().second;
     this->weinbergCode.push_back(this->getVCode(u));
-    this->weinbergCode.push_back(this->getVCode(v));
-    Edge* right = graph->vertices[v]->getRightMostNeighbor();
-    right->print();
-    this->recursiveCal(graph->vertices[v], right,e);
+    this->weinbergCode.push_back(this->getVCode(v));*/
+    //Edge* right = graph->vertices[v]->getRightMostNeighbor();
+    //right->print();
+    //this->recursiveCal(graph->vertices[v], right,e);
     //}
 }
 

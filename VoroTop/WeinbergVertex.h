@@ -6,13 +6,15 @@
 #define VOROTOP_WEINBERGVERTEX_H
 
 
-class WeinbergVertex : Vertex {
+class WeinbergVertex : public Vertex {
 private:
     int weinNum = -1;
 
 public:
     bool old = false;
     int getWeinNum(int* i);
+    Edge* getRightMostNeighbor();
+
 
 
 };

@@ -19,23 +19,11 @@ std::pair<int,int> Edge::getOppEdge() {
     return opp;
 }
 
-void Edge::updateStatus() {
-    if(this->status == NOTVISITED){
-        this->status = NEW;
-    }
-    else{
-        this->status = OLD;
-    }
-}
-
-int Edge::getStatus() {
-    return this->status;
-}
 
 bool Edge::operator==(const Edge &other) {
     bool same = other.edge.first == this->edge.first && other.edge.second == this->edge.second;
     bool opp = other.edge.first == this->edge.second && other.edge.second == this->edge.first;
-    return same || opp;
+    return same;
 }
 
 void Edge::print() {

@@ -16,73 +16,16 @@ void Graph::create(string faces) {
     this->getFaces(faces);
     this->getVertices();
     this->getEdges();
-    this->assignEdgesToVertices();
+    //this->assignEdgesToVertices();
 }
 
-void Graph::getFaces(string faces) {
-    istringstream iss(faces);
-    string s;
-    while ( getline( iss, s, ' ' ) ) {
-        Face* face = new Face();
-        face->convertStrToVector(s.c_str());
-        this->faces.push_back(face);
-    }
-
-    /*for printing only*/
-    cout << "printing faces" << endl;
-    this->printFaces();
-}
-
-void Graph::getVertices() {
-    int max = 0;
-    for(Face* f : this->faces){
-        for(int edge : f->nodes){
-            max = std::max(edge, max);
-        }
-    }
-
-    for(int i = 0; i <= max; i++){
-        Vertex* vertex = new Vertex(i);
-        this->vertices.push_back(vertex);
-    }
 
 
-    /*for printing only*/
-    printf("vertices:");
-    printV();
-}
-
-void Graph::getEdges() {
-    std::set<pair<int,int>> tempEdge;
-
-    for(Face* f : this->faces){
-        long n = f->nodes.size();
-        for(int i = 0; i < n; i++){
-            int u = f->nodes[i];
-            int v = f->nodes[(i + 1) % n];
-            pair<int, int> edge(u,v);
-            if(!otherDirIn(tempEdge, edge)){
-                tempEdge.insert(edge);
-            }
-        }
-    }
-
-    for (pair<int,int> e : tempEdge){
-        Edge* edge = new Edge(e);
-        this->edges.push_back(edge);
-    }
-
-    /*for printing only*/
-    printf("edges:");
-    printE();
-
-}
 
 bool otherDirIn(set<pair <int,int>> s, pair <int,int> p) {
     pair<int,int> otherDir(p.second, p.first);
     return(s.find(otherDir) != s.end());
 }
-
 
 
 /*void Graph::assignEdgesToVertices() {
@@ -174,29 +117,6 @@ Face* findFace(vector<Face*> vectoroffaces, std::pair<int,int> p){
 }
 
 
-/*for printing only*/
-void Graph::printFaces() {
-    for(int i=0; i<this->faces.size(); ++i)
-        faces[i]->print();
-    std::cout << "" <<std::endl;
-
-}
-
-/*for printing only*/
-void Graph::printV() {
-    for(int i=0; i<this->vertices.size(); ++i)
-        vertices[i]->print();
-    std::cout << "" <<std::endl;
-
-}
-
-/*for printing only*/
-void Graph::printE() {
-    for(int i=0; i<this->edges.size(); ++i)
-        edges[i]->print();
-    std::cout << "" <<std::endl;
-
-}
 
 
 Graph::~Graph() {

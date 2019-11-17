@@ -12,3 +12,12 @@ int WeinbergVertex::getWeinNum(int* i) {
     }
     return this->weinNum;
 }
+
+Edge * WeinbergVertex::getRightMostNeighbor() {
+    for(Edge* e : Vertex::getEdges()){
+        if(e->getStatus() == e->NOTVISITED){
+            return e;
+        }
+    }
+    throw "something wrong with your algorithm!";
+}
