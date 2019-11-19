@@ -7,6 +7,7 @@
 
 #include "Graph/Vertex.h"
 #include "Graph/Graph.h"
+#include "WeinbergGraph.h"
 
 using namespace std;
 
@@ -15,11 +16,11 @@ private:
     vector<int> weinbergCode;
     int getVCode(int node);
     int i = 0;
-    Graph* graph;
+    WeinbergGraph* graph;
 public:
-    WeinbergVector(Graph* g);
+    WeinbergVector(WeinbergGraph* g);
     void calculate();
-    void recursiveCal(Vertex* node, Edge* branch, Edge* original);
+    void recursiveCal(WeinbergVertex* node, WeinbergEdge* branch);
 
 };
 

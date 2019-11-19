@@ -10,8 +10,9 @@
 
 map<int, int> vcodes;
 std::map<int,int>::iterator iter;
+int getSecond(WeinbergVertex* v, WeinbergEdge* curr);
 
-WeinbergVector::WeinbergVector(Graph *g) {
+WeinbergVector::WeinbergVector(WeinbergGraph *g) {
     this->graph = g;
 }
 
@@ -23,19 +24,15 @@ void WeinbergVector::calculate() {
         vcodes.insert({v->data, -1});
     }
 
-    //for(Edge* e : graph.edges){
-    graph->vertices[0]->print();
-
-    /*WeinbergEdge * e = graph->edges.at(0);
-    e->updateStatus();
-    int u = e->getEdge().first;
-    int v = e->getEdge().second;
+    WeinbergEdge* first = this->graph->edges[0];
+    first->print();
+    first->updateStatus();
+    int u = first->getEdge().first;
+    int v = first->getEdge().second;
     this->weinbergCode.push_back(this->getVCode(u));
-    this->weinbergCode.push_back(this->getVCode(v));*/
-    //Edge* right = graph->vertices[v]->getRightMostNeighbor();
-    //right->print();
-    //this->recursiveCal(graph->vertices[v], right,e);
-    //}
+    this->weinbergCode.push_back(this->getVCode(v));
+    this->recursiveCal(graph->vertices[v], first);
+
 }
 
 
@@ -47,8 +44,17 @@ int WeinbergVector::getVCode(int node) {
     return vcodes[node];
 }
 
-void WeinbergVector::recursiveCal(Vertex* node, Edge* cameFrom, Edge* original) {
-    /*if(cameFrom->getEdge() == original->getEdge()){
+void WeinbergVector::recursiveCal(WeinbergVertex* node, WeinbergEdge* cameFrom) {
+    printf("weinberg code:");
+    for(int i : weinbergCode){
+        cout << i <<endl;
+    }
+    printf("");
+    if(node->getRightMostNeighbor(cameFrom) == NULL){
+        printf("printing");
+        node->print();
+        cameFrom->print();
+        printf("algorithm is finsihed");
         for(int i : this->weinbergCode){
             cout << i << "," << endl;
         }
@@ -58,28 +64,69 @@ void WeinbergVector::recursiveCal(Vertex* node, Edge* cameFrom, Edge* original) 
 
     if(!node->old){
         node->old = true;
-        Edge* b = node->getRightMostNeighbor();
-        int code = this->getVCode(b->getEdge().second);
+        WeinbergEdge* b = node->getRightMostNeighbor(cameFrom);
+        printf("right:");
+        b->print();
+        int sec = getSecond(node, b);
+        int code = this->getVCode(sec);
         this->weinbergCode.push_back(code);
         b->updateStatus();
-        int v = b->getEdge().second;
-        recursiveCal(graph->vertices[v], b, cameFrom);
+        recursiveCal(graph->vertices[sec], b);
     }
     else{
-        if(cameFrom->getStatus()==cameFrom->NEW){
+        if(cameFrom->getStatus() == cameFrom->NEW){
             cameFrom->updateStatus();
-            int code = this->getVCode(cameFrom->getEdge().second);
+            int sec = getSecond(node, cameFrom);
+            int code;
+            if(cameFrom->getEdge().second == sec){
+                code = this->getVCode(cameFrom->getEdge().second);
+            }
+            else{
+                code = this->getVCode(cameFrom->getEdge().first);
+            }
             this->weinbergCode.push_back(code);
-            int u = cameFrom->getEdge().first;
-            recursiveCal(graph->vertices[u], cameFrom, original);
+            int u;
+            if(cameFrom->getEdge().second == sec){
+                u = cameFrom->getEdge().second;
+            }
+            else{
+                u = cameFrom->getEdge().first;
+            }
+            recursiveCal(graph->vertices[u], cameFrom);
         }
         else{
-            Edge* b = node->getRightMostNeighbor();
-            int code = this->getVCode(b->getEdge().second);
+            WeinbergEdge* b = node->getRightMostNeighbor(cameFrom);
+            int sec = getSecond(node,b);
+            int code;
+            if(cameFrom->getEdge().second == sec){
+                code = this->getVCode(cameFrom->getEdge().first);
+            }
+            else{
+                code = this->getVCode(cameFrom->getEdge().second);
+            }
             this->weinbergCode.push_back(code);
             b->updateStatus();
-            int v = b->getEdge().second;
-            recursiveCal(graph->vertices[v], b, original);
+            int v;
+            if(cameFrom->getEdge().second == sec){
+                v = cameFrom->getEdge().first;
+            }
+            else{
+                v = cameFrom->getEdge().second;
+            }
+            recursiveCal(graph->vertices[v], b);
         }
-    }*/
+    }
+}
+
+
+int getSecond(WeinbergVertex* v, WeinbergEdge* curr){
+    int second;
+    if(v->data == curr->edge.first ){
+        second = curr->edge.second;
+    }
+    else{
+        second = curr->edge.first;
+    }
+    return second;
+
 }

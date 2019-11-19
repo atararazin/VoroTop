@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Input.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/FacesToGraph.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/WeinbergGraph.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WeinbergVertex.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/WeinbergVector.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/WeinbergVector.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Graph/Graph.cpp" isTestSource="false" />
@@ -18,10 +19,11 @@
       <sourceFolder url="file://$MODULE_DIR$/Graph/Face.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Graph/Edge.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Graph/Vertex.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/VoronoiCell.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WeinbergVertex.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/WeinbergEdge.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VoronoiCell.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/VoronoiCell.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/WeinbergEdge.cpp" isTestSource="false" />
     </content>

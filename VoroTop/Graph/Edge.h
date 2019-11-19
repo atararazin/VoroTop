@@ -14,7 +14,6 @@ public:
     Edge(std::pair<int,int> e);
     std::pair<int,int> getEdge();
     std::pair<int,int> getOppEdge();
-    void updateStatus();
     bool operator==(const Edge& other);
     void print();
 

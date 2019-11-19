@@ -6,11 +6,18 @@
 #define VOROTOP_WEINBERGGRAPH_H
 
 #include "Graph/Graph.h"
+#include "WeinbergEdge.h"
+#include "WeinbergVertex.h"
 
 class WeinbergGraph : public Graph{
+public:
+    vector<WeinbergVertex*> vertices;
+    vector<WeinbergEdge*> edges;
+
     void getFaces(string);
     void getVertices();
     void getEdges();
+    //~WeinbergGraph();
 
     /*for printing only*/
     void printE();

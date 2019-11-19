@@ -14,19 +14,15 @@ using namespace std;
 
 
 class Graph {
-private:
+protected:
     virtual void getFaces(string faces) = 0;
     virtual void getVertices() = 0;
     virtual void getEdges() = 0;
-    void assignEdgesToVertices();
-
 
 public:
-    vector<Vertex*> vertices;
-    vector<Edge*> edges;
     vector<Face*> faces;
     void create(string faces);
-    ~Graph();
+    //virtual ~Graph();
 };
 
 

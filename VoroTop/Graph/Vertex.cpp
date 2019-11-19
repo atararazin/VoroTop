@@ -16,13 +16,13 @@ void Vertex::printEdges(vector<Edge *> v) {
     }
 }
 
-void Vertex::addEdge(Edge* e) {
+/*void Vertex::addEdge(Edge* e) {
     this->listOfEdges.push_back(e);
-}
+}*/
 
-vector<Edge*> Vertex::getEdges() {
+/*vector<Edge*> Vertex::getEdges() {
     return this->listOfEdges;
-}
+}*/
 
 bool Vertex::operator()(const Vertex &obj) const {
     return obj.data == data;

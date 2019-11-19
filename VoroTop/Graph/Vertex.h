@@ -10,15 +10,16 @@
 using namespace std;
 
     class Vertex {
-    private:
+    protected:
         vector<Edge*> listOfEdges;
     public:
         int data;
-        Vertex(const int& data) : data(data) {}
-        vector<Edge*> getEdges();
-        void addEdge(Edge* e);
+        Vertex(int const& data) : data(data) {}
+        //vector<Edge*> getEdges();
+        //void addEdge(Edge* e);
         bool operator==(const Vertex& other);
         bool operator()(const Vertex& obj) const;
+        /*for printing only*/
         void print();
         void printEdges(vector<Edge*>);
     };

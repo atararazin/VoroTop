@@ -7,16 +7,17 @@
 #include <fstream>
 #include <iostream>
 #include "Graph/Graph.h"
+#include "WeinbergGraph.h"
 
 using namespace std;
 
 class FacesToGraph {
 public:
     void openOutputFile();
-    vector<Graph*>& createGraph();
+    vector<WeinbergGraph*>& createGraph();
 private:
     fstream file;
-    vector<Graph*> graphs;
+    vector<WeinbergGraph*> graphs;
 };
 
 

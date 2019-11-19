@@ -31,8 +31,8 @@ int main(int argc, char *argv[]) {
     voronoiCell->calcVorCell(input);
     FacesToGraph* graphConverter = new FacesToGraph();
     graphConverter->openOutputFile();
-    vector<Graph*> allGraphs = graphConverter->createGraph();
-    for(Graph* graph : allGraphs){
+    vector<WeinbergGraph*> allGraphs = graphConverter->createGraph();
+    for(WeinbergGraph* graph : allGraphs){
         WeinbergVector* wvector = new WeinbergVector(graph);
         wvector->calculate();
     }

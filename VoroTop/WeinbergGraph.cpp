@@ -5,6 +5,7 @@
 #include <sstream>
 #include <iostream>
 #include "WeinbergGraph.h"
+#include "WeinbergEdge.h"
 
 
 void WeinbergGraph::getFaces(string faces) {
@@ -30,7 +31,7 @@ void WeinbergGraph::getVertices() {
     }
 
     for(int i = 0; i <= max; i++){
-        Vertex* vertex = new Vertex(i);
+        WeinbergVertex* vertex = new WeinbergVertex(i);
         this->vertices.push_back(vertex);
     }
 
@@ -41,9 +42,6 @@ void WeinbergGraph::getVertices() {
 }
 
 void WeinbergGraph::getEdges() {
-    //std::set<pair<int,int>> tempEdge;
-    std::vector<Vertex*>::iterator it;
-
     for(Face* f : this->faces){
         long n = f->nodes.size();
         for(int i = 0; i < n; i++){
@@ -52,7 +50,7 @@ void WeinbergGraph::getEdges() {
             pair<int, int> edge(u,v);
             Edge curr = Edge(edge);
             bool found = 0;
-            for(Edge* e : edges){
+            for(WeinbergEdge* e : edges){
                 if(e->edge == pair<int,int>(v,u)){
                     found = 1;
                     vertices[u]->addEdge(e);
@@ -61,24 +59,32 @@ void WeinbergGraph::getEdges() {
             }
             //didnt find (v,u)
             if(found == 0){
-                Edge* newEdge = new Edge(edge);
+                WeinbergEdge* newEdge = new WeinbergEdge(edge);
                 edges.push_back(newEdge);
                 vertices[u]->addEdge(newEdge);
 
             }
-
-            /*//if edge (u,v) already exists as (v,u)
-
-            if(otherDirIn(tempEdge, edge)){
-                it = std::find(vertices.begin(), vertices.end(), Vertex(u));
-                vertices[u]->addEdge()
-                tempEdge.insert(edge);
-            }*/
         }
     }
 
     printG();
 }
+
+/*
+Graph::~Graph() {
+    for(Edge* e: edges){
+        delete(e);
+    }
+
+    for(Vertex* vertex: vertices){
+        delete(vertex);
+    }
+
+    for(Face* f : faces){
+        delete(f);
+    }
+    delete(this);
+}*/
 
 /*for printing only*/
 void WeinbergGraph::printFaces() {
@@ -107,11 +113,11 @@ void WeinbergGraph::printE() {
 
 void WeinbergGraph::printG() {
     printf("graph:\n");
-    for(Vertex* v : vertices){
+    for(WeinbergVertex* v : vertices){
         printf("vertex:\n");
         v->print();
         printf("edges:");
-        for(Edge* edge : v->getEdges()){
+        for(WeinbergEdge* edge : v->getEdges()){
             edge->print();
             printf(",");
         }
