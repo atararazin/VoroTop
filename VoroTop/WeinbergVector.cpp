@@ -28,6 +28,7 @@ void WeinbergVector::calculate() {
     first->updateStatus();
     int u = first->getEdge().first;
     int v = first->getEdge().second;
+    graph->vertices[u]->old = true;
     this->weinbergCode.push_back(this->getVCode(u));
     this->weinbergCode.push_back(this->getVCode(v));
     this->recursiveCal(graph->vertices[v], first);
@@ -44,12 +45,12 @@ int WeinbergVector::getVCode(int node) {
 }
 
 void WeinbergVector::recursiveCal(WeinbergVertex* node, WeinbergEdge* cameFrom) {
-    printf("weinberg code:");
-    for(int i : weinbergCode){
-        cout << i <<endl;
-    }
-    printf("");
     if(node->getRightMostNeighbor(cameFrom) == NULL){
+        printf("weinberg code:");
+        for(int i : weinbergCode){
+            cout << i << ",";
+        }
+        printf("");
         return;
     }
 
@@ -59,8 +60,6 @@ void WeinbergVector::recursiveCal(WeinbergVertex* node, WeinbergEdge* cameFrom) 
     if(!node->old){
         node->old = true;
         WeinbergEdge* b = node->getRightMostNeighbor(cameFrom);
-        printf("right:");
-        b->print();
         int sec = getSecond(node, b);
         code = this->getVCode(sec);
         b->updateStatus();
@@ -68,7 +67,7 @@ void WeinbergVector::recursiveCal(WeinbergVertex* node, WeinbergEdge* cameFrom) 
         vertex = graph->vertices[sec];
     }
     else{
-        if(cameFrom->getStatus() == cameFrom->NEW){
+        if(cameFrom->getStatus() == WeinbergEdge::NEW){
             cameFrom->updateStatus();
             int sec = getSecond(node, cameFrom);
             if(cameFrom->getEdge().second == sec){
@@ -90,19 +89,19 @@ void WeinbergVector::recursiveCal(WeinbergVertex* node, WeinbergEdge* cameFrom) 
         else{
             WeinbergEdge* b = node->getRightMostNeighbor(cameFrom);
             int sec = getSecond(node,b);
-            if(cameFrom->getEdge().second == sec){
-                code = this->getVCode(cameFrom->getEdge().second);
+            if(b->getEdge().second == sec){
+                code = this->getVCode(b->getEdge().second);
             }
             else{
-                code = this->getVCode(cameFrom->getEdge().first);
+                code = this->getVCode(b->getEdge().first);
             }
             b->updateStatus();
             int v;
-            if(cameFrom->getEdge().second == sec){
-                v = cameFrom->getEdge().second;
+            if(b->getEdge().second == sec){
+                v = b->getEdge().second;
             }
             else{
-                v = cameFrom->getEdge().first;
+                v = b->getEdge().first;
             }
             edge = b;
             vertex = graph->vertices[v];
@@ -122,5 +121,4 @@ int getSecond(WeinbergVertex* v, WeinbergEdge* curr){
         second = curr->edge.first;
     }
     return second;
-
 }

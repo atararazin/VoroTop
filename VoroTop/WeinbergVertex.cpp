@@ -27,23 +27,11 @@ void WeinbergVertex::addEdge(WeinbergEdge *e) {
 }
 
 WeinbergEdge* WeinbergVertex::getRightMostNeighbor(WeinbergEdge* cameFrom) {
-    printf("in weinberg");
-    printf("");
     int n = listOfEdges.size();
-    cout << n<<endl;
-    cout<<this->data<<endl;
     for(int i = 0; i < n; i++) {
-        cameFrom->print();
-        bool b = listOfEdges[i]->edge == cameFrom->edge;
-        listOfEdges[0]->print();
-        listOfEdges[1]->print();
-        listOfEdges[2]->print();
-
         if (listOfEdges[i]->edge == cameFrom->edge) {
             i++;
-            printf("er");
             while(listOfEdges[i % n]->edge != cameFrom->edge){
-                printf("jere");
                 if(listOfEdges[i % n]->getStatus() != WeinbergEdge::OLD){
                     return listOfEdges[i % n];
                 }

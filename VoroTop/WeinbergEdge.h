@@ -17,7 +17,6 @@ public:
     void updateStatus();
 private:
     Status status = NOTVISITED;
-
 };
 
 
