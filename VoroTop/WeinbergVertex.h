@@ -12,18 +12,18 @@
 class WeinbergVertex : public Vertex {
 private:
     int weinNum = -1;
+    vector<WeinbergEdge*> listOfEdges;
 
 public:
     int data;
-
     WeinbergVertex(int data);
-    vector<WeinbergEdge*> listOfEdges;
     vector<WeinbergEdge*> getEdges();
     void addEdge(WeinbergEdge* e);
     bool old = false;
     int getWeinNum(int* i);
     WeinbergEdge* getRightMostNeighbor(WeinbergEdge* cameFrom);
     void reset();
+    ~WeinbergVertex();
 
 
 

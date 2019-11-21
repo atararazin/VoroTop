@@ -14,9 +14,11 @@ using namespace std;
 class WeinbergVector {
 private:
     vector<int> weinbergCode;
-    int getVCode(int node);
     int i = 0;
     WeinbergGraph* graph;
+    vector<WeinbergVertex*> vertices;
+    vector<WeinbergEdge*> edges;
+    void initialize(WeinbergEdge* edge, int u, int v);
     void reset();
 public:
     WeinbergVector(WeinbergGraph* g);

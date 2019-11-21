@@ -6,14 +6,15 @@
 #include "WeinbergVertex.h"
 #include "WeinbergEdge.h"
 
+
 WeinbergVertex::WeinbergVertex(int data) : Vertex(data){
     this->data = data;
 }
 
 int WeinbergVertex::getWeinNum(int* i) {
     if(this->weinNum == -1){
-        this->weinNum = *i+1;
-        i++;
+        this->weinNum = *i + 1;
+        *i+=1;
     }
     return this->weinNum;
 }
@@ -44,4 +45,5 @@ WeinbergEdge* WeinbergVertex::getRightMostNeighbor(WeinbergEdge* cameFrom) {
 
 void WeinbergVertex::reset() {
     this->old = false;
+    this->weinNum = -1;
 }
