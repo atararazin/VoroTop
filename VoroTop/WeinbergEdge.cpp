@@ -21,3 +21,12 @@ void WeinbergEdge::updateStatus() {
 int WeinbergEdge::getStatus() {
     return this->status;
 }
+
+std::pair<int, int> WeinbergEdge::getOppEdge() {
+    return std::pair<int,int>(edge.second,edge.first);
+}
+
+
+void WeinbergEdge::reset() {
+    this->status = NOTVISITED;
+}

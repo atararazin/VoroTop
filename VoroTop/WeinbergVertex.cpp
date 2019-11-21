@@ -41,3 +41,7 @@ WeinbergEdge* WeinbergVertex::getRightMostNeighbor(WeinbergEdge* cameFrom) {
     }
     return NULL;
 }
+
+void WeinbergVertex::reset() {
+    this->old = false;
+}

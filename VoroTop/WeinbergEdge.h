@@ -15,6 +15,9 @@ public:
     enum Status{NOTVISITED, NEW, OLD};
     int getStatus();
     void updateStatus();
+    std::pair<int, int> getOppEdge();
+    void reset();
+
 private:
     Status status = NOTVISITED;
 };

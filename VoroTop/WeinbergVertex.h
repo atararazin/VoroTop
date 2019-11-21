@@ -23,6 +23,7 @@ public:
     bool old = false;
     int getWeinNum(int* i);
     WeinbergEdge* getRightMostNeighbor(WeinbergEdge* cameFrom);
+    void reset();
 
 
 

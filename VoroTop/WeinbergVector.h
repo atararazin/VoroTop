@@ -17,6 +17,7 @@ private:
     int getVCode(int node);
     int i = 0;
     WeinbergGraph* graph;
+    void reset();
 public:
     WeinbergVector(WeinbergGraph* g);
     void calculate();

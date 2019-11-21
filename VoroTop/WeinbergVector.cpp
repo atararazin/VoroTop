@@ -17,22 +17,37 @@ WeinbergVector::WeinbergVector(WeinbergGraph *g) {
 
 void WeinbergVector::calculate() {
     printf("\n");
-    printf("calculating");
+    printf("calculating\n");
     this->i = 0;
     for(Vertex* v : graph->vertices){
         vcodes.insert({v->data, -1});
     }
-
-    WeinbergEdge* first = this->graph->edges[0];
-    first->print();
-    first->updateStatus();
-    int u = first->getEdge().first;
-    int v = first->getEdge().second;
-    graph->vertices[u]->old = true;
-    this->weinbergCode.push_back(this->getVCode(u));
-    this->weinbergCode.push_back(this->getVCode(v));
-    this->recursiveCal(graph->vertices[v], first);
-
+    for(WeinbergEdge* first : graph->edges){
+        reset();
+        cout << "edge:";
+        first->print();
+        printf("");
+        first->updateStatus();
+        int u = first->getOppEdge().first;
+        int v = first->getOppEdge().second;
+        graph->vertices[u]->old = true;
+        this->weinbergCode.push_back(this->getVCode(u));
+        this->weinbergCode.push_back(this->getVCode(v));
+        this->recursiveCal(graph->vertices[v], first);
+    }
+    for(WeinbergEdge* first : graph->edges){
+        reset();
+        cout << "edge:";
+        first->print();
+        printf("");
+        first->updateStatus();
+        int u = first->getEdge().first;
+        int v = first->getEdge().second;
+        graph->vertices[u]->old = true;
+        this->weinbergCode.push_back(this->getVCode(u));
+        this->weinbergCode.push_back(this->getVCode(v));
+        this->recursiveCal(graph->vertices[v], first);
+    }
 }
 
 
@@ -50,7 +65,8 @@ void WeinbergVector::recursiveCal(WeinbergVertex* node, WeinbergEdge* cameFrom) 
         for(int i : weinbergCode){
             cout << i << ",";
         }
-        printf("");
+        printf("\n");
+        printf("\n");
         return;
     }
 
@@ -121,4 +137,20 @@ int getSecond(WeinbergVertex* v, WeinbergEdge* curr){
         second = curr->edge.first;
     }
     return second;
+}
+
+void WeinbergVector::reset() {
+    for(WeinbergEdge* e : graph->edges){
+        e->reset();
+    }
+    for(WeinbergVertex* v : graph->vertices){
+        v->reset();
+    }
+
+    for(WeinbergVertex* v : graph->vertices){
+        vcodes[v->data] = -1;
+    }
+    weinbergCode.clear();
+    this->i = 0;
+
 }
