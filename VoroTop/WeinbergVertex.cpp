@@ -47,3 +47,8 @@ void WeinbergVertex::reset() {
     this->old = false;
     this->weinNum = -1;
 }
+
+
+WeinbergVertex::~WeinbergVertex() {
+    delete this;
+}

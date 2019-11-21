@@ -34,11 +34,6 @@ void WeinbergGraph::getVertices() {
         WeinbergVertex* vertex = new WeinbergVertex(i);
         this->vertices.push_back(vertex);
     }
-
-
-    /*for printing only*/
-    printf("vertices:");
-    //printV();
 }
 
 void WeinbergGraph::getEdges() {
@@ -48,7 +43,6 @@ void WeinbergGraph::getEdges() {
             int u = f->nodes[i];
             int v = f->nodes[(i + 1) % n];
             pair<int, int> edge(u,v);
-            Edge curr = Edge(edge);
             bool found = 0;
             for(WeinbergEdge* e : edges){
                 if(e->edge == pair<int,int>(v,u)){
@@ -125,3 +119,15 @@ void WeinbergGraph::printG() {
     }
 }
 
+WeinbergGraph::~WeinbergGraph() {
+    for(Face* f : faces){
+        delete(f);
+    }
+    for(WeinbergEdge* e : edges){
+        delete(e);
+    }
+    for(WeinbergVertex* v : vertices){
+        delete(v);
+    }
+    delete this;
+}

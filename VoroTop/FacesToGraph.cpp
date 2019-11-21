@@ -26,3 +26,11 @@ vector<WeinbergGraph*>& FacesToGraph::createGraph() {
     }
     return graphs;
 }
+
+
+FacesToGraph::~FacesToGraph() {
+    for(WeinbergGraph* g : graphs){
+        delete g;
+    }
+    delete this;
+}

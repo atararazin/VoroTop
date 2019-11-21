@@ -15,6 +15,7 @@ class FacesToGraph {
 public:
     void openOutputFile();
     vector<WeinbergGraph*>& createGraph();
+    ~FacesToGraph();
 private:
     fstream file;
     vector<WeinbergGraph*> graphs;

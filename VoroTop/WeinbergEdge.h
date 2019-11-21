@@ -17,6 +17,7 @@ public:
     void updateStatus();
     std::pair<int, int> getOppEdge();
     void reset();
+    ~WeinbergEdge();
 
 private:
     Status status = NOTVISITED;

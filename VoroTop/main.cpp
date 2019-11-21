@@ -39,6 +39,6 @@ int main(int argc, char *argv[]) {
 
     delete(input);
     delete(voronoiCell);
-    delete(graphConverter);
+    //delete(graphConverter);
     //delete(wvector);
 }

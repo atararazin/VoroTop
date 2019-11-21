@@ -17,7 +17,7 @@ public:
     void getFaces(string);
     void getVertices();
     void getEdges();
-    //~WeinbergGraph();
+    ~WeinbergGraph();
 
     /*for printing only*/
     void printE();

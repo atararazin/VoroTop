@@ -30,3 +30,7 @@ std::pair<int, int> WeinbergEdge::getOppEdge() {
 void WeinbergEdge::reset() {
     this->status = NOTVISITED;
 }
+
+WeinbergEdge::~WeinbergEdge() {
+    delete this;
+}
