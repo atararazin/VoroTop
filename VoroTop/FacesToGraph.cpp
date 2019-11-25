@@ -32,5 +32,5 @@ FacesToGraph::~FacesToGraph() {
     for(WeinbergGraph* g : graphs){
         delete g;
     }
-    delete this;
+    //delete this;
 }

@@ -22,8 +22,8 @@ public:
     bool old = false;
     int getWeinNum(int* i);
     WeinbergEdge* getRightMostNeighbor(WeinbergEdge* cameFrom);
+    WeinbergEdge* getLeftMostNeighbor(WeinbergEdge* cameFrom);
     void reset();
-    ~WeinbergVertex();
 
 
 

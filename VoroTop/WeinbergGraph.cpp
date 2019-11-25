@@ -129,5 +129,5 @@ WeinbergGraph::~WeinbergGraph() {
     for(WeinbergVertex* v : vertices){
         delete(v);
     }
-    delete this;
+    //delete this;
 }

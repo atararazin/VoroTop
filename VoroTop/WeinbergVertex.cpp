@@ -43,12 +43,32 @@ WeinbergEdge* WeinbergVertex::getRightMostNeighbor(WeinbergEdge* cameFrom) {
     return NULL;
 }
 
+WeinbergEdge* WeinbergVertex::getLeftMostNeighbor(WeinbergEdge* cameFrom) {
+    int n = listOfEdges.size();
+    for(int i = 0; i < n; i++) {
+        if (listOfEdges[i]->edge == cameFrom->edge) {
+            i--;
+            if(i == -1)
+                i = n-1;
+            while(listOfEdges[i % n]->edge != cameFrom->edge){
+                if(listOfEdges[i % n]->getStatus() != WeinbergEdge::OLD){
+                    return listOfEdges[i % n];
+                }
+                i--;
+                if(i == -1)
+                    i = n-1;
+            }
+        }
+    }
+    return NULL;
+}
+
 void WeinbergVertex::reset() {
     this->old = false;
     this->weinNum = -1;
 }
 
 
-WeinbergVertex::~WeinbergVertex() {
+/*WeinbergVertex::~WeinbergVertex() {
     delete this;
-}
+}*/

@@ -7,6 +7,8 @@
 #include <iostream>
 
 int getSecond(WeinbergVertex* v, WeinbergEdge* curr);
+int index = 0;
+
 
 WeinbergVector::WeinbergVector(WeinbergGraph *g) {
     this->graph = g;
@@ -29,6 +31,10 @@ void WeinbergVector::initialize(WeinbergEdge *edge, int u, int v) {
 
 void WeinbergVector::calculate() {
     int u,v,iter;
+    cout << edges.size() << endl;
+    updateDirection(Right);
+    bool isFirst = true;
+
     for(WeinbergEdge* first : edges){
         for(iter = 0; iter < 2; iter++){
             if(iter == 1){
@@ -44,11 +50,31 @@ void WeinbergVector::calculate() {
             this->recursiveCal(vertices[v], first);
         }
     }
+
+    //for loop for left
+    printf("LEFT:\n");
+    updateDirection(Left);
+    for(WeinbergEdge* first : edges){
+        for(iter = 0; iter < 2; iter++){
+            if(iter == 1){
+                u = first->getOppEdge().first;
+                v = first->getOppEdge().second;
+            }
+            else{
+                u = first->getEdge().first;
+                v = first->getEdge().second;
+            }
+            initialize(first, u,v);
+            this->recursiveCal(vertices[v], first);
+        }
+    }
+
 }
 
 
 void WeinbergVector::recursiveCal(WeinbergVertex* node, WeinbergEdge* cameFrom) {
-    if(node->getRightMostNeighbor(cameFrom) == NULL){
+    //if(node->getRightMostNeighbor(cameFrom) == NULL){
+    if(getNeighbor(cameFrom,node) == NULL){
         /*for printing only*/
         printf("weinberg code:");
         for(int i : weinbergCode){
@@ -56,7 +82,7 @@ void WeinbergVector::recursiveCal(WeinbergVertex* node, WeinbergEdge* cameFrom) 
         }
         printf("\n");
         printf("\n");
-
+        //first = false;
         return;
     }
 
@@ -65,7 +91,7 @@ void WeinbergVector::recursiveCal(WeinbergVertex* node, WeinbergEdge* cameFrom) 
     WeinbergEdge* edge;
     if(!node->old){
         node->old = true;
-        WeinbergEdge* b = node->getRightMostNeighbor(cameFrom);
+        WeinbergEdge* b = getNeighbor(cameFrom, node);
         int sec = getSecond(node, b);
         code = vertices[sec]->getWeinNum(&i);
         b->updateStatus();
@@ -93,7 +119,8 @@ void WeinbergVector::recursiveCal(WeinbergVertex* node, WeinbergEdge* cameFrom) 
             edge = cameFrom;
         }
         else{
-            WeinbergEdge* b = node->getRightMostNeighbor(cameFrom);
+            //WeinbergEdge* b = node->getRightMostNeighbor(cameFrom);
+            WeinbergEdge* b = getNeighbor(cameFrom, node);
             int sec = getSecond(node,b);
             if(b->getEdge().second == sec){
                 code = vertices[b->getEdge().second]->getWeinNum(&i);
@@ -114,6 +141,24 @@ void WeinbergVector::recursiveCal(WeinbergVertex* node, WeinbergEdge* cameFrom) 
             vertex = vertices[v];
         }
     }
+
+    /*if(first == true){
+        printf("first");
+        this->weinbergCode.push_back(code);
+        for(int i : weinbergCode){
+            cout << i <<endl;
+        }
+
+    }
+    int res = compareToCode(code);
+    if(res < 0){
+        printf("smaller");
+        this->weinbergCode.push_back(code);
+    }
+    else if(res > 0){
+        return;
+    }
+    index++;*/
     this->weinbergCode.push_back(code);
     recursiveCal(vertex, edge);
 }
@@ -139,5 +184,45 @@ void WeinbergVector::reset() {
     }
     weinbergCode.clear();
     this->i = 0;
+    index = 0;
 
+}
+
+
+void WeinbergVector::updateDirection(Direction d) {
+    if(d == Right){
+        direction = Right;
+    }
+    else{//d == Left
+        direction = Left;
+    }
+}
+
+WeinbergEdge* WeinbergVector::getNeighbor(WeinbergEdge *e, WeinbergVertex *v) {
+    if(direction == Right){
+        right(e,v);
+    }
+    else{
+        left(e,v);
+    }
+}
+
+WeinbergEdge* WeinbergVector::right(WeinbergEdge *e, WeinbergVertex* v) {
+    return v->getRightMostNeighbor(e);
+}
+
+WeinbergEdge* WeinbergVector::left(WeinbergEdge *e, WeinbergVertex* v) {
+    return v->getLeftMostNeighbor(e);
+}
+
+int WeinbergVector::compareToCode(int i) {
+    if(i > weinbergCode[index]){
+        return 1;
+    }
+    else if(i == weinbergCode[index]){
+        return 0;
+    }
+    else{
+        return -1;
+    }
 }

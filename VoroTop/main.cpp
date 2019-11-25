@@ -4,10 +4,7 @@
 #include <sstream>
 #include "VoronoiCell.h"
 #include "FacesToGraph.h"
-#include <boost/graph/graph_traits.hpp>
-#include <boost/graph/adjacency_list.hpp>
 #include "WeinbergVector.h"
-using namespace boost;
 
 using namespace std;
 
@@ -35,10 +32,10 @@ int main(int argc, char *argv[]) {
     for(WeinbergGraph* graph : allGraphs){
         WeinbergVector* wvector = new WeinbergVector(graph);
         wvector->calculate();
+        delete(wvector);
     }
 
     delete(input);
     delete(voronoiCell);
-    //delete(graphConverter);
-    //delete(wvector);
+    delete(graphConverter);
 }

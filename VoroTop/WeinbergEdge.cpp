@@ -31,6 +31,6 @@ void WeinbergEdge::reset() {
     this->status = NOTVISITED;
 }
 
-WeinbergEdge::~WeinbergEdge() {
+/*WeinbergEdge::~WeinbergEdge() {
     delete this;
-}
+}*/
