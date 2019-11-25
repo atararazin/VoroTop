@@ -13,7 +13,7 @@ using namespace std;
 
 class WeinbergVector {
 private:
-    vector<int> weinbergCode;
+    vector<int> canonicalVector;
     int i = 0;
     WeinbergGraph* graph;
     vector<WeinbergVertex*> vertices;
