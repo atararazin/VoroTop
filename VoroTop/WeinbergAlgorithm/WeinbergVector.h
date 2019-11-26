@@ -5,8 +5,8 @@
 #ifndef VOROTOP_WEINBERGVECTOR_H
 #define VOROTOP_WEINBERGVECTOR_H
 
-#include "Graph/Vertex.h"
-#include "Graph/Graph.h"
+#include "../Graph/Vertex.h"
+#include "../Graph/Graph.h"
 #include "WeinbergGraph.h"
 
 using namespace std;

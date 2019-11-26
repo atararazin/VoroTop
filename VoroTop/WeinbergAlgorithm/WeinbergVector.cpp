@@ -26,9 +26,6 @@ void WeinbergVector::initialize(WeinbergEdge *edge, int u, int v) {
 
     edge->updateStatus();
     vertices[u]->old = true;
-
-    //this->canonicalVector.push_back(vertices[u]->getWeinNum(&i));
-    //this->canonicalVector.push_back(vertices[v]->getWeinNum(&i));
     vertices[u]->getWeinNum(&i);
     vertices[v]->getWeinNum(&i);
 }
@@ -65,6 +62,7 @@ void WeinbergVector::calculate() {
         d = Left;
     }
 
+    /*for printing only*/
     printf("weinberg code:");
        for(int i : canonicalVector){
            cout << i << ",";
@@ -75,13 +73,6 @@ void WeinbergVector::calculate() {
 
 void WeinbergVector::recursiveCal(WeinbergVertex* node, WeinbergEdge* cameFrom) {
    if(getNeighbor(cameFrom,node) == NULL){
-       /*for printing only*/
-        /*printf("weinberg code:");
-        for(int i : canonicalVector){
-            cout << i << ",";
-        }
-        printf("\n");
-        printf("\n");*/
         return;
     }
 

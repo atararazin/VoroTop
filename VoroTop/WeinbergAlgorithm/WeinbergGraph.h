@@ -5,7 +5,7 @@
 #ifndef VOROTOP_WEINBERGGRAPH_H
 #define VOROTOP_WEINBERGGRAPH_H
 
-#include "Graph/Graph.h"
+#include "../Graph/Graph.h"
 #include "WeinbergEdge.h"
 #include "WeinbergVertex.h"
 

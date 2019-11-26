@@ -6,7 +6,7 @@
 #define VOROTOP_WEINBERGVERTEX_H
 
 
-#include "Graph/Vertex.h"
+#include "../Graph/Vertex.h"
 #include "WeinbergEdge.h"
 
 class WeinbergVertex : public Vertex {

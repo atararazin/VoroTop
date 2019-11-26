@@ -4,7 +4,7 @@
 
 #include "FacesToGraph.h"
 #include "Graph/Graph.h"
-#include "WeinbergGraph.h"
+#include "WeinbergAlgorithm/WeinbergGraph.h"
 using namespace std;
 
 void FacesToGraph::openOutputFile() {

@@ -4,7 +4,7 @@
 #include <sstream>
 #include "VoronoiCell.h"
 #include "FacesToGraph.h"
-#include "WeinbergVector.h"
+#include "WeinbergAlgorithm/WeinbergVector.h"
 
 using namespace std;
 

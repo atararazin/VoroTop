@@ -7,7 +7,7 @@
 #include <fstream>
 #include <iostream>
 #include "Graph/Graph.h"
-#include "WeinbergGraph.h"
+#include "WeinbergAlgorithm/WeinbergGraph.h"
 
 using namespace std;
 

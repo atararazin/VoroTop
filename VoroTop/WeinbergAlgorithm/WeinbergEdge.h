@@ -6,7 +6,7 @@
 #define VOROTOP_WEINBERGEDGE_H
 
 
-#include "Graph/Edge.h"
+#include "../Graph/Edge.h"
 
 
 class WeinbergEdge : public Edge{
