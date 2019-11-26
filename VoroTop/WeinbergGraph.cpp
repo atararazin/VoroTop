@@ -61,24 +61,9 @@ void WeinbergGraph::getEdges() {
         }
     }
 
-    printG();
+    //printG();
 }
 
-/*
-Graph::~Graph() {
-    for(Edge* e: edges){
-        delete(e);
-    }
-
-    for(Vertex* vertex: vertices){
-        delete(vertex);
-    }
-
-    for(Face* f : faces){
-        delete(f);
-    }
-    delete(this);
-}*/
 
 /*for printing only*/
 void WeinbergGraph::printFaces() {

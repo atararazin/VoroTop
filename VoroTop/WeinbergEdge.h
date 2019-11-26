@@ -8,6 +8,7 @@
 
 #include "Graph/Edge.h"
 
+
 class WeinbergEdge : public Edge{
 public:
     std::pair<int,int> edge;
@@ -16,6 +17,7 @@ public:
     int getStatus();
     void updateStatus();
     std::pair<int, int> getOppEdge();
+    std::pair<int,int> getDirectedEdge(int node);
     void reset();
 
 private:

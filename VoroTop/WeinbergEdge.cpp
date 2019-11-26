@@ -31,6 +31,12 @@ void WeinbergEdge::reset() {
     this->status = NOTVISITED;
 }
 
-/*WeinbergEdge::~WeinbergEdge() {
-    delete this;
-}*/
+
+std::pair<int,int> WeinbergEdge::getDirectedEdge(int v) {
+    if(v == this->edge.first ){
+        return edge;
+    }
+    else{
+        return this->getOppEdge();
+    }
+}
