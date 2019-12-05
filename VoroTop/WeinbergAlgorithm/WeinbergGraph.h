@@ -24,6 +24,13 @@ public:
     void printFaces();
     void printV();
     void printG();
+    std::string toStringEdges();
+private:
+    int edgeExists(pair<int,int> searching);
+    void addEdge(pair<int,int> e, WeinbergVertex*v);
+    pair<Face* ,int> findFirstAppearance(int v);
+    pair<Face* ,int> findPairOfVerticesInFaces(int v, int u);
+
 
 };
 

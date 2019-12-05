@@ -74,6 +74,5 @@ void Input::updateInputStr() {
     ss << "./voro++ -c %t"<< " " << this->max_x << " " << this->min_x << " " << this->max_y << " " <<
        this->min_y << " " << this->max_z << " " << this->min_z << " " << "inputForVoro++.txt";
     std::string s = ss.str();
-    cout << s << "------string now " << endl;
     this->inputStr = s;
 }

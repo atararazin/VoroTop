@@ -20,14 +20,14 @@ private:
     vector<WeinbergEdge*> edges;
     void initialize(WeinbergEdge* edge, int u, int v);
     void reset();
-    //WeinbergEdge* (*WeinbergVector::dir)(WeinbergEdge*, WeinbergVertex*);
     enum Direction {Right, Left};
     Direction direction;
     void updateDirection(Direction d);
     WeinbergEdge* right(WeinbergEdge*,WeinbergVertex*);
     WeinbergEdge* left(WeinbergEdge*,WeinbergVertex*);
     WeinbergEdge* getNeighbor(WeinbergEdge*,WeinbergVertex*);
-    int compareToCode(int i);
+    string compareToCode(int i);
+    void getFirstWeinVec();
 public:
     WeinbergVector(WeinbergGraph* g);
     void calculate();

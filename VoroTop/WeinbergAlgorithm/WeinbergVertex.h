@@ -24,9 +24,6 @@ public:
     WeinbergEdge* getRightMostNeighbor(WeinbergEdge* cameFrom);
     WeinbergEdge* getLeftMostNeighbor(WeinbergEdge* cameFrom);
     void reset();
-
-
-
 };
 
 

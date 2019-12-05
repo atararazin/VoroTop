@@ -9,7 +9,6 @@ using namespace std;
 
 void FacesToGraph::openOutputFile() {
     file.open("inputForVoro++.txt.vol");
-    std::cout<< "file opened" << std::endl;
     this->createGraph();
 }
 
