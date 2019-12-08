@@ -9,10 +9,11 @@
 // Created by atara on 12/5/19.
 //
 
-#include "edgesOrderingTest.h"
-#include<gtest/gtest.h>
-#include<gmock/gmock.h>
-#include "../WeinbergAlgorithm/WeinbergGraph.h"
+include "edgesOrderingTest.h"
+include<gtest/gtest.h>
+include<gmock/gmock.h>
+include <gmock/gmock-matchers.h>
+include "../WeinbergAlgorithm/WeinbergGraph.h"
 
 
 using testing::Eq;

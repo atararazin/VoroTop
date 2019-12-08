@@ -16,10 +16,10 @@
       <sourceFolder url="file://$MODULE_DIR$/WeinbergAlgorithm" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests/graphCreationTest.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/GraphCreationTest.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests/test.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests/edgesOrderingTest.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests/graphCreationTest.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/tests/ClassName.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/googletest-master/googlemock/src/gmock-all.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/googletest-master/googlemock/src/gmock_main.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/googletest-master/googlemock/CMakeLists.txt" isTestSource="false" />

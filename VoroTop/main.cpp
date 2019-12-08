@@ -12,19 +12,17 @@ using namespace std;
 #include<gmock/gmock.h>
 
 
-/*int main(int argc, char*argv[]){
+int main(int argc, char*argv[]){
     testing::InitGoogleTest(&argc, argv);
     RUN_ALL_TESTS();
     return 0;
-}*/
+}
 
 
 
 
-
+/*
 int main(int argc, char *argv[]) {
-    //graphCreationTest* test = new graphCreationTest();
-    //delete(test);
     fstream file;
     file.open(argv[1]);
     fstream& fref = file;
@@ -43,13 +41,13 @@ int main(int argc, char *argv[]) {
     FacesToGraph* graphConverter = new FacesToGraph();
     graphConverter->openOutputFile();
     vector<WeinbergGraph*> allGraphs = graphConverter->createGraph();
-    /*for(WeinbergGraph* graph : allGraphs){
+    for(WeinbergGraph* graph : allGraphs){
         WeinbergVector* wvector = new WeinbergVector(graph);
         wvector->calculate();
         delete(wvector);
-    }*/
+    }
 
     delete(input);
     delete(voronoiCell);
     delete(graphConverter);
-}
+}*/

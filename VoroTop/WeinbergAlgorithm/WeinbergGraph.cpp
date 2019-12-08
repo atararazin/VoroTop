@@ -59,36 +59,15 @@ void WeinbergGraph::getEdges() {
             w = (n + (index-1 % n)) % n ;
 
             edge = pair<int,int>(face->nodes[w], u);
+            if(edge == stoppingE){
+                break;
+            }
             addEdge(edge, vertex);
             next = edge;
         }
     }
     printG();
 }
-
-    /*for(Face* f : this->faces){
-        long n = f->nodes.size();
-        for(int i = 0; i < n; i++){
-            int u = f->nodes[i];
-            int v = f->nodes[(i + 1) % n];
-            pair<int, int> edge(u,v);
-            bool found = 0;
-            for(WeinbergEdge* e : edges){
-                if(e->edge == pair<int,int>(v,u)){
-                    found = 1;
-                    vertices[u]->addEdge(e);
-                    break;
-                }
-            }
-            //didnt find (v,u)
-            if(found == 0){
-                WeinbergEdge* newEdge = new WeinbergEdge(edge);
-                edges.push_back(newEdge);
-                vertices[u]->addEdge(newEdge);
-
-            }
-        }
-    }*/
 
 pair<Face*,int> WeinbergGraph::findFirstAppearance(int v) {
     for (Face *f : faces) {
@@ -181,6 +160,11 @@ void WeinbergGraph::printG() {
         }
         printf("\n\n");
     }
+}
+
+
+std::string WeinbergGraph::toStringEdges() {
+    return "22";
 }
 
 WeinbergGraph::~WeinbergGraph() {
