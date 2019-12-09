@@ -5,7 +5,6 @@
 #include "VoronoiCell.h"
 #include "FacesToGraph.h"
 #include "WeinbergAlgorithm/WeinbergVector.h"
-#include "tests/graphCreationTest.h"
 using namespace std;
 
 #include<gtest/gtest.h>
