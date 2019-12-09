@@ -10,6 +10,7 @@
 void findInFaces(vector<Face*> faces, int i);
 int edgeExists(vector<WeinbergEdge*> edges, pair<int,int>);
 
+
 void WeinbergGraph::getFaces(string faces) {
     istringstream iss(faces);
     string s;
@@ -66,7 +67,6 @@ void WeinbergGraph::getEdges() {
             next = edge;
         }
     }
-    printG();
 }
 
 pair<Face*,int> WeinbergGraph::findFirstAppearance(int v) {
@@ -160,11 +160,6 @@ void WeinbergGraph::printG() {
         }
         printf("\n\n");
     }
-}
-
-
-std::string WeinbergGraph::toStringEdges() {
-    return "22";
 }
 
 WeinbergGraph::~WeinbergGraph() {
