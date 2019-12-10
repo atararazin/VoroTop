@@ -8,20 +8,27 @@
 
 #include "../Graph/Edge.h"
 
+template <typename T>
 
-class WeinbergEdge : public Edge{
+class WeinbergEdge : public Edge<T>{
 public:
-    std::pair<int,int> edge;
-    WeinbergEdge(std::pair<int,int> edge);
+    //std::pair<int,int> edge;
+    WeinbergEdge(std::pair<int,int> edge) : Edge<int>(edge){};
+    WeinbergEdge(int u, int v) : Edge<int>(u, v){};
     enum Status{NOTVISITED, NEW, OLD};
     int getStatus();
     void updateStatus();
-    std::pair<int, int> getOppEdge();
+    //std::pair<int, int> backwardEdge();
     std::pair<int,int> getDirectedEdge(int node);
     void reset();
 
 private:
     Status status = NOTVISITED;
+    //int u;
+    //int v;
+    //std::pair<int,int> u_v;
+    //std::pair<int,int> v_u;
+
 };
 
 

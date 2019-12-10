@@ -4,11 +4,12 @@
 
 #include "WeinbergEdge.h"
 
-WeinbergEdge::WeinbergEdge(std::pair<int, int> edge) : Edge(edge){
+/*WeinbergEdge::WeinbergEdge(std::pair<int, int> edge) : Edge(edge){
     this->edge = edge;
-}
+}*/
 
-void WeinbergEdge::updateStatus() {
+template<typename T>
+void WeinbergEdge<T>::updateStatus() {
     if(this->status == NOTVISITED){
         this->status = NEW;
     }
@@ -17,26 +18,22 @@ void WeinbergEdge::updateStatus() {
     }
 }
 
-
-int WeinbergEdge::getStatus() {
+template<typename T>
+int WeinbergEdge<T>::getStatus() {
     return this->status;
 }
 
-std::pair<int, int> WeinbergEdge::getOppEdge() {
-    return std::pair<int,int>(edge.second,edge.first);
-}
-
-
-void WeinbergEdge::reset() {
+template<typename T>
+void WeinbergEdge<T>::reset() {
     this->status = NOTVISITED;
 }
 
-
-std::pair<int,int> WeinbergEdge::getDirectedEdge(int v) {
-    if(v == this->edge.first ){
-        return edge;
+template<typename T>
+std::pair<int,int> WeinbergEdge<T>::getDirectedEdge(int v) {
+    if(v == this->v){
+        return forwardEdge();
     }
     else{
-        return this->getOppEdge();
+        return this->backwardEdge();
     }
 }

@@ -7,16 +7,21 @@
 
 
 #include <ostream>
+template <typename T>
 
 class Edge {
 public:
-    std::pair<int,int> edge;
-    Edge(std::pair<int,int> e);
-    std::pair<int,int> getEdge();
-    std::pair<int,int> getOppEdge();
-    bool operator==(const Edge& other);
-    void print();
+    //Edge(std::pair<int,int> e);
+    Edge(std::pair<T,T> e);
+    //Edge(int u, int v);
+    Edge(T u,T v);
+    std::pair<T,T> forwardEdge();
+    std::pair<T,T> backwardEdge();
+    bool operator==(Edge* other);
 
+protected:
+    T u;
+    T v;
 
 };
 

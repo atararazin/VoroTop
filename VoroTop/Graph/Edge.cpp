@@ -6,26 +6,37 @@
 #include <set>
 #include <iostream>
 
-Edge::Edge(std::pair<int, int> edge) {
-    this->edge = edge;
-}
 
-std::pair<int,int> Edge::getEdge() {
-    return edge;
-}
+    template<typename T>
+    Edge<T>::Edge(std::pair<T, T> edge) {
+        //this->edge = edge;
+        this->u = edge.first;
+        this->v = edge.second;
+    }
 
-std::pair<int,int> Edge::getOppEdge() {
-    std::pair<int, int> opp(edge.second, edge.second);
-    return opp;
-}
+template<typename T>
 
+    Edge<T>::Edge(T u, T v) {
+        this->u = u;
+        this->v = v;
+    }
 
-bool Edge::operator==(const Edge &other) {
-    bool same = other.edge.first == this->edge.first && other.edge.second == this->edge.second;
-    bool opp = other.edge.first == this->edge.second && other.edge.second == this->edge.first;
-    return same;
-}
+template<typename T>
+    std::pair<T, T> Edge<T>::forwardEdge() {
+        //return edge;
+        return std::pair<T, T>(u, v);
+    }
 
-void Edge::print() {
-    std::cout << "(" << edge.first << "," << edge.second << ")" << std::endl;
-}
+template<typename T>
+    std::pair<T, T> Edge<T>::backwardEdge() {
+        //std::pair<int, int> opp(edge.second, edge.second);
+        //return opp;
+        return std::pair<int, int>(v, u);
+    }
+
+template<typename T>
+    bool Edge<T>::operator==(Edge *other) {
+        bool same = other->forwardEdge() == this->forwardEdge();
+        bool opp = other->forwardEdge() == this->backwardEdge();
+        return same || opp;
+    }

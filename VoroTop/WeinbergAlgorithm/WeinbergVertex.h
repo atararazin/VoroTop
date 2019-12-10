@@ -12,17 +12,17 @@
 class WeinbergVertex : public Vertex {
 private:
     int weinNum = -1;
-    vector<WeinbergEdge*> listOfEdges;
+    vector<WeinbergEdge<int>*> listOfEdges;
 
 public:
     int data;
     WeinbergVertex(int data);
-    vector<WeinbergEdge*> getEdges();
-    void addEdge(WeinbergEdge* e);
+    vector<WeinbergEdge<int>*> getEdges();
+    void addEdge(WeinbergEdge<int>* e);
     bool old = false;
     int getWeinNum(int* i);
-    WeinbergEdge* getRightMostNeighbor(WeinbergEdge* cameFrom);
-    WeinbergEdge* getLeftMostNeighbor(WeinbergEdge* cameFrom);
+    WeinbergEdge<int>* getRightMostNeighbor(WeinbergEdge<int>* cameFrom);
+    WeinbergEdge<int>* getLeftMostNeighbor(WeinbergEdge<int>* cameFrom);
     void reset();
 };
 

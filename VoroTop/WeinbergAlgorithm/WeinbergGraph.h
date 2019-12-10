@@ -12,7 +12,7 @@
 class WeinbergGraph : public Graph{
 public:
     vector<WeinbergVertex*> vertices;
-    vector<WeinbergEdge*> edges;
+    vector<WeinbergEdge<int>*> edges;
 
     void getFaces(string);
     void getVertices();

@@ -7,11 +7,12 @@
 
 #include <vector>
 #include "Edge.h"
+
 using namespace std;
 
     class Vertex {
     protected:
-        vector<Edge*> listOfEdges;
+        vector<Edge<int>*> listOfEdges;
     public:
         int data;
         Vertex(int const& data) : data(data) {}
@@ -21,7 +22,6 @@ using namespace std;
         bool operator()(const Vertex& obj) const;
         /*for printing only*/
         void print();
-        void printEdges(vector<Edge*>);
     };
 
 

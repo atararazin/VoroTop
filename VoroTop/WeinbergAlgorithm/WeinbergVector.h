@@ -17,21 +17,22 @@ private:
     int i = 0;
     WeinbergGraph* graph;
     vector<WeinbergVertex*> vertices;
-    vector<WeinbergEdge*> edges;
-    void initialize(WeinbergEdge* edge, int u, int v);
+    vector<WeinbergEdge<int>*> edges;
+    void initialize(WeinbergEdge<int>* edge, int u, int v);
     void reset();
     enum Direction {Right, Left};
     Direction direction;
     void updateDirection(Direction d);
-    WeinbergEdge* right(WeinbergEdge*,WeinbergVertex*);
-    WeinbergEdge* left(WeinbergEdge*,WeinbergVertex*);
-    WeinbergEdge* getNeighbor(WeinbergEdge*,WeinbergVertex*);
+    WeinbergEdge<int>* right(WeinbergEdge<int>*,WeinbergVertex*);
+    WeinbergEdge<int>* left(WeinbergEdge<int>*,WeinbergVertex*);
+    WeinbergEdge<int>* getNeighbor(WeinbergEdge<int>*,WeinbergVertex*);
     string compareToCode(int i);
     void getFirstWeinVec();
 public:
     WeinbergVector(WeinbergGraph* g);
     void calculate();
-    void recursiveCal(WeinbergVertex* node, WeinbergEdge* branch);
+    void recursiveCal(WeinbergVertex* node, WeinbergEdge<int>* branch);
+    vector<int> getVector();
 };
 
 

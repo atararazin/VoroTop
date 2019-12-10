@@ -32,13 +32,12 @@ TEST_F(NeighborsTest, test_2s_right_neighbors){
     graph->getEdges();
 
     WeinbergVertex* two = graph->vertices[2];
-    WeinbergEdge* expected0 = new WeinbergEdge(pair<int,int>(4,2));
+    WeinbergEdge* expected0 = new WeinbergEdge(4,2);
+    EXPECT_EQ(expected0->forwardEdge(), two->getRightMostNeighbor(two->getEdges()[0])->forwardEdge());
 
-    EXPECT_EQ(expected0->edge, two->getRightMostNeighbor(two->getEdges()[0])->edge);
 
-    WeinbergEdge* expected1 = new WeinbergEdge(pair<int,int>(6,2));
-
-    EXPECT_EQ(expected1->edge, two->getRightMostNeighbor(two->getEdges()[1])->edge);
+    WeinbergEdge* expected1 = new WeinbergEdge(6,2);
+    EXPECT_EQ(expected1->forwardEdge(), two->getRightMostNeighbor(two->getEdges()[1])->forwardEdge());
 
     delete graph;
 }

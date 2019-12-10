@@ -115,7 +115,8 @@ int WeinbergGraph::edgeExists(pair<int, int> searching) {
     WeinbergEdge* curr;
     for(int i = 0; i < n; i++){
         curr = edges[i];
-        if(curr->edge == searching || curr->getOppEdge() == searching){
+        if(curr->forwardEdge() == searching || curr->backwardEdge() == searching){
+            //if(curr->edge == searching || curr->backwardEdge() == searching){
             return i;
         }
     }

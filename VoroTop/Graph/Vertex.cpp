@@ -10,12 +10,6 @@ void Vertex::print() {
     cout << this->data << endl;
 }
 
-void Vertex::printEdges(vector<Edge *> v) {
-    for(Edge* e: v){
-        e->print();
-    }
-}
-
 /*void Vertex::addEdge(Edge* e) {
     this->listOfEdges.push_back(e);
 }*/
