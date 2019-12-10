@@ -112,7 +112,7 @@ pair<Face* ,int> WeinbergGraph::findPairOfVerticesInFaces(int v, int u) {
 
 int WeinbergGraph::edgeExists(pair<int, int> searching) {
     int n = edges.size();
-    WeinbergEdge* curr;
+    WeinbergEdge<int>* curr;
     for(int i = 0; i < n; i++){
         curr = edges[i];
         if(curr->forwardEdge() == searching || curr->backwardEdge() == searching){
@@ -125,12 +125,12 @@ int WeinbergGraph::edgeExists(pair<int, int> searching) {
 
 void WeinbergGraph::addEdge(pair<int, int> e, WeinbergVertex* v) {
     int ans = edgeExists(e);
-    WeinbergEdge* add;
+    WeinbergEdge<int>* add;
     if(ans >= 0){
         add = edges[ans];
     }
     else{
-        WeinbergEdge* newE = new WeinbergEdge(e);
+        WeinbergEdge<int >* newE = new WeinbergEdge<int >(e);
         edges.push_back(newE);
         add = newE;
     }
@@ -141,7 +141,7 @@ WeinbergGraph::~WeinbergGraph() {
     for(Face* f : faces){
         delete(f);
     }
-    for(WeinbergEdge* e : edges){
+    for(WeinbergEdge<int >* e : edges){
         delete(e);
     }
     for(WeinbergVertex* v : vertices){

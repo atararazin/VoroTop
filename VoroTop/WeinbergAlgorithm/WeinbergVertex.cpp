@@ -27,14 +27,14 @@ void WeinbergVertex::addEdge(WeinbergEdge<int> *e) {
     this->listOfEdges.push_back(e);
 }
 
-WeinbergEdge* WeinbergVertex::getRightMostNeighbor(WeinbergEdge<int >* cameFrom) {
+WeinbergEdge<int>* WeinbergVertex::getRightMostNeighbor(WeinbergEdge<int >* cameFrom) {
     int n = listOfEdges.size();
     for(int i = 0; i < n; i++) {
         if (listOfEdges[i]->forwardEdge() == cameFrom->forwardEdge()) {
         //if (listOfEdges[i]->edge == cameFrom->edge) {
             i++;
             while(listOfEdges[i % n]->forwardEdge() != cameFrom->forwardEdge()){
-                if(listOfEdges[i % n]->getStatus() != WeinbergEdge::OLD){
+                if(listOfEdges[i % n]->getStatus() != WeinbergEdge<int>::OLD){
                     return listOfEdges[i % n];
                 }
                 i++;
@@ -44,7 +44,7 @@ WeinbergEdge* WeinbergVertex::getRightMostNeighbor(WeinbergEdge<int >* cameFrom)
     return NULL;
 }
 
-WeinbergEdge* WeinbergVertex::getLeftMostNeighbor(WeinbergEdge<int>* cameFrom) {
+WeinbergEdge<int >* WeinbergVertex::getLeftMostNeighbor(WeinbergEdge<int>* cameFrom) {
     int n = listOfEdges.size();
     for(int i = 0; i < n; i++) {
         if (listOfEdges[i]->forwardEdge() == cameFrom->forwardEdge()) {
@@ -54,7 +54,7 @@ WeinbergEdge* WeinbergVertex::getLeftMostNeighbor(WeinbergEdge<int>* cameFrom) {
                 i = n-1;
             while(listOfEdges[i % n]->forwardEdge() != cameFrom->forwardEdge()){
            // while(listOfEdges[i % n]->edge != cameFrom->edge){
-                if(listOfEdges[i % n]->getStatus() != WeinbergEdge::OLD){
+                if(listOfEdges[i % n]->getStatus() != WeinbergEdge<int >::OLD){
                     return listOfEdges[i % n];
                 }
                 i--;

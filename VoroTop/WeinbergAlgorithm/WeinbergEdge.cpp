@@ -4,10 +4,6 @@
 
 #include "WeinbergEdge.h"
 
-/*WeinbergEdge::WeinbergEdge(std::pair<int, int> edge) : Edge(edge){
-    this->edge = edge;
-}*/
-
 template<typename T>
 void WeinbergEdge<T>::updateStatus() {
     if(this->status == NOTVISITED){
@@ -31,9 +27,11 @@ void WeinbergEdge<T>::reset() {
 template<typename T>
 std::pair<int,int> WeinbergEdge<T>::getDirectedEdge(int v) {
     if(v == this->v){
-        return forwardEdge();
+        return this->forwardEdge();
     }
     else{
         return this->backwardEdge();
     }
 }
+
+template class WeinbergEdge<int>;

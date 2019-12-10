@@ -20,8 +20,6 @@ using namespace std;
         //void addEdge(Edge* e);
         bool operator==(const Vertex& other);
         bool operator()(const Vertex& obj) const;
-        /*for printing only*/
-        void print();
     };
 
 

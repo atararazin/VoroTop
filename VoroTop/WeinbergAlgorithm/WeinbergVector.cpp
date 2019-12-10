@@ -45,7 +45,7 @@ vector<int> WeinbergVector::getVector() {
  */
 void WeinbergVector::getFirstWeinVec(){
     int u,v;
-    WeinbergEdge* e = edges[0];
+    WeinbergEdge<int>* e = edges[0];
     u = e->forwardEdge().first;
     v = e->forwardEdge().second;
     this->canonicalVector.push_back(vertices[u]->getWeinNum(&i));
@@ -63,7 +63,7 @@ void WeinbergVector::calculate() {
 
     for(int j = 0; j < 2; j++){
         updateDirection(d);
-        for(WeinbergEdge* first : edges){
+        for(WeinbergEdge<int>* first : edges){
             for(iter = 0; iter < 2; iter++){
                 if(iter == 1){
                     u = first->backwardEdge().first;
@@ -95,20 +95,20 @@ void WeinbergVector::recursiveCal(WeinbergVertex* node, WeinbergEdge<int>* cameF
         return;
     }
 
-    WeinbergEdge* edge;
+    WeinbergEdge<int>* edge;
     //if our node has not yet been visited
     if(!node->old){
         node->old = true;
-        WeinbergEdge* b = getNeighbor(cameFrom, node);
+        WeinbergEdge<int>* b = getNeighbor(cameFrom, node);
         edge = b;
     }
     else{//if the node is old, already visited
         //if we haven't yet visited in the opposite direction, visit the opposite direction
-        if(cameFrom->getStatus() == WeinbergEdge::NEW){
+        if(cameFrom->getStatus() == WeinbergEdge<int >::NEW){
             edge = cameFrom;
         }
         else{//if we've already visited both directions
-            WeinbergEdge* b = getNeighbor(cameFrom, node);
+            WeinbergEdge<int >* b = getNeighbor(cameFrom, node);
             edge = b;
         }
     }
@@ -144,7 +144,7 @@ void WeinbergVector::recursiveCal(WeinbergVertex* node, WeinbergEdge<int>* cameF
 }
 
 void WeinbergVector::reset() {
-    for(WeinbergEdge* e : edges){
+    for(WeinbergEdge<int >* e : edges){
         e->reset();
     }
     for(WeinbergVertex* v : vertices){
