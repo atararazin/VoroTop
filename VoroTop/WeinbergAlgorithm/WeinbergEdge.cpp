@@ -25,7 +25,7 @@ void WeinbergEdge<T>::reset() {
 }
 
 template<typename T>
-std::pair<int,int> WeinbergEdge<T>::getDirectedEdge(int v) {
+std::pair<T,T> WeinbergEdge<T>::getDirectedEdge(int v) {
     if(v == this->v){
         return this->forwardEdge();
     }

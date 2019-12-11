@@ -10,15 +10,16 @@
 #include "WeinbergAlgorithm/WeinbergGraph.h"
 
 using namespace std;
+template <typename T>
 
 class FacesToGraph {
 public:
     void openOutputFile();
-    vector<WeinbergGraph*>& createGraph();
+    vector<WeinbergGraph<T>*>& createGraph();
     ~FacesToGraph();
 private:
     fstream file;
-    vector<WeinbergGraph*> graphs;
+    vector<WeinbergGraph<T>*> graphs;
 };
 
 

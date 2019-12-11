@@ -41,7 +41,8 @@ void WeinbergGraph::getVertices() {
 
 void WeinbergGraph::getEdges() {
     for (WeinbergVertex<int> *vertex : vertices) {
-        pair<Face*,int> res = findFirstAppearance(vertex->data);
+        //pair<Face*,int> res = findFirstAppearance(vertex->data);
+        pair<Face*,int> res = findFirstAppearance(vertex);
 
         Face* face = res.first;
         int index = res.second;
@@ -67,12 +68,13 @@ void WeinbergGraph::getEdges() {
     }
 }
 
-pair<Face*,int> WeinbergGraph::findFirstAppearance(int v) {
+pair<Face*,int> WeinbergGraph::findFirstAppearance(WeinbergVertex<int>* v) {
     for (Face *f : faces) {
         long n = f->nodes.size();
         for (int i = 0; i < n; i++) {
             //find first occurance of v
-            if (f->nodes[i] == v) {
+            if (f->nodes[i] == v->data) {
+                //if (f->nodes[i] == v) {
                 return pair<Face*,int>(f,i);
             }
         }

@@ -16,24 +16,27 @@ int WeinbergVertex<T>::getWeinNum(int* i) {
 }
 
 template<typename T>
-vector<WeinbergEdge<int>*> WeinbergVertex<T>::getEdges() {
-    return this->listOfEdges;
+vector<WeinbergEdge<T>*> WeinbergVertex<T>::getEdges() {
+    return listOfEdges;
 }
 
 template<typename T>
-void WeinbergVertex<T>::addEdge(WeinbergEdge<int> *e) {
-    this->listOfEdges.push_back(e);
+void WeinbergVertex<T>::addEdge(WeinbergEdge<T> *e) {
+    listOfEdges.push_back(e);
 }
 
 template<typename T>
-WeinbergEdge<int>* WeinbergVertex<T>::getRightMostNeighbor(WeinbergEdge<int >* cameFrom) {
-    int n = listOfEdges.size();
+WeinbergEdge<T>* WeinbergVertex<T>::getRightMostNeighbor(WeinbergEdge<T>* cameFrom) {
+    int n = this->listOfEdges.size();
     for(int i = 0; i < n; i++) {
-        if (listOfEdges[i]->forwardEdge() == cameFrom->forwardEdge()) {
+        //if (this->listOfEdges[i]->forwardEdge() == cameFrom->forwardEdge()) {
+        if (this->listOfEdges[i] == cameFrom) {
+
             i++;
-            while(listOfEdges[i % n]->forwardEdge() != cameFrom->forwardEdge()){
-                if(listOfEdges[i % n]->getStatus() != WeinbergEdge<int>::OLD){
-                    return listOfEdges[i % n];
+            //while(this->listOfEdges[i % n]->forwardEdge() != cameFrom->forwardEdge()){
+            while(this->listOfEdges[i % n] != cameFrom){
+                if(this->listOfEdges[i % n]->getStatus() != WeinbergEdge<T>::OLD){
+                    return this->listOfEdges[i % n];
                 }
                 i++;
             }
@@ -43,22 +46,18 @@ WeinbergEdge<int>* WeinbergVertex<T>::getRightMostNeighbor(WeinbergEdge<int >* c
 }
 
 template<typename T>
-WeinbergEdge<int >* WeinbergVertex<T>::getLeftMostNeighbor(WeinbergEdge<int>* cameFrom) {
-    int n = listOfEdges.size();
+WeinbergEdge<T>* WeinbergVertex<T>::getLeftMostNeighbor(WeinbergEdge<T>* cameFrom) {
+    int n = this->listOfEdges.size();
     for(int i = 0; i < n; i++) {
-        if (listOfEdges[i]->forwardEdge() == cameFrom->forwardEdge()) {
-            //if (listOfEdges[i]->edge == cameFrom->edge) {
-            i--;
-            if(i == -1)
-                i = n-1;
-            while(listOfEdges[i % n]->forwardEdge() != cameFrom->forwardEdge()){
-           // while(listOfEdges[i % n]->edge != cameFrom->edge){
-                if(listOfEdges[i % n]->getStatus() != WeinbergEdge<int >::OLD){
-                    return listOfEdges[i % n];
+        if (this->listOfEdges[i] == cameFrom) {
+           // if (this->listOfEdges[i]->forwardEdge() == cameFrom->forwardEdge()) {
+            i = (n + (i - 1 % n)) % n;
+            while(this->listOfEdges[i % n] != cameFrom){
+                //while(this->listOfEdges[i % n]->forwardEdge() != cameFrom->forwardEdge()){
+                if(this->listOfEdges[i % n]->getStatus() != WeinbergEdge<T >::OLD){
+                    return this->listOfEdges[i % n];
                 }
-                i--;
-                if(i == -1)
-                    i = n-1;
+                i = (n + (i - 1 % n)) % n;
             }
         }
     }

@@ -11,70 +11,13 @@ using namespace std;
 #include<gmock/gmock.h>
 
 
-/*int main(int argc, char*argv[]){
+int main(int argc, char*argv[]){
     testing::InitGoogleTest(&argc, argv);
-    RUN_ALL_TESTS();
-    return 0;
-}*/
-/*
-#include<iostream>
-using namespace std;
-
-template<typename T>
-class Complex {
-private:
-    T real, imag;
-    std::pair<T,T> forward;
-    std::pair<T,T> backwards;
-public:
-    Complex(T r = 0, T i =0)  {
-        real = r;
-        imag = i;
-        forward = std::pair<T,T>(r,i);
-        backwards = std::pair<T,T>(i,r);
-    }
-
-    // This is automatically called when '+' is used with
-    // between two Complex objects
-    Complex operator + (Complex const &obj) {
-        Complex res;
-        res.real = real + obj.real;
-        res.imag = imag + obj.imag;
-        return res;
-    }
-
-    bool operator== (Complex const &obj){
-        //return obj.imag==imag && obj.real == real;
-        //return pair == obj.pair;
-
-        return obj.forward == forward || obj.backwards == forward;
-
-    }
-    void print() { cout << real << " + i" << imag << endl; }
-};
-
-int main()
-{
-    Complex<int >* c1 = new Complex<int >(2, 4);
-    Complex<int>* c2 = new Complex<int>(4, 2);
-    //Complex c3 = c1 + c2; // An example call to "operator+"
-    if(*c1 == *c2){
-        printf("true");
-    }
-    else{
-        printf("false");
-    }
-    Edge<int>* e1 = new Edge<int>(1,2);
-
-    Edge<int>* e2 = new Edge<int>(1,21);
-    if(e1 == e2){
-        printf("true");
-    }
-    else{
-        printf("false");
-    }
+    //testing::GTEST_FLAG(filter) = "VerticesCreationTest*";
+    return RUN_ALL_TESTS();
 }
-*/
+
+
 
 /*
 int main(int argc, char *argv[]) {

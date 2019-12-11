@@ -12,16 +12,15 @@ using namespace std;
 template <typename T>
 
 class Vertex {
-    protected:
-        vector<Edge<T>*> listOfEdges;
     public:
         T data;
         Vertex(T const& data) : data(data) {}
-        //vector<Edge*> getEdges();
-        //void addEdge(Edge* e);
         bool operator==(const Vertex& other);
         bool operator()(const Vertex& obj) const;
-    };
+    protected:
+    //vector<Edge<T>*> listOfEdges;
+
+};
 
 
 

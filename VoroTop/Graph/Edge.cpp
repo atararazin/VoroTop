@@ -38,6 +38,4 @@ bool Edge<T>::operator== (Edge const &obj){
     return obj.forward == forward || obj.backwards == forward;
 }
 
-
-
 template class Edge<int>;

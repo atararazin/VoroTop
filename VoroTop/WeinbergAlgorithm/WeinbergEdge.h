@@ -12,12 +12,12 @@ template <typename T>
 
 class WeinbergEdge : public Edge<T>{
 public:
-    WeinbergEdge(std::pair<int,int> edge) : Edge<int>(edge){};
-    WeinbergEdge(int u, int v) : Edge<int>(u, v){};
+    WeinbergEdge(std::pair<T,T> edge) : Edge<T>(edge){};
+    WeinbergEdge(T u, T v) : Edge<T>(u, v){};
     enum Status{NOTVISITED, NEW, OLD};
     int getStatus();
     void updateStatus();
-    std::pair<int,int> getDirectedEdge(int node);
+    std::pair<T,T> getDirectedEdge(int node);
     void reset();
 
 private:

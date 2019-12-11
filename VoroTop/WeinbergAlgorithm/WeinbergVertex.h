@@ -12,17 +12,16 @@ template <typename T>
 class WeinbergVertex : public Vertex<T> {
 private:
     int weinNum = -1;
-    vector<WeinbergEdge<int>*> listOfEdges;
+    vector<WeinbergEdge<T>*> listOfEdges;
 
 public:
-    int data;
-    WeinbergVertex(T data) : Vertex<int>(data){};
-    vector<WeinbergEdge<int>*> getEdges();
-    void addEdge(WeinbergEdge<int>* e);
+    WeinbergVertex(T data) : Vertex<T>(data){};
+    vector<WeinbergEdge<T>*> getEdges();
+    void addEdge(WeinbergEdge<T>* e);
     bool old = false;
     int getWeinNum(int* i);
-    WeinbergEdge<int>* getRightMostNeighbor(WeinbergEdge<int>* cameFrom);
-    WeinbergEdge<int>* getLeftMostNeighbor(WeinbergEdge<int>* cameFrom);
+    WeinbergEdge<T>* getRightMostNeighbor(WeinbergEdge<T>* cameFrom);
+    WeinbergEdge<T>* getLeftMostNeighbor(WeinbergEdge<T>* cameFrom);
     void reset();
 };
 
