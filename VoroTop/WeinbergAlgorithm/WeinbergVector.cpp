@@ -89,7 +89,7 @@ void WeinbergVector::calculate() {
 }
 
 
-void WeinbergVector::recursiveCal(WeinbergVertex* node, WeinbergEdge<int>* cameFrom) {
+void WeinbergVector::recursiveCal(WeinbergVertex<int>* node, WeinbergEdge<int>* cameFrom) {
     //base condition - if we've reached a node that we've already visited all neighbors
    if(getNeighbor(cameFrom,node) == NULL){
         return;
@@ -115,7 +115,7 @@ void WeinbergVector::recursiveCal(WeinbergVertex* node, WeinbergEdge<int>* cameF
 
     edge->updateStatus();
     pair<int,int> directedEdge = edge->getDirectedEdge(node->data);
-    WeinbergVertex* vertex = vertices[directedEdge.second];
+    WeinbergVertex<int>* vertex = vertices[directedEdge.second];
     int code = vertices[directedEdge.second]->getWeinNum(&i);
 
     if(!first){
@@ -147,7 +147,7 @@ void WeinbergVector::reset() {
     for(WeinbergEdge<int >* e : edges){
         e->reset();
     }
-    for(WeinbergVertex* v : vertices){
+    for(WeinbergVertex<int>* v : vertices){
         v->reset();
     }
     this->i = 0;
@@ -176,7 +176,7 @@ void WeinbergVector::updateDirection(Direction d) {
  * @param v - the vertex we are coming from
  * @return the right or left most neighbor
  */
-WeinbergEdge<int>* WeinbergVector::getNeighbor(WeinbergEdge<int> *e, WeinbergVertex *v) {
+WeinbergEdge<int>* WeinbergVector::getNeighbor(WeinbergEdge<int> *e, WeinbergVertex<int> *v) {
     if(direction == Right){
         right(e,v);
     }
@@ -185,11 +185,11 @@ WeinbergEdge<int>* WeinbergVector::getNeighbor(WeinbergEdge<int> *e, WeinbergVer
     }
 }
 
-WeinbergEdge<int>* WeinbergVector::right(WeinbergEdge<int> *e, WeinbergVertex* v) {
+WeinbergEdge<int>* WeinbergVector::right(WeinbergEdge<int> *e, WeinbergVertex<int>* v) {
     return v->getRightMostNeighbor(e);
 }
 
-WeinbergEdge<int>* WeinbergVector::left(WeinbergEdge<int> *e, WeinbergVertex* v) {
+WeinbergEdge<int>* WeinbergVector::left(WeinbergEdge<int> *e, WeinbergVertex<int>* v) {
     return v->getLeftMostNeighbor(e);
 }
 

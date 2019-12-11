@@ -34,9 +34,10 @@ std::pair<T, T> Edge<T>::backwardEdge() {
 }
 
 template<typename T>
-bool Edge<T>::operator==(Edge const &obj) {
-    return obj.forward == forward || obj.forward == backwards;
+bool Edge<T>::operator== (Edge const &obj){
+    return obj.forward == forward || obj.backwards == forward;
 }
+
 
 
 template class Edge<int>;

@@ -9,13 +9,14 @@
 #include "Edge.h"
 
 using namespace std;
+template <typename T>
 
-    class Vertex {
+class Vertex {
     protected:
-        vector<Edge<int>*> listOfEdges;
+        vector<Edge<T>*> listOfEdges;
     public:
-        int data;
-        Vertex(int const& data) : data(data) {}
+        T data;
+        Vertex(T const& data) : data(data) {}
         //vector<Edge*> getEdges();
         //void addEdge(Edge* e);
         bool operator==(const Vertex& other);

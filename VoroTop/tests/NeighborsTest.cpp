@@ -31,7 +31,7 @@ TEST_F(NeighborsTest, test_2s_right_neighbors){
     graph->getVertices();
     graph->getEdges();
 
-    WeinbergVertex* two = graph->vertices[2];
+    WeinbergVertex<int>* two = graph->vertices[2];
     WeinbergEdge<int >* expected0 = new WeinbergEdge<int >(4,2);
     EXPECT_EQ(expected0->forwardEdge(), two->getRightMostNeighbor(two->getEdges()[0])->forwardEdge());
 

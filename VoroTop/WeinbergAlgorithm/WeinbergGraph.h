@@ -11,7 +11,7 @@
 
 class WeinbergGraph : public Graph{
 public:
-    vector<WeinbergVertex*> vertices;
+    vector<WeinbergVertex<int>*> vertices;
     vector<WeinbergEdge<int>*> edges;
 
     void getFaces(string);
@@ -20,8 +20,8 @@ public:
     ~WeinbergGraph();
 
 private:
-    int edgeExists(pair<int,int> searching);
-    void addEdge(pair<int,int> e, WeinbergVertex*v);
+    int edgeExists(std::pair<int,int> searching);
+    void addEdge(std::pair<int,int> e, WeinbergVertex<int>*v);
     pair<Face* ,int> findFirstAppearance(int v);
     int* findFirstAppearance2(int v);
     pair<Face* ,int> findPairOfVerticesInFaces(int v, int u);

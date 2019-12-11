@@ -6,12 +6,8 @@
 #include "WeinbergVertex.h"
 #include "WeinbergEdge.h"
 
-
-WeinbergVertex::WeinbergVertex(int data) : Vertex(data){
-    this->data = data;
-}
-
-int WeinbergVertex::getWeinNum(int* i) {
+template <typename T>
+int WeinbergVertex<T>::getWeinNum(int* i) {
     if(this->weinNum == -1){
         this->weinNum = *i + 1;
         *i+=1;
@@ -19,19 +15,21 @@ int WeinbergVertex::getWeinNum(int* i) {
     return this->weinNum;
 }
 
-vector<WeinbergEdge<int>*> WeinbergVertex::getEdges() {
+template<typename T>
+vector<WeinbergEdge<int>*> WeinbergVertex<T>::getEdges() {
     return this->listOfEdges;
 }
 
-void WeinbergVertex::addEdge(WeinbergEdge<int> *e) {
+template<typename T>
+void WeinbergVertex<T>::addEdge(WeinbergEdge<int> *e) {
     this->listOfEdges.push_back(e);
 }
 
-WeinbergEdge<int>* WeinbergVertex::getRightMostNeighbor(WeinbergEdge<int >* cameFrom) {
+template<typename T>
+WeinbergEdge<int>* WeinbergVertex<T>::getRightMostNeighbor(WeinbergEdge<int >* cameFrom) {
     int n = listOfEdges.size();
     for(int i = 0; i < n; i++) {
         if (listOfEdges[i]->forwardEdge() == cameFrom->forwardEdge()) {
-        //if (listOfEdges[i]->edge == cameFrom->edge) {
             i++;
             while(listOfEdges[i % n]->forwardEdge() != cameFrom->forwardEdge()){
                 if(listOfEdges[i % n]->getStatus() != WeinbergEdge<int>::OLD){
@@ -44,7 +42,8 @@ WeinbergEdge<int>* WeinbergVertex::getRightMostNeighbor(WeinbergEdge<int >* came
     return NULL;
 }
 
-WeinbergEdge<int >* WeinbergVertex::getLeftMostNeighbor(WeinbergEdge<int>* cameFrom) {
+template<typename T>
+WeinbergEdge<int >* WeinbergVertex<T>::getLeftMostNeighbor(WeinbergEdge<int>* cameFrom) {
     int n = listOfEdges.size();
     for(int i = 0; i < n; i++) {
         if (listOfEdges[i]->forwardEdge() == cameFrom->forwardEdge()) {
@@ -66,12 +65,12 @@ WeinbergEdge<int >* WeinbergVertex::getLeftMostNeighbor(WeinbergEdge<int>* cameF
     return NULL;
 }
 
-void WeinbergVertex::reset() {
+template<typename T>
+void WeinbergVertex<T>::reset() {
     this->old = false;
     this->weinNum = -1;
 }
 
 
-/*WeinbergVertex::~WeinbergVertex() {
-    delete this;
-}*/
+
+template class WeinbergVertex<int>;

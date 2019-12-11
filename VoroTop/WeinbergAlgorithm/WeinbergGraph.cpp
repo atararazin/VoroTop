@@ -34,13 +34,13 @@ void WeinbergGraph::getVertices() {
 
     //create the vertices from 0 to n-1
     for(int i = 0; i <= max; i++){
-        WeinbergVertex* vertex = new WeinbergVertex(i);
+        WeinbergVertex<int>* vertex = new WeinbergVertex<int>(i);
         this->vertices.push_back(vertex);
     }
 }
 
 void WeinbergGraph::getEdges() {
-    for (WeinbergVertex *vertex : vertices) {
+    for (WeinbergVertex<int> *vertex : vertices) {
         pair<Face*,int> res = findFirstAppearance(vertex->data);
 
         Face* face = res.first;
@@ -110,7 +110,7 @@ pair<Face* ,int> WeinbergGraph::findPairOfVerticesInFaces(int v, int u) {
     }
 }
 
-int WeinbergGraph::edgeExists(pair<int, int> searching) {
+int WeinbergGraph::edgeExists(std::pair<int,int> searching) {
     int n = edges.size();
     WeinbergEdge<int>* curr;
     for(int i = 0; i < n; i++){
@@ -123,7 +123,7 @@ int WeinbergGraph::edgeExists(pair<int, int> searching) {
     return -1;
 }
 
-void WeinbergGraph::addEdge(pair<int, int> e, WeinbergVertex* v) {
+void WeinbergGraph::addEdge(std::pair<int,int> e, WeinbergVertex<int>* v) {
     int ans = edgeExists(e);
     WeinbergEdge<int>* add;
     if(ans >= 0){
@@ -144,7 +144,7 @@ WeinbergGraph::~WeinbergGraph() {
     for(WeinbergEdge<int >* e : edges){
         delete(e);
     }
-    for(WeinbergVertex* v : vertices){
+    for(WeinbergVertex<int>* v : vertices){
         delete(v);
     }
 }

@@ -5,12 +5,15 @@
 #include <iostream>
 #include "Vertex.h"
 
-
-bool Vertex::operator()(const Vertex &obj) const {
+template<typename T>
+bool Vertex<T>::operator()(const Vertex<T> &obj) const {
     return obj.data == data;
 }
 
-
-bool Vertex::operator==(const Vertex &other) {
+template<typename T>
+bool Vertex<T>::operator==(const Vertex<T> &other) {
     return this->data == other.data;
 }
+
+
+template class Vertex<int>;
