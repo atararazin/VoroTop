@@ -8,14 +8,13 @@
 #include <vector>
 #include <string>
 using namespace std;
-
+template <typename T>
 class Face {
 private:
 
 public:
-    vector<int> nodes;
+    vector<T> nodes;
     void convertStrToVector(string s);
-    void print();
 };
 
 

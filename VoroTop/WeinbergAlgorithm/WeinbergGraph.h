@@ -10,7 +10,7 @@
 #include "WeinbergVertex.h"
 template <typename T>
 
-class WeinbergGraph : public Graph{
+class WeinbergGraph : public Graph<T>{
 public:
     vector<WeinbergVertex<T>*> vertices;
     vector<WeinbergEdge<T>*> edges;
@@ -23,9 +23,8 @@ public:
 private:
     int edgeExists(std::pair<T,T> searching);
     void addEdge(std::pair<T,T> e, WeinbergVertex<T>*v);
-    pair<Face* ,int> findFirstAppearance(WeinbergVertex<int>* v);
-    int* findFirstAppearance2(int v);
-    pair<Face* ,int> findPairOfVerticesInFaces(int v, int u);
+    pair<Face<T>* ,int> findFirstAppearance(WeinbergVertex<int>* v);
+    pair<Face<T>* ,int> findPairOfVerticesInFaces(int v, int u);
 
 
 };

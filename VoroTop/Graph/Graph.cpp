@@ -4,8 +4,8 @@
 
 #include <sstream>
 #include "Graph.h"
-
-void Graph::create(string faces) {
+template<typename T>
+void Graph<T>::create(string faces) {
     this->getFaces(faces);
     this->getVertices();
     this->getEdges();

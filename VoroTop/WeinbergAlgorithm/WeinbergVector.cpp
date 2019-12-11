@@ -15,7 +15,8 @@ bool foundSmaller = false;
  * @param g - the graph we're calculating the Weinberg code on
  * @return
  */
-WeinbergVector::WeinbergVector(WeinbergGraph *g) {
+template <typename T>
+WeinbergVector<T>::WeinbergVector(WeinbergGraph<T> *g) {
     this->graph = g;
     this->vertices = g->vertices;
     this->edges = g->edges;
@@ -27,7 +28,8 @@ WeinbergVector::WeinbergVector(WeinbergGraph *g) {
  * @param u - the vertex u of edge (u,v)
  * @param v - the vertex v of edge (u,v)
  */
-void WeinbergVector::initialize(WeinbergEdge<int> *edge, int u, int v) {
+template <typename T>
+void WeinbergVector<T>::initialize(WeinbergEdge<int> *edge, int u, int v) {
     reset();
     edge->updateStatus();
     vertices[u]->old = true;
@@ -35,7 +37,8 @@ void WeinbergVector::initialize(WeinbergEdge<int> *edge, int u, int v) {
     vertices[v]->getWeinNum(&i);
 }
 
-vector<int> WeinbergVector::getVector() {
+template <typename T>
+vector<int> WeinbergVector<T>::getVector() {
     return this->canonicalVector;
 }
 
@@ -43,11 +46,12 @@ vector<int> WeinbergVector::getVector() {
  * runs the Weinberg algorithm on the first edge so that
  * it can compare following Weinberg codes to it.
  */
-void WeinbergVector::getFirstWeinVec(){
+template <typename T>
+void WeinbergVector<T>::getFirstWeinVec(){
     int u,v;
     WeinbergEdge<int>* e = edges[0];
-    u = e->forwardEdge().first;
-    v = e->forwardEdge().second;
+    u = e->get_u();
+    v = e->get_v();
     this->canonicalVector.push_back(vertices[u]->getWeinNum(&i));
     this->canonicalVector.push_back(vertices[v]->getWeinNum(&i));
     initialize(e, u, v);
@@ -56,7 +60,8 @@ void WeinbergVector::getFirstWeinVec(){
     reset();
 }
 
-void WeinbergVector::calculate() {
+template <typename T>
+void WeinbergVector<T>::calculate() {
     int u,v,iter;
     Direction d = Right;
     getFirstWeinVec();
@@ -88,8 +93,8 @@ void WeinbergVector::calculate() {
        printf("\n");
 }
 
-
-void WeinbergVector::recursiveCal(WeinbergVertex<int>* node, WeinbergEdge<int>* cameFrom) {
+template <typename T>
+void WeinbergVector<T>::recursiveCal(WeinbergVertex<int>* node, WeinbergEdge<int>* cameFrom) {
     //base condition - if we've reached a node that we've already visited all neighbors
    if(getNeighbor(cameFrom,node) == NULL){
         return;
@@ -143,7 +148,8 @@ void WeinbergVector::recursiveCal(WeinbergVertex<int>* node, WeinbergEdge<int>* 
     recursiveCal(vertex, edge);
 }
 
-void WeinbergVector::reset() {
+template <typename T>
+void WeinbergVector<T>::reset() {
     for(WeinbergEdge<int >* e : edges){
         e->reset();
     }
@@ -161,7 +167,8 @@ void WeinbergVector::reset() {
  * change the direction to d, the new direction
  * @param d - the direction we want to update to
  */
-void WeinbergVector::updateDirection(Direction d) {
+template <typename T>
+void WeinbergVector<T>::updateDirection(Direction d) {
     if(d == Right){
         direction = Right;
     }
@@ -176,7 +183,8 @@ void WeinbergVector::updateDirection(Direction d) {
  * @param v - the vertex we are coming from
  * @return the right or left most neighbor
  */
-WeinbergEdge<int>* WeinbergVector::getNeighbor(WeinbergEdge<int> *e, WeinbergVertex<int> *v) {
+template <typename T>
+WeinbergEdge<int>* WeinbergVector<T>::getNeighbor(WeinbergEdge<int> *e, WeinbergVertex<int> *v) {
     if(direction == Right){
         right(e,v);
     }
@@ -185,11 +193,13 @@ WeinbergEdge<int>* WeinbergVector::getNeighbor(WeinbergEdge<int> *e, WeinbergVer
     }
 }
 
-WeinbergEdge<int>* WeinbergVector::right(WeinbergEdge<int> *e, WeinbergVertex<int>* v) {
+template <typename T>
+WeinbergEdge<int>* WeinbergVector<T>::right(WeinbergEdge<int> *e, WeinbergVertex<int>* v) {
     return v->getRightMostNeighbor(e);
 }
 
-WeinbergEdge<int>* WeinbergVector::left(WeinbergEdge<int> *e, WeinbergVertex<int>* v) {
+template <typename T>
+WeinbergEdge<int>* WeinbergVector<T>::left(WeinbergEdge<int> *e, WeinbergVertex<int>* v) {
     return v->getLeftMostNeighbor(e);
 }
 
@@ -198,7 +208,8 @@ WeinbergEdge<int>* WeinbergVector::left(WeinbergEdge<int> *e, WeinbergVertex<int
  * @param i - the current vertex's Weinberg value
  * @return bigger, smaller or equal, depending on the result
  */
-string WeinbergVector::compareToCode(int i) {
+template <typename T>
+string WeinbergVector<T>::compareToCode(int i) {
     if(i > canonicalVector[index]){
         return "bigger";
     }
@@ -209,3 +220,5 @@ string WeinbergVector::compareToCode(int i) {
         return "smaller";
     }
 }
+
+template class WeinbergVector<int>;

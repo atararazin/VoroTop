@@ -24,6 +24,18 @@ Edge<T>::Edge(T u, T v) {
 }
 
 template<typename T>
+T Edge<T>::get_u() {
+    return this->u;
+}
+
+
+template<typename T>
+T Edge<T>::get_v() {
+    return this->v;
+}
+
+
+template<typename T>
 std::pair<T, T> Edge<T>::forwardEdge() {
     return forward;
 }

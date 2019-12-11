@@ -39,20 +39,20 @@ namespace {
  delete graph;
 }*/
 
-/*TEST_F(WeinbergAlgorithmTest, test_triange){
-    WeinbergGraph* graph;
-    graph = new WeinbergGraph();
+TEST_F(WeinbergAlgorithmTest, test_triange){
+    WeinbergGraph<int>* graph;
+    graph = new WeinbergGraph<int>();
 
     graph->getFaces("(0,1,2) (2,1,0)");
     graph->getVertices();
     graph->getEdges();
 
-    WeinbergVector* weinbergVector = new WeinbergVector(graph);
+    WeinbergVector<int>* weinbergVector = new WeinbergVector<int>(graph);
     weinbergVector->calculate();
-    vector<int> expected = {1,2,3};
+    vector<int> expected = {1,2,3,1,3,2,1};
     EXPECT_EQ(expected, weinbergVector->getVector());
     delete graph;
-}*/
+}
 
 
 #endif //VOROTOP_WEINBERGALGORITHMTEST_H

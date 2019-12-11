@@ -12,7 +12,7 @@
 #include "Face.h"
 using namespace std;
 
-
+template<typename T>
 class Graph {
 protected:
     virtual void getFaces(string faces) = 0;
@@ -20,9 +20,8 @@ protected:
     virtual void getEdges() = 0;
 
 public:
-    vector<Face*> faces;
+    vector<Face<T>*> faces;
     void create(string faces);
-    //virtual ~Graph();
 };
 
 

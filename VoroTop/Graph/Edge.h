@@ -15,6 +15,8 @@ public:
     Edge(T u,T v);
     std::pair<T,T> forwardEdge();
     std::pair<T,T> backwardEdge();
+    T get_u();
+    T get_v();
     bool operator== (Edge const &obj);
 
 protected:

@@ -5,8 +5,8 @@
 #include <sstream>
 #include <iostream>
 #include "Face.h"
-
-void Face::convertStrToVector(string s) {
+template <typename T>
+void Face<T>::convertStrToVector(string s) {
     string str = s.substr(1, s.size()-2);
     istringstream iss(str);
     string num;
@@ -15,9 +15,4 @@ void Face::convertStrToVector(string s) {
     }
 }
 
-
-void Face::print() {
-    for(int i=0; i<this->nodes.size(); ++i)
-        std::cout << nodes[i] << ' ';
-    std::cout << "" <<std::endl;
-}
+template class Face<int>;

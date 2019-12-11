@@ -11,11 +11,12 @@
 
 using namespace std;
 
+template <typename T>
 class WeinbergVector {
 private:
     vector<int> canonicalVector;
     int i = 0;
-    WeinbergGraph* graph;
+    WeinbergGraph<T>* graph;
     vector<WeinbergVertex<int>*> vertices;
     vector<WeinbergEdge<int>*> edges;
     void initialize(WeinbergEdge<int>* edge, int u, int v);
@@ -29,7 +30,7 @@ private:
     string compareToCode(int i);
     void getFirstWeinVec();
 public:
-    WeinbergVector(WeinbergGraph* g);
+    WeinbergVector(WeinbergGraph<T>* g);
     void calculate();
     void recursiveCal(WeinbergVertex<int>* node, WeinbergEdge<int>* branch);
     vector<int> getVector();

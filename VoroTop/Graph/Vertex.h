@@ -17,9 +17,6 @@ class Vertex {
         Vertex(T const& data) : data(data) {}
         bool operator==(const Vertex& other);
         bool operator()(const Vertex& obj) const;
-    protected:
-    //vector<Edge<T>*> listOfEdges;
-
 };
 
 
