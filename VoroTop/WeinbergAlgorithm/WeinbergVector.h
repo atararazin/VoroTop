@@ -16,13 +16,15 @@ using namespace std;
 template <typename T>
 class WeinbergVector {
 private:
-    CanonicalVector* canonicalVector;
-    Direction* direction;
-    int i = 0;
-    bool first = true;
     WeinbergGraph<T>* graph;
     vector<WeinbergVertex<int>*> vertices;
     vector<WeinbergEdge<int>*> edges;
+    CanonicalVector* canonicalVector;
+    Direction* direction;
+    int i = 0;
+    //int index = 0;
+    bool foundSmaller = false;
+    bool first = true;
     void initialize(WeinbergEdge<int>* edge, int u, int v);
     void reset();
     WeinbergEdge<int>* getNeighbor(WeinbergEdge<int>*,WeinbergVertex<int>*);
@@ -31,7 +33,7 @@ public:
     WeinbergVector(WeinbergGraph<T>* g);
     void calculate();
     void recursiveCal(WeinbergVertex<int>* node, WeinbergEdge<int>* branch);
-    CanonicalVector* getVector();
+    CanonicalVector* getCanonicalVector();
     ~WeinbergVector();
 };
 

@@ -6,9 +6,6 @@
 #include "WeinbergEdge.h"
 #include <iostream>
 
-int index = 0;
-bool foundSmaller = false;
-
 /**
  * constructor. Initializes the graph, vertices and edges all from the graph it gets.
  * @param g - the graph we're calculating the Weinberg code on
@@ -38,11 +35,6 @@ void WeinbergVector<T>::initialize(WeinbergEdge<int> *edge, int u, int v) {
     vertices[v]->getWeinNum(&i);
 }
 
-
-template <typename T>
-CanonicalVector* WeinbergVector<T>::getVector() {
-    return canonicalVector;
-}
 
 /**
  * runs the Weinberg algorithm on the first edge so that
@@ -118,32 +110,32 @@ void WeinbergVector<T>::recursiveCal(WeinbergVertex<int>* node, WeinbergEdge<int
     WeinbergVertex<int>* vertex = vertices[directedEdge.second];
     int code = vertices[directedEdge.second]->getWeinNum(&i);
 
-    if(!first){
-        if (!foundSmaller) {
-                //compare our vertices Weinberg code to the canonical vector
 
-                string res = canonicalVector->compareToCode(code, index);
-
-                //if our code is bigger then stop calculating the Weinberg code on this edge
-                if (res == "bigger") {
-                    return;
-                }
-                //if it's smaller, update the canonical vector with our Weinberg values
-                else if(res == "smaller"){
-                    foundSmaller = true;
-                    canonicalVector->changeCurrValue(index, code);
-                }
-            }
-        else{
-            canonicalVector->changeCurrValue(index, code);
-        }
-        index++;
-    }
-    else{//if we are in the base iteration, add the code to the vector
+    if(first){
         canonicalVector->addToVector(code);
+        return recursiveCal(vertex, edge);
     }
+    if (!foundSmaller) {
+        //compare our vertices Weinberg code to the canonical vector
+        string res = canonicalVector->compareToCode(code);
+
+        //if our code is bigger then stop calculating the Weinberg code on this edge
+        if (res == "bigger") {
+            return;
+        }
+            //if it's smaller, update the canonical vector with our Weinberg values
+        else if(res == "smaller"){
+            foundSmaller = true;
+            canonicalVector->changeCurrValue(code);
+        }
+    }
+    else{
+        canonicalVector->changeCurrValue(code);
+    }
+    canonicalVector->incrementIndex();
     recursiveCal(vertex, edge);
 }
+
 
 template <typename T>
 void WeinbergVector<T>::reset() {
@@ -154,8 +146,7 @@ void WeinbergVector<T>::reset() {
         v->reset();
     }
     this->i = 0;
-    //index starts at 2 because 0 and 1 are for the first edge's vertices
-    index = 2;
+    canonicalVector->resetIndex();
     foundSmaller = false;
 }
 
@@ -173,6 +164,11 @@ WeinbergEdge<int>* WeinbergVector<T>::getNeighbor(WeinbergEdge<int> *e, Weinberg
     else{
         return v->getLeftMostNeighbor(e);
     }
+}
+
+template<typename T>
+CanonicalVector* WeinbergVector<T>::getCanonicalVector() {
+    return canonicalVector;
 }
 
 template<typename T>

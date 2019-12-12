@@ -13,8 +13,19 @@ void CanonicalVector::addToVector(int num) {
     vector.push_back(num);
 }
 
-void CanonicalVector::changeCurrValue(int index, int val) {
+void CanonicalVector::changeCurrValue(int val) {
     vector[index] = val;
+}
+
+void CanonicalVector::incrementIndex() {
+    index++;
+}
+
+/**
+ * index starts at 2 because 0 and 1 are for the first edge's vertices
+ */
+void CanonicalVector::resetIndex() {
+    index = 2;
 }
 
 
@@ -23,7 +34,7 @@ void CanonicalVector::changeCurrValue(int index, int val) {
  * @param i - the current vertex's Weinberg value
  * @return bigger, smaller or equal, depending on the result
  */
-std::string CanonicalVector::compareToCode(int curr_num, int index) {
+std::string CanonicalVector::compareToCode(int curr_num) {
     if(curr_num > vector[index]){
         return "bigger";
     }

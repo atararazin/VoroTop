@@ -11,11 +11,14 @@ class CanonicalVector {
 public:
     std::vector<int> getVector();
     void addToVector(int num);
-    void changeCurrValue(int index, int val);
-    std::string compareToCode(int curr_num, int index);
+    void changeCurrValue(int val);
+    std::string compareToCode(int curr_num);
+    void incrementIndex();
+    void resetIndex();
 
 private:
     std::vector<int> vector;
+    int index = 0;
 };
 
 

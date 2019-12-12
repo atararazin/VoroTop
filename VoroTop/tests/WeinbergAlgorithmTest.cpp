@@ -36,9 +36,9 @@ TEST_F(WeinbergAlgorithmTest, test_){
     WeinbergVector<int>* weinbergVector = new WeinbergVector<int>(graph);
     weinbergVector->calculate();
     vector<int> expected = {1,2,3,1,3,4,5,6,1,6,7,8,2,8,9,4,9,10,5,10,7,10,9,8,7,6,5,4,3,2,1};
-    ASSERT_THAT(expected.size(), weinbergVector->getVector()->getVector().size());
+    ASSERT_THAT(expected.size(), weinbergVector->getCanonicalVector()->getVector().size());
     for(int i =0; i<expected.size(); i++){
-        EXPECT_EQ(expected[i], weinbergVector->getVector()->getVector()[i]);
+        EXPECT_EQ(expected[i], weinbergVector->getCanonicalVector()->getVector()[i]);
     }
     delete(weinbergVector);
     delete graph;
@@ -57,9 +57,9 @@ TEST_F(WeinbergAlgorithmTest, test_triange){
     weinbergVector->calculate();
     vector<int> expected(7);
     expected = {1,2,3,1,3,2,1};
-    ASSERT_THAT(expected.size(), weinbergVector->getVector()->getVector().size());
+    ASSERT_THAT(expected.size(), weinbergVector->getCanonicalVector()->getVector().size());
     for(int i =0; i<expected.size(); i++){
-        EXPECT_EQ(expected[i], weinbergVector->getVector()->getVector()[i]);
+        EXPECT_EQ(expected[i], weinbergVector->getCanonicalVector()->getVector()[i]);
     }
 
     delete(weinbergVector);
@@ -79,9 +79,9 @@ TEST_F(WeinbergAlgorithmTest, test3){
     weinbergVector->calculate();
     vector<int> expected(11);
     expected = {1,2,3,1,3,2,4,1,4,2,1};
-    ASSERT_THAT(expected.size(), weinbergVector->getVector()->getVector().size());
+    ASSERT_THAT(expected.size(), weinbergVector->getCanonicalVector()->getVector().size());
     for(int i =0; i<expected.size(); i++){
-        EXPECT_EQ(expected[i], weinbergVector->getVector()->getVector()[i]) << "iteration:" << i;
+        EXPECT_EQ(expected[i], weinbergVector->getCanonicalVector()->getVector()[i]) << "iteration:" << i;
     }
 
     delete(weinbergVector);
