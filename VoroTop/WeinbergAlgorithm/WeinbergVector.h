@@ -8,32 +8,31 @@
 #include "../Graph/Vertex.h"
 #include "../Graph/Graph.h"
 #include "WeinbergGraph.h"
+#include "CanonicalVector.h"
+#include "Direction.h"
 
 using namespace std;
 
 template <typename T>
 class WeinbergVector {
 private:
-    vector<int> canonicalVector;
+    CanonicalVector* canonicalVector;
+    Direction* direction;
     int i = 0;
+    bool first = true;
     WeinbergGraph<T>* graph;
     vector<WeinbergVertex<int>*> vertices;
     vector<WeinbergEdge<int>*> edges;
     void initialize(WeinbergEdge<int>* edge, int u, int v);
     void reset();
-    enum Direction {Right, Left};
-    Direction direction;
-    void updateDirection(Direction d);
-    WeinbergEdge<int>* right(WeinbergEdge<int>*,WeinbergVertex<int>*);
-    WeinbergEdge<int>* left(WeinbergEdge<int>*,WeinbergVertex<int>*);
     WeinbergEdge<int>* getNeighbor(WeinbergEdge<int>*,WeinbergVertex<int>*);
-    string compareToCode(int i);
     void getFirstWeinVec();
 public:
     WeinbergVector(WeinbergGraph<T>* g);
     void calculate();
     void recursiveCal(WeinbergVertex<int>* node, WeinbergEdge<int>* branch);
-    vector<int> getVector();
+    CanonicalVector* getVector();
+    ~WeinbergVector();
 };
 
 

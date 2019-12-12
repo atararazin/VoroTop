@@ -16,11 +16,12 @@
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Input.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/NeighborsTest.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/WeinbergAlgorithmTest.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/GraphCreationTest.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/WeinbergAlgoMethods.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests/VerticesCreationTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests/EdgeOrderingTest.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/tests/NeighborsTest.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/tests/GraphCreationTest.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/tests/WeinbergAlgorithmTest.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/googletest-master/googlemock/src/gmock-all.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/googletest-master/googlemock/src/gmock_main.cc" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/lib/googletest-master/googlemock/CMakeLists.txt" isTestSource="false" />
