@@ -6,8 +6,8 @@
 #define VOROTOP_FACESTOGRAPH_H
 #include <fstream>
 #include <iostream>
-#include "Graph/Graph.h"
-#include "WeinbergAlgorithm/WeinbergGraph.h"
+#include "Graph.h"
+#include "../WeinbergAlgorithm/WeinbergGraph/WeinbergGraph.h"
 
 using namespace std;
 template <typename T>

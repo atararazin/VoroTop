@@ -6,13 +6,12 @@
 #define VOROTOP_WEINBERGEDGE_H
 
 
-#include "../Graph/Edge.h"
+#include "../../Graph/Edge.h"
 
 template <typename T>
 
 class WeinbergEdge : public Edge<T>{
 public:
-    WeinbergEdge(std::pair<T,T> edge) : Edge<T>(edge){};
     WeinbergEdge(T u, T v) : Edge<T>(u, v){};
     enum Status{NOTVISITED, NEW, OLD};
     int getStatus();

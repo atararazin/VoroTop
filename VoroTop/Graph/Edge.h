@@ -11,7 +11,6 @@ template <typename T>
 
 class Edge {
 public:
-    Edge(std::pair<T,T> e);
     Edge(T u,T v);
     std::pair<T,T> forwardEdge();
     std::pair<T,T> backwardEdge();

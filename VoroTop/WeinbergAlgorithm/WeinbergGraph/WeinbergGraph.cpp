@@ -12,6 +12,11 @@ WeinbergGraph<T>::WeinbergGraph(string faces) {
     this->create(faces);
 }
 
+/**
+ * get the vector of faces with a string as input. within each parentheses is a face of vertices.
+ * ex: (1,2,3) is a triange where the vertices are {1,2,3} and the edges are {(1,2),(2,3),(3,1)}
+ * @param faces
+ */
 template <typename T>
 void WeinbergGraph<T>::getFaces(string faces) {
     istringstream iss(faces);
@@ -128,13 +133,17 @@ void WeinbergGraph<T>::addEdge(std::pair<T,T> e, WeinbergVertex<T>* v) {
         add = edges[ans];
     }
     else{
-        WeinbergEdge<int >* newE = new WeinbergEdge<int >(e);
+        WeinbergEdge<int >* newE = new WeinbergEdge<int >(e.first, e.second);
         edges.push_back(newE);
         add = newE;
     }
     v->addEdge(add);
 }
 
+/**
+ * in order to delete a graph, we have to delete all its faces, all its edges and all its vertices.
+ *
+ */
 template <typename T>
 WeinbergGraph<T>::~WeinbergGraph() {
     for(Face<T>* f : this->faces){

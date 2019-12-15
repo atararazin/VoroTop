@@ -46,10 +46,3 @@ std::string CanonicalVector::compareToCode(int curr_num) {
         return "smaller";
     }
 }
-
-void CanonicalVector::print() {
-    for(int i : this->vector){
-        std::cout << i << ",";
-    }
-    printf("\n");
-}

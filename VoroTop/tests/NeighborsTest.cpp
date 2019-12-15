@@ -9,7 +9,7 @@
 
 #include<gtest/gtest.h>
 #include<gmock/gmock.h>
-#include "../WeinbergAlgorithm/WeinbergGraph.h"
+#include "../WeinbergAlgorithm/WeinbergGraph/WeinbergGraph.h"
 
 
 using testing::Eq;

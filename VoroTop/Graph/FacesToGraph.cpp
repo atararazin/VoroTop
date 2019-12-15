@@ -3,8 +3,8 @@
 //
 
 #include "FacesToGraph.h"
-#include "Graph/Graph.h"
-#include "WeinbergAlgorithm/WeinbergGraph.h"
+#include "Graph.h"
+#include "../WeinbergAlgorithm/WeinbergGraph/WeinbergGraph.h"
 using namespace std;
 template <typename T>
 
@@ -18,7 +18,6 @@ vector<WeinbergGraph<T>*>& FacesToGraph<T>::createGraph() {
     string line;
     while(getline(file, line)){
         WeinbergGraph<T>* graph = new WeinbergGraph<T>(line);
-        //graph->create(line);
         graphs.push_back(graph);
     }
     return graphs;

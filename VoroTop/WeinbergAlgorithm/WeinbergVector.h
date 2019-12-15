@@ -7,7 +7,7 @@
 
 #include "../Graph/Vertex.h"
 #include "../Graph/Graph.h"
-#include "WeinbergGraph.h"
+#include "WeinbergGraph/WeinbergGraph.h"
 #include "CanonicalVector.h"
 #include "Direction.h"
 

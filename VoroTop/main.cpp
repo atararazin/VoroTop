@@ -1,8 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include "VoronoiCell.h"
-#include "FacesToGraph.h"
+#include "Voro++/VoronoiCell.h"
+#include "Graph/FacesToGraph.h"
 #include "WeinbergAlgorithm/WeinbergVector.h"
 #include "OutputFile.h"
 

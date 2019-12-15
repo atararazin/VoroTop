@@ -3,7 +3,7 @@
 //
 
 #include "WeinbergVector.h"
-#include "WeinbergEdge.h"
+#include "WeinbergGraph/WeinbergEdge.h"
 #include <iostream>
 
 /**
