@@ -12,6 +12,7 @@ template <typename T>
 
 class WeinbergGraph : public Graph<T>{
 public:
+    WeinbergGraph(string faces);
     vector<WeinbergVertex<T>*> vertices;
     vector<WeinbergEdge<T>*> edges;
 
@@ -25,8 +26,6 @@ private:
     void addEdge(std::pair<T,T> e, WeinbergVertex<T>*v);
     pair<Face<T>* ,int> findFirstAppearance(WeinbergVertex<int>* v);
     pair<Face<T>* ,int> findPairOfVerticesInFaces(int v, int u);
-
-
 };
 
 

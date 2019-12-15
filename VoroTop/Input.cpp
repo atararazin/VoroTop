@@ -71,7 +71,7 @@ string Input::lineOnlyXYZ(string line) {
 
 void Input::updateInputStr() {
     std::stringstream ss;
-    ss << "./voro++ -c %t"<< " " << this->max_x << " " << this->min_x << " " << this->max_y << " " <<
+    ss << "./voro++ -p -c %t"<< " " << this->max_x << " " << this->min_x << " " << this->max_y << " " <<
        this->min_y << " " << this->max_z << " " << this->min_z << " " << "inputForVoro++.txt";
     std::string s = ss.str();
     this->inputStr = s;

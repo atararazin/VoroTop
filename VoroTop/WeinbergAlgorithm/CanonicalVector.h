@@ -15,6 +15,7 @@ public:
     std::string compareToCode(int curr_num);
     void incrementIndex();
     void resetIndex();
+    void print();//delete
 
 private:
     std::vector<int> vector;

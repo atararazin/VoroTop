@@ -27,11 +27,7 @@ namespace {
 
 TEST_F(WeinbergAlgorithmTest, test_){
     WeinbergGraph<int>* graph;
-    graph = new WeinbergGraph<int>();
-
-    graph->getFaces("(1,4,2,9) (1,0,8,4) (1,9,5,3,0) (2,6,7,5,9) (2,4,8,6) (3,7,6,8,0) (3,5,7)");
-    graph->getVertices();
-    graph->getEdges();
+    graph = new WeinbergGraph<int>("(1,4,2,9) (1,0,8,4) (1,9,5,3,0) (2,6,7,5,9) (2,4,8,6) (3,7,6,8,0) (3,5,7)");
 
     WeinbergVector<int>* weinbergVector = new WeinbergVector<int>(graph);
     weinbergVector->calculate();
@@ -47,11 +43,7 @@ TEST_F(WeinbergAlgorithmTest, test_){
 
 TEST_F(WeinbergAlgorithmTest, test_triange){
     WeinbergGraph<int>* graph;
-    graph = new WeinbergGraph<int>();
-
-    graph->getFaces("(0,1,2) (2,1,0)");
-    graph->getVertices();
-    graph->getEdges();
+    graph = new WeinbergGraph<int>("(0,1,2) (2,1,0)");
 
     WeinbergVector<int>* weinbergVector = new WeinbergVector<int>(graph);
     weinbergVector->calculate();
@@ -69,11 +61,7 @@ TEST_F(WeinbergAlgorithmTest, test_triange){
 
 TEST_F(WeinbergAlgorithmTest, test3){
     WeinbergGraph<int>* graph;
-    graph = new WeinbergGraph<int>();
-
-    graph->getFaces("(0,1,2) (0,2,3) (0,3,2,1)");
-    graph->getVertices();
-    graph->getEdges();
+    graph = new WeinbergGraph<int>("(0,1,2) (0,2,3) (0,3,2,1)");
 
     WeinbergVector<int>* weinbergVector = new WeinbergVector<int>(graph);
     weinbergVector->calculate();

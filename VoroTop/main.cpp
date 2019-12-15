@@ -1,14 +1,16 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-#include <sstream>
 #include "VoronoiCell.h"
 #include "FacesToGraph.h"
 #include "WeinbergAlgorithm/WeinbergVector.h"
+#include "OutputFile.h"
+
 using namespace std;
 
 #include<gtest/gtest.h>
 #include<gmock/gmock.h>
+#include <chrono>
 
 
 int main(int argc, char*argv[]){
@@ -16,13 +18,15 @@ int main(int argc, char*argv[]){
     //testing::GTEST_FLAG(filter) = "VerticesCreationTest*";
     return RUN_ALL_TESTS();
 }
+ /*
+using namespace std::chrono;
 
 
-
-/*
 int main(int argc, char *argv[]) {
+    auto start = high_resolution_clock::now();
     fstream file;
-    file.open(argv[1]);
+    string inputFileName = argv[1];
+    file.open(inputFileName);
     fstream& fref = file;
 
     Input* input = new Input(fref);
@@ -34,18 +38,30 @@ int main(int argc, char *argv[]) {
     input->min_z = argv[7];
     file.close();
 
+    OutputFile* outputFile = new OutputFile();
+    outputFile->createFile(inputFileName);
+
     VoronoiCell* voronoiCell = new VoronoiCell();
     voronoiCell->calcVorCell(input);
-    FacesToGraph* graphConverter = new FacesToGraph();
+    FacesToGraph<int>* graphConverter = new FacesToGraph<int>();
     graphConverter->openOutputFile();
-    vector<WeinbergGraph*> allGraphs = graphConverter->createGraph();
-    for(WeinbergGraph* graph : allGraphs){
-        WeinbergVector* wvector = new WeinbergVector(graph);
+    vector<WeinbergGraph<int>*> allGraphs = graphConverter->createGraph();
+    for(WeinbergGraph<int>* graph : allGraphs){
+        WeinbergVector<int>* wvector = new WeinbergVector<int>(graph);
         wvector->calculate();
+        outputFile->writeToFile(wvector->getCanonicalVector()->getVector());
         delete(wvector);
     }
 
+    delete(outputFile);
     delete(input);
     delete(voronoiCell);
     delete(graphConverter);
-}*/
+
+    //for calculating time - delete after
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    cout << duration.count() << "microseconds" << endl;
+    cout << duration.count() * 0.000001 << "seconds" << endl;
+}
+*/

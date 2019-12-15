@@ -29,6 +29,7 @@ private:
     void reset();
     WeinbergEdge<int>* getNeighbor(WeinbergEdge<int>*,WeinbergVertex<int>*);
     void getFirstWeinVec();
+    void checkBiggerOrSmaller(int code);
 public:
     WeinbergVector(WeinbergGraph<T>* g);
     void calculate();

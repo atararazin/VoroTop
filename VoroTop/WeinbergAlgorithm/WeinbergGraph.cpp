@@ -7,6 +7,11 @@
 #include "WeinbergGraph.h"
 #include "WeinbergEdge.h"
 
+template<typename T>
+WeinbergGraph<T>::WeinbergGraph(string faces) {
+    this->create(faces);
+}
+
 template <typename T>
 void WeinbergGraph<T>::getFaces(string faces) {
     istringstream iss(faces);

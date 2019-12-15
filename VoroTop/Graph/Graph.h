@@ -18,10 +18,10 @@ protected:
     virtual void getFaces(string faces) = 0;
     virtual void getVertices() = 0;
     virtual void getEdges() = 0;
+    void create(string faces);
 
 public:
     vector<Face<T>*> faces;
-    void create(string faces);
 };
 
 

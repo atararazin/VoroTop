@@ -25,11 +25,11 @@ namespace {
 
 TEST_F(NeighborsTest, test_2s_right_neighbors){
     WeinbergGraph<int>* graph;
-    graph = new WeinbergGraph<int>();
+    graph = new WeinbergGraph<int>("(1,4,2,9) (1,0,8,4) (1,9,5,3,0) (2,6,7,5,9) (2,4,8,6) (3,7,6,8,0) (3,5,7)");
 
-    graph->getFaces("(1,4,2,9) (1,0,8,4) (1,9,5,3,0) (2,6,7,5,9) (2,4,8,6) (3,7,6,8,0) (3,5,7)");
-    graph->getVertices();
-    graph->getEdges();
+    //graph->getFaces("(1,4,2,9) (1,0,8,4) (1,9,5,3,0) (2,6,7,5,9) (2,4,8,6) (3,7,6,8,0) (3,5,7)");
+    //graph->getVertices();
+    //graph->getEdges();
 
     WeinbergVertex<int>* two = graph->vertices[2];
     EXPECT_EQ((two->getEdges()[0]->forwardEdge()), (std::pair<int,int>(2,9)));
@@ -53,11 +53,7 @@ TEST_F(NeighborsTest, test_2s_right_neighbors){
 
 TEST_F(NeighborsTest, test2){
     WeinbergGraph<int>* graph;
-    graph = new WeinbergGraph<int>();
-
-    graph->getFaces("(1,3,2,0) (1,5,7,3) (1,0,4,5) (2,6,4,0) (2,3,7,6) (4,6,7,5)");
-    graph->getVertices();
-    graph->getEdges();
+    graph = new WeinbergGraph<int>("(1,3,2,0) (1,5,7,3) (1,0,4,5) (2,6,4,0) (2,3,7,6) (4,6,7,5)");
 
     EXPECT_EQ((graph->vertices[1]->getEdges()[0]->forwardEdge()),(std::pair<int,int>(1,3)));
     EXPECT_EQ((graph->vertices[1]->getRightMostNeighbor(graph->vertices[1]->getEdges()[0])->forwardEdge()),(std::pair<int,int>(0,1)));
@@ -70,11 +66,7 @@ TEST_F(NeighborsTest, test2){
 
 TEST_F(NeighborsTest, test3_triangle){
     WeinbergGraph<int>* graph;
-    graph = new WeinbergGraph<int>();
-
-    graph->getFaces("(0,1,2) (2,1,0)");
-    graph->getVertices();
-    graph->getEdges();
+    graph = new WeinbergGraph<int>("(0,1,2) (2,1,0)");
 
     EXPECT_EQ((graph->vertices[1]->getEdges()[0]->forwardEdge()),(std::pair<int,int>(1,2)));
     EXPECT_EQ((graph->vertices[1]->getRightMostNeighbor(graph->vertices[1]->getEdges()[0])->forwardEdge()),(std::pair<int,int>(0,1)));
