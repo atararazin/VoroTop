@@ -15,13 +15,14 @@ using namespace std;
 
 int main(int argc, char*argv[]){
     testing::InitGoogleTest(&argc, argv);
-    //testing::GTEST_FLAG(filter) = "VerticesCreationTest*";
+    testing::GTEST_FLAG(filter) = "TimeTest*";
     return RUN_ALL_TESTS();
 }
- /*
+
+
 using namespace std::chrono;
 
-
+/*
 int main(int argc, char *argv[]) {
     auto start = high_resolution_clock::now();
     fstream file;
@@ -44,7 +45,7 @@ int main(int argc, char *argv[]) {
     VoronoiCell* voronoiCell = new VoronoiCell();
     voronoiCell->calcVorCell(input);
     FacesToGraph<int>* graphConverter = new FacesToGraph<int>();
-    graphConverter->openOutputFile();
+    graphConverter->openOutputFile("inputForVoro++.txt.vol");
     vector<WeinbergGraph<int>*> allGraphs = graphConverter->createGraph();
     for(WeinbergGraph<int>* graph : allGraphs){
         WeinbergVector<int>* wvector = new WeinbergVector<int>(graph);
@@ -63,5 +64,37 @@ int main(int argc, char *argv[]) {
     auto duration = duration_cast<microseconds>(stop - start);
     cout << duration.count() << "microseconds" << endl;
     cout << duration.count() * 0.000001 << "seconds" << endl;
-}
-*/
+}*/
+
+
+/*
+int main(int argc, char *argv[]) {
+    auto start = high_resolution_clock::now();
+
+    OutputFile *outputFile = new OutputFile();
+    outputFile->createFile("graphs");
+    FacesToGraph<int> *graphConverter = new FacesToGraph<int>();
+    graphConverter->openOutputFile("/home/atara/VoroTop/tests/graphs3");
+    int numOfGraphs = graphConverter->getNumOfGraphs();
+
+    for(int i = 0; i < numOfGraphs; i++){
+        WeinbergGraph<int> *graph = graphConverter->createSingleGraph();
+        WeinbergVector<int>* wvector = new WeinbergVector<int>(graph);
+        wvector->calculate();
+        for(int j : wvector->getCanonicalVector()->getVector())
+            cout << j;
+        printf("\n");
+        cout << i << endl;
+        delete(wvector);
+        delete(graph);
+
+    }
+    outputFile->closeFile();
+    delete(outputFile);
+    delete(graphConverter);
+
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    cout << duration.count() << "microseconds" << endl;
+    cout << duration.count() * 0.000001 << "seconds" << endl;
+}*/

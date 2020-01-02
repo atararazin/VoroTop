@@ -14,12 +14,15 @@ template <typename T>
 
 class FacesToGraph {
 public:
-    void openOutputFile();
-    vector<WeinbergGraph<T>*>& createGraph();
+    void openOutputFile(string filePath);
+    WeinbergGraph<T>* createSingleGraph();
+    vector<WeinbergGraph<int>*>& createGraph();
+    void countNumberFiles();
+    int getNumOfGraphs();
     ~FacesToGraph();
 private:
     fstream file;
-    vector<WeinbergGraph<T>*> graphs;
+    int numOfLines;
 };
 
 

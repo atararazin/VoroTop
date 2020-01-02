@@ -24,7 +24,8 @@ public:
     string min_y;
     string max_z;
     string min_z;
-    string inputStr;
+    string runStr;
+    string compileStr;
     Input(fstream& originalFile);
     void createInputFile(fstream&);
     void updateInputStr();

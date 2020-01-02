@@ -13,6 +13,8 @@ class OutputFile {
 public:
     void createFile(std::string fileName);
     void writeToFile(std::vector<int> vec);
+    void closeFile();
+    std::ofstream* getFile();
     ~OutputFile();
 
 private:

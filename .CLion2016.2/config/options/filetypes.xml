@@ -1,0 +1,12 @@
+<application>
+  <component name="FileTypeManager" version="17">
+    <extensionMap>
+      <mapping pattern="graphs" type="PLAIN_TEXT" />
+      <mapping pattern="graph2" type="PLAIN_TEXT" />
+      <mapping pattern="test" type="PLAIN_TEXT" />
+      <mapping pattern="weinberg_vectors" type="PLAIN_TEXT" />
+      <mapping pattern="graphs3" type="PLAIN_TEXT" />
+      <mapping pattern="graphs1" type="PLAIN_TEXT" />
+    </extensionMap>
+  </component>
+</application>

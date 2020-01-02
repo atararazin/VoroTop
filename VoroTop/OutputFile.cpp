@@ -3,7 +3,7 @@
 //
 
 #include "OutputFile.h"
-
+using namespace std;
 /**
  * using the name given as input for the input file, create the output file of the same
  * name, but using .wvector.
@@ -11,7 +11,15 @@
  */
 void OutputFile::createFile(std::string fileName) {
     std::string outFileName = fileName.substr(0, fileName.find("."));
-    file.open(outFileName + ".wvector");
+    try{
+        file.open(outFileName + ".wvector");
+
+    }
+    catch (char* excp){
+        cout << "Caught " << excp << endl;
+
+
+    }
 }
 
 /**
@@ -21,15 +29,23 @@ void OutputFile::createFile(std::string fileName) {
  * @param vec
  */
 void OutputFile::writeToFile(std::vector<int> vec) {
-    file << "(";
+    string strForFile = "";
+    strForFile.append("(");
     long n = vec.size();
     for(int i  = 0; i < n - 1; i++){
-        file << vec[i] << ", ";
+        strForFile.append(std::to_string(vec[i]) + ",");
     }
-    file << vec[n - 1] << ")" << std::endl;
+    strForFile.append(std::to_string(vec[n - 1]) + ")\n");
+    file << strForFile;
+}
+
+std::ofstream* OutputFile::getFile() {
+    return &file;
+}
+void OutputFile::closeFile() {
+    this->file.close();
 }
 
 OutputFile::~OutputFile(){
-    file.close();
+    //file.close();
 }
-
