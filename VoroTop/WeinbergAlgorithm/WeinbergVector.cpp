@@ -12,14 +12,21 @@
  * @return
  */
 template <typename T>
-WeinbergVector<T>::WeinbergVector(WeinbergGraph<T> *g) {
-    this->graph = g;
-    this->vertices = g->vertices;
-    this->edges = g->edges;
+WeinbergVector<T>::WeinbergVector() {
     canonicalVector = new CanonicalVector();
     direction = new Direction();
 }
 
+template <typename T>
+void WeinbergVector<T>::setGraph(WeinbergGraph<T> *g) {
+    this->graph = g;
+    this->vertices = g->vertices;
+    this->edges = g->edges;
+    this->canonicalVector->clear();
+    i = 0;
+    first = true;
+
+}
 /**
  * prepares for the recusrive part -
  * @param edge - the inital edge (u,v)

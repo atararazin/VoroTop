@@ -8,16 +8,16 @@
 
 using namespace std;
 
-#include<gtest/gtest.h>
-#include<gmock/gmock.h>
+//#include<gtest/gtest.h>
+//#include<gmock/gmock.h>
 #include <chrono>
 
-
+/*
 int main(int argc, char*argv[]){
     testing::InitGoogleTest(&argc, argv);
     testing::GTEST_FLAG(filter) = "TimeTest*";
     return RUN_ALL_TESTS();
-}
+}*/
 
 
 using namespace std::chrono;
@@ -67,29 +67,27 @@ int main(int argc, char *argv[]) {
 }*/
 
 
-/*
+
 int main(int argc, char *argv[]) {
+    printf("running the test");
     auto start = high_resolution_clock::now();
 
     OutputFile *outputFile = new OutputFile();
     outputFile->createFile("graphs");
     FacesToGraph<int> *graphConverter = new FacesToGraph<int>();
-    graphConverter->openOutputFile("/home/atara/VoroTop/tests/graphs3");
+    graphConverter->openOutputFile("/home/atara/VoroTop/tests/graphs");
     int numOfGraphs = graphConverter->getNumOfGraphs();
+    WeinbergVector<int>* wvector = new WeinbergVector<int>();
 
     for(int i = 0; i < numOfGraphs; i++){
         WeinbergGraph<int> *graph = graphConverter->createSingleGraph();
-        WeinbergVector<int>* wvector = new WeinbergVector<int>(graph);
+        wvector->setGraph(graph);
         wvector->calculate();
-        for(int j : wvector->getCanonicalVector()->getVector())
-            cout << j;
-        printf("\n");
-        cout << i << endl;
-        delete(wvector);
+        outputFile->writeToFile(wvector->getCanonicalVector()->getVector());
         delete(graph);
-
     }
     outputFile->closeFile();
+    delete(wvector);
     delete(outputFile);
     delete(graphConverter);
 
@@ -97,4 +95,4 @@ int main(int argc, char *argv[]) {
     auto duration = duration_cast<microseconds>(stop - start);
     cout << duration.count() << "microseconds" << endl;
     cout << duration.count() * 0.000001 << "seconds" << endl;
-}*/
+}

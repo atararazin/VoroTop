@@ -23,6 +23,7 @@ namespace {
     };
 }
 
+/*
 TEST_F(WeinbergVectorMethods, check_getFirstWeinVec){
 
     string line = "(1,67,66,56,4) (1,57,33,67) (1,4,59,42,39,57) (2,0,35,32) (2,12,14,18,0) (2,32,10,11,13,9,12) "
@@ -40,6 +41,6 @@ TEST_F(WeinbergVectorMethods, check_getFirstWeinVec){
     delete graph;
     delete vec;
 
-}
+}*/
 
 #endif

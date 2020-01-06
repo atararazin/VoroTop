@@ -31,7 +31,9 @@ private:
     void getFirstWeinVec();
     void checkBiggerOrSmaller(int code);
 public:
-    WeinbergVector(WeinbergGraph<T>* g);
+    //WeinbergVector(WeinbergGraph<T>* g);
+    WeinbergVector();
+    void setGraph(WeinbergGraph<T>* graph);
     void calculate();
     void recursiveCal(WeinbergVertex<int>* node, WeinbergEdge<int>* branch);
     CanonicalVector* getCanonicalVector();

@@ -28,7 +28,7 @@ namespace {
 
     };
 }
-
+/*
 
 TEST_F(WeinbergAlgorithmTest, test_){
     WeinbergGraph<int>* graph;
@@ -187,7 +187,7 @@ bool WeinbergAlgorithmTest::filesEqual(string s1,string s2){
     }
     return false;
 
-}
+}*/
 
 /*
 TEST_F(WeinbergAlgorithmTest, createFileForComp){
