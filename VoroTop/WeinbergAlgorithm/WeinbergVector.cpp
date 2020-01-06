@@ -59,7 +59,6 @@ void WeinbergVector<T>::getFirstWeinVec(){
     initialize(e, u, v);
     this->recursiveCal(vertices[v], e);
     first = false;
-    reset();
 }
 
 template <typename T>
