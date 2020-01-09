@@ -4,6 +4,7 @@
 
 #include "WeinbergVector.h"
 #include "WeinbergGraph/WeinbergEdge.h"
+#include "WeinbergAlgorithm.h"
 #include <iostream>
 
 /**
@@ -14,19 +15,16 @@
 template <typename T>
 WeinbergVector<T>::WeinbergVector() {
     canonicalVector = new CanonicalVector();
-    direction = new Direction();
 }
 
 template <typename T>
-void WeinbergVector<T>::setGraph(WeinbergGraph<T> *g) {
+WeinbergVector<T>::WeinbergVector(WeinbergGraph<T> *g) {
     this->graph = g;
     this->vertices = g->vertices;
     this->edges = g->edges;
-    this->canonicalVector->clear();
-    i = 0;
-    first = true;
-
+    canonicalVector = new CanonicalVector();
 }
+
 /**
  * prepares for the recusrive part -
  * @param edge - the inital edge (u,v)
@@ -57,15 +55,16 @@ void WeinbergVector<T>::getFirstWeinVec(){
     canonicalVector->addToVector(vertices[v]->getWeinNum(&i));
 
     initialize(e, u, v);
-    this->recursiveCal(vertices[v], e);
-    first = false;
+    WeinbergAlgorithm<int>* algorithm = new WeinbergAlgorithm<int>(0, vertices, true, canonicalVector);
+    algorithm->recursiveCal(vertices[v], e);
+    delete(algorithm);
 }
 
 template <typename T>
 void WeinbergVector<T>::calculate() {
     int u,v,iter;
-    direction->setDirection("Right");
     getFirstWeinVec();
+    bool dir = 0;
 
     for(int j = 0; j < 2; j++){
         for(WeinbergEdge<int>* first : edges){
@@ -79,94 +78,15 @@ void WeinbergVector<T>::calculate() {
                     v = first->forwardEdge().second;
                 }
                 initialize(first, u,v);
-                this->recursiveCal(vertices[v], first);
+                WeinbergAlgorithm<int>* algorithm = new WeinbergAlgorithm<int>(dir, vertices, false, canonicalVector);
+                algorithm->recursiveCal(vertices[v], first);
+                delete(algorithm);
             }
         }
-        direction->setDirection("Left");
+        dir = 1;
     }
 }
 
-template <typename T>
-void WeinbergVector<T>::recursiveCal(WeinbergVertex<int>* node, WeinbergEdge<int>* cameFrom) {
-
-    //base condition - if we've reached a node that we've already visited all neighbors
-   if(getNeighbor(cameFrom,node) == NULL){
-        return;
-    }
-
-    WeinbergEdge<int>* edge;
-
-    //if our node has not yet been visited
-    if(!node->old){
-        node->old = true;
-        WeinbergEdge<int>* b = getNeighbor(cameFrom, node);
-        edge = b;
-    }
-    else{//if the node is old, already visited
-        //if we haven't yet visited in the opposite direction, visit the opposite direction
-        if(cameFrom->getStatus() == WeinbergEdge<int >::NEW){
-            edge = cameFrom;
-        }
-        else{//if we've already visited both directions
-            WeinbergEdge<int >* b = getNeighbor(cameFrom, node);
-            edge = b;
-        }
-    }
-
-    edge->updateStatus();
-    pair<int,int> directedEdge = edge->getDirectedEdge(node->data);
-    WeinbergVertex<int>* vertex = vertices[directedEdge.second];
-    int code = vertices[directedEdge.second]->getWeinNum(&i);
-
-
-    if(first){
-        canonicalVector->addToVector(code);
-        return recursiveCal(vertex, edge);
-    }
-
-    if (!foundSmaller) {
-        //compare our vertices Weinberg code to the canonical vector
-        string res = canonicalVector->compareToCode(code);
-
-        //if our code is bigger then stop calculating the Weinberg code on this edge
-        if (res == "bigger") {
-            return;
-        }
-            //if it's smaller, update the canonical vector with our Weinberg values
-        else if(res == "smaller"){
-            foundSmaller = true;
-            canonicalVector->changeCurrValue(code);
-        }
-    }
-    else{
-        canonicalVector->changeCurrValue(code);
-    }
-    canonicalVector->incrementIndex();
-    //checkBiggerOrSmaller(code);
-    recursiveCal(vertex, edge);
-}
-
-template<typename T>
-void WeinbergVector<T>::checkBiggerOrSmaller(int code) {
-    if (!foundSmaller) {
-        //compare our vertices Weinberg code to the canonical vector
-        string res = canonicalVector->compareToCode(code);
-
-        //if our code is bigger then stop calculating the Weinberg code on this edge
-        if (res == "bigger") {
-            return;
-        }
-            //if it's smaller, update the canonical vector with our Weinberg values
-        else if(res == "smaller"){
-            foundSmaller = true;
-            canonicalVector->changeCurrValue(code);
-        }
-    }
-    else{
-        canonicalVector->changeCurrValue(code);
-    }
-    canonicalVector->incrementIndex();
-}
 
 template <typename T>
 void WeinbergVector<T>::reset() {
@@ -178,24 +98,8 @@ void WeinbergVector<T>::reset() {
     }
     this->i = 0;
     canonicalVector->resetIndex();
-    foundSmaller = false;
 }
 
-/**
- * get right or left most neighbor, depending on our current direction
- * @param e - the edge we came from
- * @param v - the vertex we are coming from
- * @return the right or left most neighbor
- */
-template <typename T>
-WeinbergEdge<int>* WeinbergVector<T>::getNeighbor(WeinbergEdge<int> *e, WeinbergVertex<int> *v) {
-    if(direction->getDirection() == 0){
-        return v->getRightMostNeighbor(e);
-    }
-    else{
-        return v->getLeftMostNeighbor(e);
-    }
-}
 
 template<typename T>
 CanonicalVector* WeinbergVector<T>::getCanonicalVector() {
@@ -205,7 +109,6 @@ CanonicalVector* WeinbergVector<T>::getCanonicalVector() {
 template<typename T>
 WeinbergVector<T>::~WeinbergVector() {
     delete canonicalVector;
-    delete(direction);
 
 }
 template class WeinbergVector<int>;
