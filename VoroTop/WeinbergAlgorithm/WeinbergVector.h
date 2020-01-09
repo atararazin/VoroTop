@@ -9,7 +9,6 @@
 #include "../Graph/Graph.h"
 #include "WeinbergGraph/WeinbergGraph.h"
 #include "CanonicalVector.h"
-#include "Direction.h"
 
 using namespace std;
 
