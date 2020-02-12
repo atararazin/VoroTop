@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
     OutputFile *outputFile = new OutputFile();
     outputFile->createFile("graphs");
     FacesToGraph<int> *graphConverter = new FacesToGraph<int>();
-    graphConverter->openOutputFile("/home/atara/VoroTop/tests/graphs");
+    graphConverter->openOutputFile("/home/atara/VoroTop/tests/graphs1");
     int numOfGraphs = graphConverter->getNumOfGraphs();
 
     for(int i = 0; i < numOfGraphs; i++){

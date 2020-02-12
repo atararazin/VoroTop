@@ -19,13 +19,14 @@ public:
     void getFaces(string);
     void getVertices();
     void getEdges();
+    void reset();
     ~WeinbergGraph();
 
 private:
-    int edgeExists(std::pair<T,T> searching);
-    void addEdge(std::pair<T,T> e, WeinbergVertex<T>*v);
+    int edgeExists(std::pair<T,T> *searching);
+    void addEdge(std::pair<T,T> *e, WeinbergVertex<T>*v);
     pair<Face<T>* ,int> findFirstAppearance(WeinbergVertex<int>* v);
-    pair<Face<T>* ,int> findPairOfVerticesInFaces(int v, int u);
+    pair<Face<T>* ,int> findPairOfVerticesInFaces(int *v, int *u);
 };
 
 

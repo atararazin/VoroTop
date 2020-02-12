@@ -62,13 +62,13 @@ void WeinbergGraph<T>::getEdges() {
         int v = face->nodes[(index + 1) % n];
         pair<int, int> edge(u, v);
         pair<int, int> stoppingE(v, u);
-        addEdge(edge, vertex);
+        addEdge(&edge, vertex);
 
         int w = (n + (index-1 % n)) % n ;
         pair<int, int> next(face->nodes[w], u);
         while(next != stoppingE){
-            addEdge(next, vertex);
-            res = findPairOfVerticesInFaces(next.second, next.first);
+            addEdge(&next, vertex);
+            res = findPairOfVerticesInFaces(&next.second, &next.first);
             face = res.first;
             index = res.second;
             n = face->nodes.size();
@@ -86,7 +86,6 @@ pair<Face<T>*,int> WeinbergGraph<T>::findFirstAppearance(WeinbergVertex<int>* v)
         for (int i = 0; i < n; i++) {
             //find first occurance of v
             if (f->nodes[i] == v->data) {
-                //if (f->nodes[i] == v) {
                 return pair<Face<T>*,int>(f,i);
             }
         }
@@ -100,11 +99,11 @@ pair<Face<T>*,int> WeinbergGraph<T>::findFirstAppearance(WeinbergVertex<int>* v)
  * @return returns the first one
  */
 template <typename T>
-pair<Face<T>* ,int> WeinbergGraph<T>::findPairOfVerticesInFaces(int v, int u) {
+pair<Face<T>* ,int> WeinbergGraph<T>::findPairOfVerticesInFaces(int *v, int *u) {
     for (Face<T> *f : this->faces) {
         long n = f->nodes.size();
         for (int i = 0; i < n; i++) {
-            if (f->nodes[i] == v && f->nodes[(i + 1) % n] == u) {
+            if (f->nodes[i] == *v && f->nodes[(i + 1) % n] == *u) {
                 return pair<Face<T>* ,int>(f, i);
             }
         }
@@ -112,13 +111,12 @@ pair<Face<T>* ,int> WeinbergGraph<T>::findPairOfVerticesInFaces(int v, int u) {
 }
 
 template <typename T>
-int WeinbergGraph<T>::edgeExists(std::pair<T,T> searching) {
+int WeinbergGraph<T>::edgeExists(std::pair<T,T> *searching) {
     int n = edges.size();
     WeinbergEdge<int>* curr;
     for(int i = 0; i < n; i++){
         curr = edges[i];
-        if(curr->forwardEdge() == searching || curr->backwardEdge() == searching){
-            //if(curr->edge == searching || curr->backwardEdge() == searching){
+        if(curr->forwardEdge() == *searching || curr->backwardEdge() == *searching){
             return i;
         }
     }
@@ -126,14 +124,14 @@ int WeinbergGraph<T>::edgeExists(std::pair<T,T> searching) {
 }
 
 template <typename T>
-void WeinbergGraph<T>::addEdge(std::pair<T,T> e, WeinbergVertex<T>* v) {
+void WeinbergGraph<T>::addEdge(std::pair<T,T> *e, WeinbergVertex<T>* v) {
     int ans = edgeExists(e);
     WeinbergEdge<int>* add;
     if(ans >= 0){
         add = edges[ans];
     }
     else{
-        WeinbergEdge<int >* newE = new WeinbergEdge<int >(e.first, e.second);
+        WeinbergEdge<int >* newE = new WeinbergEdge<int >(e->first, e->second);
         edges.push_back(newE);
         add = newE;
     }

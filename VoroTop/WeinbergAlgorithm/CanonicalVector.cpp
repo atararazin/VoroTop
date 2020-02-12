@@ -22,10 +22,6 @@ void CanonicalVector::incrementIndex() {
     index++;
 }
 
-void CanonicalVector::clear() {
-    vector.clear();
-    resetIndex();
-}
 /**
  * index starts at 2 because 0 and 1 are for the first edge's vertices
  */

@@ -19,10 +19,7 @@ private:
     vector<WeinbergVertex<int>*> vertices;
     vector<WeinbergEdge<int>*> edges;
     CanonicalVector* canonicalVector;
-    int i = 0;
-    void initialize(WeinbergEdge<int>* edge, int u, int v);
     void reset();
-    void getFirstWeinVec();
 public:
     WeinbergVector(WeinbergGraph<T>* g);
     WeinbergVector();
