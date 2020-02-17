@@ -42,9 +42,9 @@ void FacesToGraph<T>::countNumberFiles() {
 
 
 template <typename T>
-WeinbergGraph<T>* FacesToGraph<T>::createSingleGraph() {
-    string line;
-    getline(file,line);
+WeinbergGraph<T>* FacesToGraph<T>::createSingleGraph(string line) {
+    //string line;
+    //getline(file,line);
     WeinbergGraph<T>* graph = new WeinbergGraph<T>(line);
     return graph;
 }

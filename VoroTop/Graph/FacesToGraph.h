@@ -15,7 +15,7 @@ template <typename T>
 class FacesToGraph {
 public:
     void openOutputFile(string filePath);
-    WeinbergGraph<T>* createSingleGraph();
+    WeinbergGraph<T>* createSingleGraph(string line);
     vector<WeinbergGraph<int>*>& createGraph();
     void countNumberFiles();
     int getNumOfGraphs();

@@ -24,7 +24,7 @@ public:
     WeinbergVector(WeinbergGraph<T>* g);
     WeinbergVector();
     void calculate();
-    CanonicalVector* getCanonicalVector();
+    vector<int>* getCanonicalVector();
     ~WeinbergVector();
 };
 
