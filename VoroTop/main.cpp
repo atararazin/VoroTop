@@ -5,8 +5,7 @@
 #include "Graph/FacesToGraph.h"
 #include "WeinbergAlgorithm/WeinbergVector.h"
 #include "OutputFile.h"
-#include ".idea/GraphsFile.h"
-
+#include "GraphsFile.h"
 using namespace std;
 
 //#include<gtest/gtest.h>
@@ -67,27 +66,22 @@ int main(int argc, char *argv[]) {
     cout << duration.count() * 0.000001 << "seconds" << endl;
 }*/
 
+void readAndWrite();
 
+OutputFile *outputFile;
+GraphsFile *voroOutputFile;
+bool stop = false;
 
 int main(int argc, char *argv[]) {
-    printf("running the test");
+    printf("running");
     auto start = high_resolution_clock::now();
 
-    OutputFile *outputFile = new OutputFile();
+    outputFile = new OutputFile();
     outputFile->createFile("graphs");
-    GraphsFile *voroOutputFile = new GraphsFile("/home/atara/VoroTop/tests/graphs");
+    voroOutputFile = new GraphsFile("/home/atara/VoroTop/tests/graphs");
 
-    while(true){
-        string line = voroOutputFile->readOneLine();
-        if(line == ""){
-            break;
-        }
-        WeinbergGraph<int> *graph = new WeinbergGraph<int>(line);
-        WeinbergVector<int>* wvector = new WeinbergVector<int>(graph);
-        wvector->calculate();
-        outputFile->writeToFile(wvector->getCanonicalVector());
-        delete(wvector);
-        delete(graph);
+    while(!stop){
+        readAndWrite();
     }
     outputFile->closeFile();
     delete(outputFile);
@@ -97,4 +91,24 @@ int main(int argc, char *argv[]) {
     auto duration = duration_cast<microseconds>(stop - start);
     cout << duration.count() << "microseconds" << endl;
     cout << duration.count() * 0.000001 << "seconds" << endl;
+}
+
+void readAndWrite(){
+    //lock
+    pair<string, int> line = voroOutputFile->readOneLine();
+    if(line.first == ""){
+        stop = true;
+        return;
+    }
+
+    WeinbergGraph<int> *graph = new WeinbergGraph<int>(line.first);
+    WeinbergVector<int>* wvector = new WeinbergVector<int>(graph);
+    //unlock
+    wvector->calculate();
+    //lock
+    outputFile->writeToFile(wvector->getCanonicalVector(), line.second);
+    //unlock
+    delete(wvector);
+    delete(graph);
+
 }

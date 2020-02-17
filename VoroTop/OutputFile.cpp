@@ -28,7 +28,8 @@ void OutputFile::createFile(std::string fileName) {
  * each number is separated by a comma, followed by a space.
  * @param vec
  */
-void OutputFile::writeToFile(std::vector<int>* vec) {
+void OutputFile::writeToFile(std::vector<int>* vec, int upto) {
+    cout << "printing to line " << upto << endl;
     string strForFile = "";
     strForFile.append("(");
     long n = vec->size();

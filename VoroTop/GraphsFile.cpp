@@ -4,6 +4,12 @@
 
 #include <iostream>
 #include "GraphsFile.h"
+
+/***
+ * constructor. opens the file.
+ * @param filePath
+ * @return
+ */
 GraphsFile::GraphsFile(string filePath) {
     try{
         file.open(filePath);
@@ -13,13 +19,14 @@ GraphsFile::GraphsFile(string filePath) {
     }
 }
 
-string GraphsFile::readOneLine() {
+pair<string, int> GraphsFile::readOneLine() {
     string line;
     if(getline(file, line)){
-        return line;
+        upto++;
+        return pair<string, int>(line, upto);
     }
     else{
-        return "";
+        return pair<string, int>("",-1);
     }
 }
 
