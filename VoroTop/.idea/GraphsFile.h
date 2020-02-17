@@ -11,12 +11,14 @@ using namespace std;
 
 class GraphsFile {
 public:
-    GraphsFile(string line);
-    pair<string, int> readOneLine();
+    GraphsFile(string filePath);
+    bool endOfFile = false;
+    string readOneLine();
     ~GraphsFile();
+
 private:
     fstream file;
-    int upto = 0;
+
 
 };
 

@@ -11,8 +11,8 @@
 
 class OutputFile {
 public:
-    void createFile(std::string fileName);
-    void writeToFile(std::vector<int>* vec);
+    void createFile(std::string);
+    void writeToFile(std::vector<int>*, int);
     void closeFile();
     std::ofstream* getFile();
     ~OutputFile();
