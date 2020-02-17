@@ -5,6 +5,7 @@
 #include "Graph/FacesToGraph.h"
 #include "WeinbergAlgorithm/WeinbergVector.h"
 #include "OutputFile.h"
+#include ".idea/GraphsFile.h"
 
 using namespace std;
 
@@ -74,22 +75,23 @@ int main(int argc, char *argv[]) {
 
     OutputFile *outputFile = new OutputFile();
     outputFile->createFile("graphs");
-    FacesToGraph<int> *graphConverter = new FacesToGraph<int>();
-    graphConverter->openOutputFile("/home/atara/VoroTop/tests/graphs");
-    int numOfGraphs = graphConverter->getNumOfGraphs();
+    GraphsFile *voroOutputFile = new GraphsFile("/home/atara/VoroTop/tests/graphs");
 
-    for(int i = 0; i < numOfGraphs; i++){
-        WeinbergGraph<int> *graph = graphConverter->createSingleGraph();
+    while(true){
+        string line = voroOutputFile->readOneLine();
+        if(line == ""){
+            break;
+        }
+        WeinbergGraph<int> *graph = new WeinbergGraph<int>(line);
         WeinbergVector<int>* wvector = new WeinbergVector<int>(graph);
         wvector->calculate();
-        outputFile->writeToFile(wvector->getCanonicalVector()->getVector());
+        outputFile->writeToFile(wvector->getCanonicalVector());
         delete(wvector);
         delete(graph);
-
     }
     outputFile->closeFile();
     delete(outputFile);
-    delete(graphConverter);
+    delete(voroOutputFile);
 
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);

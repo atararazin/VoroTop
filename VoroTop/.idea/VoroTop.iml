@@ -5,23 +5,27 @@
       <sourceFolder url="file://$MODULE_DIR$/Graph/Graph.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Graph/Face.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Graph/Vertex.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Graph/Edge.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Graph/Graph.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Graph/Edge.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Graph/FacesToGraph.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Graph/Graph.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Graph/Face.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Graph/FacesToGraph.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Graph/Face.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Graph/Edge.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Graph/Vertex.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/WeinbergAlgorithm" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/GraphsFile.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/OutputFile.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Voro++/Input.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Voro++/VoronoiCell.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Voro++/Input.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Voro++/VoronoiCell.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/.idea/GraphsFile.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/.idea/Complex.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/.idea/GraphsFile.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/OutputFile.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/GraphsFile.cpp" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

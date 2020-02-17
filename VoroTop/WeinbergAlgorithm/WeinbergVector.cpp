@@ -71,8 +71,8 @@ void WeinbergVector<T>::reset() {
 }
 
 template<typename T>
-CanonicalVector* WeinbergVector<T>::getCanonicalVector() {
-    return canonicalVector;
+vector<int>* WeinbergVector<T>::getCanonicalVector() {
+    return canonicalVector->getVector();
 }
 
 template<typename T>
