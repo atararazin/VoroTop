@@ -64,6 +64,9 @@ void WeinbergVector<T>::calculate() {
 
 template <typename T>
 void WeinbergVector<T>::reset() {
+    for(WeinbergEdge<T>* edge : edges){
+        edge->reset();
+    }
     canonicalVector->resetIndex();
 }
 

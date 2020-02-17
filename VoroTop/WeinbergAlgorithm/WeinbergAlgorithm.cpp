@@ -36,7 +36,7 @@ void WeinbergAlgorithm<T>::recursiveCal(WeinbergVertex<int> *node, WeinbergEdge<
         if(visitedVertex[node->data] == 0){
             visitedVertex[node->data] = 1;//asign as discovered
             cameFrom  = getNeighbor(cameFrom, node);//get new neighbor
-        }c
+        }
         //case 2: new node (ie already been discovered)
         else{
 
@@ -46,7 +46,6 @@ void WeinbergAlgorithm<T>::recursiveCal(WeinbergVertex<int> *node, WeinbergEdge<
             }
         }
         cameFrom->updateStatus();
-        usedEdges.push_back(cameFrom);
 
         pair<int,int> directedEdge = cameFrom->getDirectedEdge(node->data);
         node = vertices[directedEdge.second];
@@ -78,7 +77,6 @@ void WeinbergAlgorithm<T>::recursiveCal(WeinbergVertex<int> *node, WeinbergEdge<
 
         canonicalVector->incrementIndex();
     }
-    resetEdges();
 }
 
 template <typename T>
@@ -105,13 +103,6 @@ WeinbergEdge<int>* WeinbergAlgorithm<T>::getNeighbor(WeinbergEdge<int> *e, Weinb
     }
     else{
         return v->getLeftMostNeighbor(e);
-    }
-}
-
-template <typename T>
-void WeinbergAlgorithm<T>::resetEdges() {
-    for(WeinbergEdge<T>* e : usedEdges){
-        e->reset();
     }
 }
 
