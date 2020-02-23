@@ -12,10 +12,12 @@
       <sourceFolder url="file://$MODULE_DIR$/Graph/Face.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Graph/Edge.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Graph/Vertex.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/WeinbergAlgorithm" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ThreadPool.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/GraphsFile.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/ThreadPool.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/GraphsFile.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/WeinbergAlgorithm" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/OutputFile.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Voro++/Input.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Voro++/VoronoiCell.cpp" isTestSource="false" />

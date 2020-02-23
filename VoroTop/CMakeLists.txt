@@ -18,7 +18,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 #include_directories(lib/googletest-master/googlemock/include)
 ##
 
-set(SOURCE_FILES main.cpp Voro++/VoronoiCell.cpp Voro++/Input.cpp Graph/FacesToGraph.cpp Graph/Face.cpp Graph/Edge.cpp Graph/Vertex.cpp Graph/Graph.cpp WeinbergAlgorithm WeinbergAlgorithm/WeinbergVector.cpp WeinbergAlgorithm/WeinbergGraph/WeinbergGraph.cpp WeinbergAlgorithm/WeinbergGraph/WeinbergEdge.cpp WeinbergAlgorithm/WeinbergGraph/WeinbergVertex.cpp .idea/Complex.cpp WeinbergAlgorithm/CanonicalVector.cpp WeinbergAlgorithm/CanonicalVector.h OutputFile.cpp OutputFile.h WeinbergAlgorithm/WeinbergAlgorithm.cpp WeinbergAlgorithm/Status.cpp WeinbergAlgorithm/Status.h .idea/GraphsFile.cpp .idea/GraphsFile.h GraphsFile.cpp GraphsFile.h)
+set(SOURCE_FILES main.cpp Voro++/VoronoiCell.cpp Voro++/Input.cpp Graph/FacesToGraph.cpp Graph/Face.cpp Graph/Edge.cpp Graph/Vertex.cpp Graph/Graph.cpp WeinbergAlgorithm WeinbergAlgorithm/WeinbergVector.cpp WeinbergAlgorithm/WeinbergGraph/WeinbergGraph.cpp WeinbergAlgorithm/WeinbergGraph/WeinbergEdge.cpp WeinbergAlgorithm/WeinbergGraph/WeinbergVertex.cpp .idea/Complex.cpp WeinbergAlgorithm/CanonicalVector.cpp WeinbergAlgorithm/CanonicalVector.h OutputFile.cpp OutputFile.h WeinbergAlgorithm/WeinbergAlgorithm.cpp WeinbergAlgorithm/Status.cpp WeinbergAlgorithm/Status.h .idea/GraphsFile.cpp .idea/GraphsFile.h GraphsFile.cpp GraphsFile.h ThreadPool.cpp ThreadPool.h)
 #tests/EdgeOrderingTest.cpp tests/WeinbergAlgorithmTest.cpp tests/NeighborsTest.cpp tests/VerticesCreationTest.cpp tests/GraphCreationTest.cpp tests/WeinbergVectorMethodsTests.cpp tests/TimeTest.cpp
 add_executable(VoroTop ${SOURCE_FILES})
 #target_link_libraries(VoroTop gtest gtest_main)
