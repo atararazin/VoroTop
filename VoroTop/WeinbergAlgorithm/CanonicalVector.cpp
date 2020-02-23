@@ -6,8 +6,8 @@
 #include <iostream>
 #include "CanonicalVector.h"
 
-std::vector<int>* CanonicalVector::getVector() {
-    return &this->vector;
+std::vector<int>& CanonicalVector::getVector() {
+    return this->vector;
 }
 
 void CanonicalVector::addToVector(int num) {

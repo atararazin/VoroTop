@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <thread>
+#include <mutex>
 #include "Voro++/VoronoiCell.h"
 #include "Graph/FacesToGraph.h"
 #include "WeinbergAlgorithm/WeinbergVector.h"
@@ -71,6 +73,8 @@ void readAndWrite();
 OutputFile *outputFile;
 GraphsFile *voroOutputFile;
 bool stop = false;
+std::mutex inFileMutex;
+std::mutex outFileMutex;
 
 int main(int argc, char *argv[]) {
     printf("running");
@@ -80,13 +84,24 @@ int main(int argc, char *argv[]) {
     outputFile->createFile("graphs");
     voroOutputFile = new GraphsFile("/home/atara/VoroTop/tests/graphs");
 
-    while(!stop){
-        readAndWrite();
-    }
+    std::thread t1(readAndWrite);
+    std::thread t2(readAndWrite);
+    std::thread t3(readAndWrite);
+    std::thread t4(readAndWrite);
+    std::thread t5(readAndWrite);
+    t1.join();
+    t2.join();
+    t3.join();
+    t4.join();
+    t5.join();
+    //while(!stop){
+    //    readAndWrite();
+    //}
     outputFile->closeFile();
     delete(outputFile);
     delete(voroOutputFile);
 
+    /*calc time delete after*/
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
     cout << duration.count() << "microseconds" << endl;
@@ -94,21 +109,21 @@ int main(int argc, char *argv[]) {
 }
 
 void readAndWrite(){
-    //lock
+    inFileMutex.lock();
     pair<string, int> line = voroOutputFile->readOneLine();
     if(line.first == ""){
         stop = true;
         return;
     }
+    inFileMutex.unlock();
 
     WeinbergGraph<int> *graph = new WeinbergGraph<int>(line.first);
     WeinbergVector<int>* wvector = new WeinbergVector<int>(graph);
-    //unlock
     wvector->calculate();
-    //lock
-    outputFile->writeToFile(wvector->getCanonicalVector(), line.second);
-    //unlock
+
+    outFileMutex.lock();
+    outputFile->saveData(wvector->getCanonicalVector(), line.second);
+    outFileMutex.unlock();
     delete(wvector);
     delete(graph);
-
 }

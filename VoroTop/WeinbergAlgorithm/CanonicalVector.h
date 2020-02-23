@@ -9,7 +9,7 @@
 
 class CanonicalVector {
 public:
-    std::vector<int>* getVector();
+    std::vector<int>& getVector();
     void addToVector(int num);
     void changeCurrValue(int val);
     std::string compareToCode(int curr_num);
