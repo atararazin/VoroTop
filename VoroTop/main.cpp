@@ -8,6 +8,7 @@
 #include "WeinbergAlgorithm/WeinbergVector.h"
 #include "OutputFile.h"
 #include "GraphsFile.h"
+#include "ThreadPool.h"
 using namespace std;
 
 //#include<gtest/gtest.h>
@@ -83,6 +84,10 @@ int main(int argc, char *argv[]) {
     outputFile = new OutputFile();
     outputFile->createFile("graphs");
     voroOutputFile = new GraphsFile("/home/atara/VoroTop/tests/graphs");
+
+    ThreadPool* threadPool = new ThreadPool();
+    threadPool->queueWork();
+    exit(0);
 
     std::thread t1(readAndWrite);
     std::thread t2(readAndWrite);
