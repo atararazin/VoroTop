@@ -9,6 +9,9 @@ project(VoroTop)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+
+
+
 ##google test flags
 #add_subdirectory(lib/googletest-master)
 #include_directories(lib/googletest-master/googletest/include)
@@ -19,3 +22,4 @@ set(SOURCE_FILES main.cpp Voro++/VoronoiCell.cpp Voro++/Input.cpp Graph/FacesToG
 #tests/EdgeOrderingTest.cpp tests/WeinbergAlgorithmTest.cpp tests/NeighborsTest.cpp tests/VerticesCreationTest.cpp tests/GraphCreationTest.cpp tests/WeinbergVectorMethodsTests.cpp tests/TimeTest.cpp
 add_executable(VoroTop ${SOURCE_FILES})
 #target_link_libraries(VoroTop gtest gtest_main)
+target_link_libraries(VoroTop pthread)

@@ -17,8 +17,6 @@ void OutputFile::createFile(std::string fileName) {
     }
     catch (char* excp){
         cout << "Caught " << excp << endl;
-
-
     }
 }
 
@@ -28,15 +26,37 @@ void OutputFile::createFile(std::string fileName) {
  * each number is separated by a comma, followed by a space.
  * @param vec
  */
-void OutputFile::writeToFile(std::vector<int>* vec, int upto) {
-    cout << "printing to line " << upto << endl;
-    string strForFile = "";
-    strForFile.append("(");
-    long n = vec->size();
-    for(int i  = 0; i < n - 1; i++){
-        strForFile.append(std::to_string(vec->at(i)) + ",");
+void OutputFile::saveData(std::vector<int>& vec, int upto) {
+    index++;
+    if(index >= upto){
+        writeToFile(vec);
+        writeWaitingToFile(upto + 1);
     }
-    strForFile.append(std::to_string(vec->at(n - 1)) + ")\n");
+    else{
+        waitingQueue.insert({upto, vec});//[upto] = vec;
+    }
+
+}
+
+void OutputFile::writeWaitingToFile(int curr) {
+    std::vector<int> found;
+    while(waitingQueue.find(curr) != waitingQueue.end()){
+        found = waitingQueue[curr];
+        writeToFile(found);
+        waitingQueue.erase(curr);
+        curr++;
+        index++;
+    }
+    //index--;
+}
+
+void OutputFile::writeToFile(std::vector<int> &vec) {
+    string strForFile = "(";
+    long n = vec.size();
+    for(int i  = 0; i < n - 1; i++){
+        strForFile.append(std::to_string(vec.at(i)) + ",");
+    }
+    strForFile.append(std::to_string(vec.at(n - 1)) + ")\n");
     file << strForFile;
 }
 
