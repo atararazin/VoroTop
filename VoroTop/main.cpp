@@ -10,7 +10,6 @@
 #include "GraphsFile.h"
 #include "ThreadPool.h"
 using namespace std;
-DELETE
 //#include<gtest/gtest.h>
 //#include<gmock/gmock.h>
 #include <chrono>

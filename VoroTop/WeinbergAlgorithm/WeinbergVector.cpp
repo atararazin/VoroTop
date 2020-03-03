@@ -3,9 +3,8 @@
 //
 
 #include "WeinbergVector.h"
-#include "WeinbergGraph/WeinbergEdge.h"
-#include "WeinbergAlgorithm.h"
 #include <iostream>
+#include "WeinbergAlgorithm.h"
 
 /**
  * constructor. Initializes the graph, vertices and edges all from the graph it gets.
