@@ -69,66 +69,69 @@ int main(int argc, char *argv[]) {
     cout << duration.count() * 0.000001 << "seconds" << endl;
 }*/
 
-void readAndWrite();
 
+
+#include <iostream>
+#include <string>
+#include <chrono>
+#include <thread>
+#include <future>
+using namespace std::chrono;
 OutputFile *outputFile;
 GraphsFile *voroOutputFile;
-bool stop = false;
-std::mutex inFileMutex;
-std::mutex outFileMutex;
 
-int main(int argc, char *argv[]) {
-    printf("running");
+std::string async_calculate(std::string recvdData)
+{
+    WeinbergGraph<int> *graph = new WeinbergGraph<int>(recvdData);
+    WeinbergVector<int>* wvector = new WeinbergVector<int>(graph);
+    wvector->calculate();
+    return wvector->getString();
+}
+
+int main()
+{
+    printf("running\n");
     auto start = high_resolution_clock::now();
 
     outputFile = new OutputFile();
     outputFile->createFile("graphs");
-    voroOutputFile = new GraphsFile("/home/atara/VoroTop/tests/graphs");
+    voroOutputFile = new GraphsFile("/home/atara/VoroTop/tests/graphs1");
+    int fileLen = voroOutputFile->getSize();
+    int numOfThreads = 4;
 
-    ThreadPool* threadPool = new ThreadPool();
-    threadPool->queueWork();
-    exit(0);
+    int i = 0;
+    while(i < fileLen/numOfThreads){
 
-    std::thread t1(readAndWrite);
-    std::thread t2(readAndWrite);
-    std::thread t3(readAndWrite);
-    std::thread t4(readAndWrite);
-    std::thread t5(readAndWrite);
-    t1.join();
-    t2.join();
-    t3.join();
-    t4.join();
-    t5.join();
-    //while(!stop){
-    //    readAndWrite();
-    //}
-    outputFile->closeFile();
-    delete(outputFile);
-    delete(voroOutputFile);
+        pair<string, int> p1 = voroOutputFile->readOneLine();
+        pair<string, int> p2 = voroOutputFile->readOneLine();
+        pair<string, int> p3 = voroOutputFile->readOneLine();
+        pair<string, int> p4 = voroOutputFile->readOneLine();
 
-    /*calc time delete after*/
-    auto stop = high_resolution_clock::now();
-    auto duration = duration_cast<microseconds>(stop - start);
-    cout << duration.count() << "microseconds" << endl;
-    cout << duration.count() * 0.000001 << "seconds" << endl;
-}
+        std::future<std::string> res1 = std::async(std::launch::async, async_calculate, p1.first);
+        std::future<std::string> res2 = std::async(std::launch::async, async_calculate, p2.first);
+        std::future<std::string> res3 = std::async(std::launch::async, async_calculate, p3.first);
+        std::future<std::string> res4 = std::async(std::launch::async, async_calculate, p4.first);
 
-void readAndWrite(){
-    inFileMutex.lock();
-    pair<string, int> line = voroOutputFile->readOneLine();
-    if(line.first == ""){
-        stop = true;
-        return;
+        // Will block till data is available in future<std::string> object.
+        std::string result1 = res1.get();
+        std::string result2 = res2.get();
+        std::string result3 = res3.get();
+        std::string result4 = res4.get();
+        //std::cout << "Data = " << result1 << std::endl;
+        //std::cout << "Data = " << result2 << std::endl;
+        outputFile->writeTofile(result1);
+        outputFile->writeTofile(result2);
+        outputFile->writeTofile(result3);
+        outputFile->writeTofile(result4);
+
+        i++;
     }
-    inFileMutex.unlock();
+    delete(voroOutputFile);
+    delete(outputFile);
+    auto end = system_clock::now();
+    auto diff = duration_cast < std::chrono::seconds > (end - start).count();
+    std::cout << "Total Time Taken = " << diff << " Seconds" << std::endl;
 
-    WeinbergGraph<int> *graph = new WeinbergGraph<int>(line.first);
-    WeinbergVector<int>* wvector = new WeinbergVector<int>(graph);
-    wvector->calculate();
 
-    outFileMutex.lock();
-    outputFile->saveData(wvector->getCanonicalVector(), line.second);
-    outFileMutex.unlock();
-    delete(wvector);
-    delete(graph);
+    return 0;
 }

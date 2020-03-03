@@ -16,6 +16,7 @@ public:
     void saveData(std::vector<int>&, int);
     void closeFile();
     std::ofstream* getFile();
+    void writeTofile(std::string s);
     ~OutputFile();
 
 private:
