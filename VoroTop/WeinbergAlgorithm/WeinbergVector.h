@@ -25,6 +25,8 @@ public:
     WeinbergVector();
     void calculate();
     vector<int>& getCanonicalVector();
+    void print(); //erase
+    string getString();
     ~WeinbergVector();
 };
 

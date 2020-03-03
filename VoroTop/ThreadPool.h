@@ -8,9 +8,19 @@
  * This class manages a thread pool
  */
 
+/*
 class ThreadPool {
 public:
     ThreadPool() : done(false) {
+        //outputFile = new OutputFile();
+        //outputFile->createFile("graphs");
+        //voroOutputFile = new GraphsFile("/home/atara/VoroTop/tests/graphs2");
+
+        in;
+        in.open("numbers_in", fstream::in);
+        out.open("numbers_out", fstream::out);
+
+
         // This returns the number of threads supported by the system. If the
         // function can't figure out this information, it returns 0. 0 is not good,
         // so we create at least 1
@@ -40,12 +50,15 @@ public:
                 thread.join();
             }
         }
+        outputFile->closeFile();
+        delete(outputFile);
+        delete(voroOutputFile);
+
     }
 
     // This function will be called by the server every time there is a request
     // that needs to be processed by the thread pool
     void queueWork() {
-
         // Notify one thread that there are requests to process
         workQueueConditionVariable.notify_one();
     }
@@ -63,7 +76,17 @@ private:
     bool done;
 
     //my addition
-    std::mutex printingM;
+    std::mutex inFileMutex;
+    std::mutex outFileMutex;
+    OutputFile *outputFile;
+    GraphsFile *voroOutputFile;
+    ifstream in;
+    fstream out;
+    string toWrite[10];
+    int upto = 0;
+    int prev = 1;
+
+
     int coutning = 0;
     void doWork() {
         while (!done) {
@@ -72,12 +95,141 @@ private:
     }
 
     void processRequest() {
-        printingM.lock();
-        std::cout << "working..." << coutning <<std::endl;
-        coutning++;
-        if(coutning == 50){
+        /*inFileMutex.lock();
+        pair<string, int> line = voroOutputFile->readOneLine();
+        printf("done line");
+        if(line.first == ""){
             done = true;
+            //return;
         }
-        printingM.unlock();
+        inFileMutex.unlock();
+
+        WeinbergGraph<int> *graph = new WeinbergGraph<int>(line.first);
+        WeinbergVector<int>* wvector = new WeinbergVector<int>(graph);
+        wvector->calculate();
+        wvector->print();
+
+        outFileMutex.lock();
+        outputFile->saveData(wvector->getCanonicalVector(), line.second);
+        outFileMutex.unlock();
+        delete(wvector);
+        delete(graph);
+        */
+/*
+        inFileMutex.lock();
+        string line;
+        getline(in, line);
+        //int lineNum = stoi(line);
+        inFileMutex.unlock();
+
+        outFileMutex.lock();
+
+        out << "line" << line << endl;
+        outFileMutex.unlock();
     }
+};*/
+
+
+
+
+
+
+
+#ifndef THREAD_POOL_H
+#define THREAD_POOL_H
+
+#include <vector>
+#include <queue>
+#include <memory>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
+#include <future>
+#include <functional>
+#include <stdexcept>
+// TAKEN FROM https://github.com/progschj/ThreadPool
+class ThreadPool {
+public:
+    ThreadPool(size_t);
+    template<class F, class... Args>
+    auto enqueue(F&& f, Args&&... args)
+    -> std::future<typename std::result_of<F(Args...)>::type>;
+    ~ThreadPool();
+private:
+    // need to keep track of threads so we can join them
+    std::vector< std::thread > workers;
+    // the task queue
+    std::queue< std::function<void()> > tasks;
+
+    // synchronization
+    std::mutex queue_mutex;
+    std::condition_variable condition;
+    bool stop;
 };
+
+// the constructor just launches some amount of workers
+inline ThreadPool::ThreadPool(size_t threads)
+        :   stop(false)
+{
+    for(size_t i = 0;i<threads;++i)
+        workers.emplace_back(
+                [this]
+                {
+                    for(;;)
+                    {
+                        std::function<void()> task;
+
+                        {
+                            std::unique_lock<std::mutex> lock(this->queue_mutex);
+                            this->condition.wait(lock,
+                                                 [this]{ return this->stop || !this->tasks.empty(); });
+                            if(this->stop && this->tasks.empty())
+                                return;
+                            task = std::move(this->tasks.front());
+                            this->tasks.pop();
+                        }
+
+                        task();
+                    }
+                }
+        );
+}
+
+// add new work item to the pool
+template<class F, class... Args>
+auto ThreadPool::enqueue(F&& f, Args&&... args)
+-> std::future<typename std::result_of<F(Args...)>::type>
+{
+    using return_type = typename std::result_of<F(Args...)>::type;
+
+    auto task = std::make_shared< std::packaged_task<return_type()> >(
+            std::bind(std::forward<F>(f), std::forward<Args>(args)...)
+    );
+
+    std::future<return_type> res = task->get_future();
+    {
+        std::unique_lock<std::mutex> lock(queue_mutex);
+
+        // don't allow enqueueing after stopping the pool
+        if(stop)
+            throw std::runtime_error("enqueue on stopped ThreadPool");
+
+        tasks.emplace([task](){ (*task)(); });
+    }
+    condition.notify_one();
+    return res;
+}
+
+// the destructor joins all threads
+inline ThreadPool::~ThreadPool()
+{
+    {
+        std::unique_lock<std::mutex> lock(queue_mutex);
+        stop = true;
+    }
+    condition.notify_all();
+    for(std::thread &worker: workers)
+        worker.join();
+}
+
+#endif

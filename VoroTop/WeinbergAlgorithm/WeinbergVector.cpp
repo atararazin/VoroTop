@@ -76,6 +76,26 @@ vector<int>& WeinbergVector<T>::getCanonicalVector() {
 }
 
 template<typename T>
+void WeinbergVector<T>::print() {
+     for(int i : canonicalVector->getVector()){
+            std::cout << i << " ,";
+        }
+}
+template<typename T>
+string WeinbergVector<T>::getString() {
+    string str = "(";
+    for(int i : canonicalVector->getVector()){
+        str += to_string(i);
+        str += ",";
+    }
+    str.pop_back();
+    str += ")\n";
+    return str;
+}
+
+
+
+template<typename T>
 WeinbergVector<T>::~WeinbergVector() {
     delete canonicalVector;
 

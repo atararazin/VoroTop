@@ -13,10 +13,12 @@ class GraphsFile {
 public:
     GraphsFile(string line);
     pair<string, int> readOneLine();
+    int getSize();
     ~GraphsFile();
 private:
     fstream file;
     int upto = 0;
+    int size = 0;
 
 };
 

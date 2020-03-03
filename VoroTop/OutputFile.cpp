@@ -13,7 +13,6 @@ void OutputFile::createFile(std::string fileName) {
     std::string outFileName = fileName.substr(0, fileName.find("."));
     try{
         file.open(outFileName + ".wvector");
-
     }
     catch (char* excp){
         cout << "Caught " << excp << endl;
@@ -27,14 +26,14 @@ void OutputFile::createFile(std::string fileName) {
  * @param vec
  */
 void OutputFile::saveData(std::vector<int>& vec, int upto) {
-    index++;
-    if(index >= upto){
+    //index++;
+    //if(index >= upto){
         writeToFile(vec);
-        writeWaitingToFile(upto + 1);
-    }
-    else{
-        waitingQueue.insert({upto, vec});//[upto] = vec;
-    }
+    //    writeWaitingToFile(upto + 1);
+    //}
+    //else{
+    //    waitingQueue.insert({upto, vec});//[upto] = vec;
+    //}
 
 }
 
@@ -60,6 +59,9 @@ void OutputFile::writeToFile(std::vector<int> &vec) {
     file << strForFile;
 }
 
+void OutputFile::writeTofile(std::string s) {
+    file << s;
+}
 std::ofstream* OutputFile::getFile() {
     return &file;
 }
