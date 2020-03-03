@@ -85,7 +85,10 @@ std::string async_calculate(std::string recvdData)
     WeinbergGraph<int> *graph = new WeinbergGraph<int>(recvdData);
     WeinbergVector<int>* wvector = new WeinbergVector<int>(graph);
     wvector->calculate();
-    return wvector->getString();
+    string result = wvector->getString();
+    delete(graph);
+    delete(wvector);
+    return result;
 }
 
 int main()
