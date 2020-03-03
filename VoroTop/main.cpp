@@ -10,7 +10,7 @@
 #include "GraphsFile.h"
 #include "ThreadPool.h"
 using namespace std;
-
+change
 //#include<gtest/gtest.h>
 //#include<gmock/gmock.h>
 #include <chrono>
@@ -98,9 +98,9 @@ int main()
 
     outputFile = new OutputFile();
     outputFile->createFile("graphs");
-    voroOutputFile = new GraphsFile("/home/atara/VoroTop/tests/graphs1");
+    voroOutputFile = new GraphsFile("/home/atara/VoroTop/tests/graphs");
     int fileLen = voroOutputFile->getSize();
-    int numOfThreads = 4;
+    int numOfThreads = 5;
 
     int i = 0;
     while(i < fileLen/numOfThreads){
@@ -109,31 +109,38 @@ int main()
         pair<string, int> p2 = voroOutputFile->readOneLine();
         pair<string, int> p3 = voroOutputFile->readOneLine();
         pair<string, int> p4 = voroOutputFile->readOneLine();
+        pair<string, int> p5 = voroOutputFile->readOneLine();
+
 
         std::future<std::string> res1 = std::async(std::launch::async, async_calculate, p1.first);
         std::future<std::string> res2 = std::async(std::launch::async, async_calculate, p2.first);
         std::future<std::string> res3 = std::async(std::launch::async, async_calculate, p3.first);
         std::future<std::string> res4 = std::async(std::launch::async, async_calculate, p4.first);
+        std::future<std::string> res5 = std::async(std::launch::async, async_calculate, p5.first);
 
         // Will block till data is available in future<std::string> object.
         std::string result1 = res1.get();
         std::string result2 = res2.get();
         std::string result3 = res3.get();
         std::string result4 = res4.get();
+        std::string result5 = res5.get();
+
         //std::cout << "Data = " << result1 << std::endl;
         //std::cout << "Data = " << result2 << std::endl;
         outputFile->writeTofile(result1);
         outputFile->writeTofile(result2);
         outputFile->writeTofile(result3);
         outputFile->writeTofile(result4);
+        outputFile->writeTofile(result5);
 
         i++;
     }
     delete(voroOutputFile);
     delete(outputFile);
     auto end = system_clock::now();
-    auto diff = duration_cast < std::chrono::seconds > (end - start).count();
-    std::cout << "Total Time Taken = " << diff << " Seconds" << std::endl;
+    auto diff = duration_cast < microseconds > (end - start).count();
+    std::cout << "Total Time Taken = " << diff << " Microseconds" << std::endl;
+    std::cout << "                 = " << diff*1e-6 << " Seconds" << std::endl;
 
 
     return 0;
