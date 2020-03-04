@@ -1,13 +1,17 @@
 <application>
   <component name="FileTypeManager" version="17">
     <extensionMap>
+      <mapping pattern="graphs1msome" type="PLAIN_TEXT" />
       <mapping pattern="graphs" type="PLAIN_TEXT" />
       <mapping pattern="numbers_in" type="PLAIN_TEXT" />
+      <mapping pattern="graphs1m" type="PLAIN_TEXT" />
       <mapping pattern="graph2" type="PLAIN_TEXT" />
+      <mapping pattern="graphs1mi" type="PLAIN_TEXT" />
       <mapping pattern="test" type="PLAIN_TEXT" />
       <mapping pattern="weinberg_vectors" type="PLAIN_TEXT" />
       <mapping pattern="graphs3" type="PLAIN_TEXT" />
       <mapping pattern="graphs1" type="PLAIN_TEXT" />
+      <mapping ext="graphs" type="PLAIN_TEXT" />
     </extensionMap>
   </component>
 </application>

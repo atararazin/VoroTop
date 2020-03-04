@@ -31,7 +31,7 @@ TEST_F(TimeTest, 2lines) {
     auto start = high_resolution_clock::now();
 
     OutputFile *outputFile = new OutputFile();
-    outputFile->createFile("graphs");
+    outputFile->createFile("graphs100");
     FacesToGraph<int> *graphConverter = new FacesToGraph<int>();
     graphConverter->openOutputFile("/home/atara/VoroTop/tests/graphs3");
     int numOfGraphs = graphConverter->getNumOfGraphs();
@@ -61,9 +61,9 @@ TEST_F(TimeTest, 100test) {
     auto start = high_resolution_clock::now();
 
     OutputFile *outputFile = new OutputFile();
-    outputFile->createFile("graphs");
+    outputFile->createFile("graphs100");
     FacesToGraph<int> *graphConverter = new FacesToGraph<int>();
-    graphConverter->openOutputFile("/home/atara/VoroTop/tests/graphs");
+    graphConverter->openOutputFile("/home/atara/VoroTop/tests/graphs100");
     int numOfGraphs = graphConverter->getNumOfGraphs();
     WeinbergVector<int>* wvector = new WeinbergVector<int>();
 
@@ -90,7 +90,7 @@ TEST_F(TimeTest, 1mtest) {
     auto start = high_resolution_clock::now();
 
     OutputFile *outputFile = new OutputFile();
-    outputFile->createFile("graphs");
+    outputFile->createFile("graphs100");
     FacesToGraph<int> *graphConverter = new FacesToGraph<int>();
     graphConverter->openOutputFile("/home/atara/VoroTop/tests/graphs1");
     int numOfGraphs = graphConverter->getNumOfGraphs();

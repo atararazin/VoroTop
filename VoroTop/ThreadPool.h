@@ -13,7 +13,7 @@ class ThreadPool {
 public:
     ThreadPool() : done(false) {
         //outputFile = new OutputFile();
-        //outputFile->createFile("graphs");
+        //outputFile->createFile("graphs100");
         //voroOutputFile = new GraphsFile("/home/atara/VoroTop/tests/graphs2");
 
         in;
