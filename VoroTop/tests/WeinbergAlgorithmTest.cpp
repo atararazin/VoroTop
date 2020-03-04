@@ -136,9 +136,9 @@ TEST_F(WeinbergAlgorithmTest, test6){
 
 TEST_F(WeinbergAlgorithmTest, 100_tests){
     OutputFile* outputFile = new OutputFile();
-    outputFile->createFile("graphs");
+    outputFile->createFile("graphs100");
     FacesToGraph<int>* graphConverter = new FacesToGraph<int>();
-    graphConverter->openOutputFile("/home/atara/VoroTop/tests/graphs");
+    graphConverter->openOutputFile("/home/atara/VoroTop/tests/graphs100");
     vector<WeinbergGraph<int>*> allGraphs = graphConverter->createGraph();
     for(WeinbergGraph<int>* graph : allGraphs){
         WeinbergVector<int>* wvector = new WeinbergVector<int>(graph);
@@ -148,7 +148,7 @@ TEST_F(WeinbergAlgorithmTest, 100_tests){
     }
 
     outputFile->closeFile();
-    bool ans = filesEqual("/home/atara/VoroTop/tests/weinberg_vectors","graphs.wvector");
+    bool ans = filesEqual("/home/atara/VoroTop/tests/weinberg_vectors","graphs100.wvector");
     EXPECT_EQ(ans, true);
     delete(outputFile);
     delete(graphConverter);

@@ -75,6 +75,7 @@ int main(int argc, char *argv[]) {
 #include <chrono>
 #include <thread>
 #include <future>
+
 using namespace std::chrono;
 OutputFile *outputFile;
 GraphsFile *voroOutputFile;
@@ -97,40 +98,39 @@ int main()
 
     outputFile = new OutputFile();
     outputFile->createFile("graphs");
-    voroOutputFile = new GraphsFile("/home/atara/VoroTop/tests/graphs");
+    voroOutputFile = new GraphsFile("/home/atara/VoroTop/tests/graphs100");
     int fileLen = voroOutputFile->getSize();
-    int numOfThreads = 5;
+    cout << fileLen;
+    int numOfThreads = 2;
 
     int i = 0;
     while(i < fileLen/numOfThreads){
 
         pair<string, int> p1 = voroOutputFile->readOneLine();
         pair<string, int> p2 = voroOutputFile->readOneLine();
-        pair<string, int> p3 = voroOutputFile->readOneLine();
-        pair<string, int> p4 = voroOutputFile->readOneLine();
-        pair<string, int> p5 = voroOutputFile->readOneLine();
+        //pair<string, int> p3 = voroOutputFile->readOneLine();
+        //pair<string, int> p4 = voroOutputFile->readOneLine();
+        //pair<string, int> p5 = voroOutputFile->readOneLine();
 
 
         std::future<std::string> res1 = std::async(std::launch::async, async_calculate, p1.first);
         std::future<std::string> res2 = std::async(std::launch::async, async_calculate, p2.first);
-        std::future<std::string> res3 = std::async(std::launch::async, async_calculate, p3.first);
-        std::future<std::string> res4 = std::async(std::launch::async, async_calculate, p4.first);
-        std::future<std::string> res5 = std::async(std::launch::async, async_calculate, p5.first);
+        //std::future<std::string> res3 = std::async(std::launch::async, async_calculate, p3.first);
+        //std::future<std::string> res4 = std::async(std::launch::async, async_calculate, p4.first);
+        //std::future<std::string> res5 = std::async(std::launch::async, async_calculate, p5.first);
 
         // Will block till data is available in future<std::string> object.
         std::string result1 = res1.get();
         std::string result2 = res2.get();
-        std::string result3 = res3.get();
-        std::string result4 = res4.get();
-        std::string result5 = res5.get();
+        //std::string result3 = res3.get();
+        //std::string result4 = res4.get();
+        //std::string result5 = res5.get();
 
-        //std::cout << "Data = " << result1 << std::endl;
-        //std::cout << "Data = " << result2 << std::endl;
         outputFile->writeTofile(result1);
         outputFile->writeTofile(result2);
-        outputFile->writeTofile(result3);
-        outputFile->writeTofile(result4);
-        outputFile->writeTofile(result5);
+        //outputFile->writeTofile(result3);
+        //outputFile->writeTofile(result4);
+        //outputFile->writeTofile(result5);
 
         i++;
     }

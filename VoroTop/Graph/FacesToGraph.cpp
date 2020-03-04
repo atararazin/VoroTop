@@ -51,7 +51,7 @@ WeinbergGraph<T>* FacesToGraph<T>::createSingleGraph(string line) {
 
 template <typename T>
 FacesToGraph<T>::~FacesToGraph() {
-    //for(WeinbergGraph<T>* g : graphs){
+    //for(WeinbergGraph<T>* g : graphs100){
     //    delete g;
     //}
 }
