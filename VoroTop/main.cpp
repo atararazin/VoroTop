@@ -70,11 +70,6 @@ int main(int argc, char *argv[]) {
 
 
 
-#include <iostream>
-#include <string>
-#include <chrono>
-#include <thread>
-#include <future>
 
 using namespace std::chrono;
 OutputFile *outputFile;
@@ -99,8 +94,38 @@ int main()
     outputFile = new OutputFile();
     outputFile->createFile("graphs");
     voroOutputFile = new GraphsFile("/home/atara/VoroTop/tests/graphs100");
+    //voroOutputFile = new GraphsFile("/home/atara/Downloads/big_data-1 (1)/PV-1000000-0-1.graphs");
     int fileLen = voroOutputFile->getSize();
-    cout << fileLen;
+
+    // This returns the number of threads supported by the system. If the
+    // function can't figure out this information, it returns 0. 0 is not good,
+    // so we create at least 2
+    auto numberOfThreads = std::thread::hardware_concurrency();
+    cout << "number of threads" << numberOfThreads << endl;
+    if (numberOfThreads == 0) {
+        numberOfThreads = 2;
+    }
+    ThreadPool pool(numberOfThreads);
+    std::vector< std::future<string>> results;
+
+    for(int i = 0; i < fileLen; ++i) {
+        string line = voroOutputFile->readOneLine();
+        results.emplace_back(
+                pool.enqueue([i, line] {
+                     return async_calculate(line);
+                })
+        );
+    }
+
+    for(auto && result: results){
+        outputFile->writeTofile(result.get());
+    }
+
+    std::cout << std::endl;
+
+
+
+    /*
     int numOfThreads = 2;
 
     int i = 0;
@@ -109,10 +134,11 @@ int main()
         pair<string, int> p1 = voroOutputFile->readOneLine();
         pair<string, int> p2 = voroOutputFile->readOneLine();
         //pair<string, int> p3 = voroOutputFile->readOneLine();
+
+        //pair<string, int> p3 = voroOutputFile->readOneLine();
         //pair<string, int> p4 = voroOutputFile->readOneLine();
         //pair<string, int> p5 = voroOutputFile->readOneLine();
 
-change
         std::future<std::string> res1 = std::async(std::launch::async, async_calculate, p1.first);
         std::future<std::string> res2 = std::async(std::launch::async, async_calculate, p2.first);
         //std::future<std::string> res3 = std::async(std::launch::async, async_calculate, p3.first);
@@ -134,6 +160,15 @@ change
 
         i++;
     }
+    i = i * numOfThreads;
+    while(i < fileLen){
+        pair<string, int> p1 = voroOutputFile->readOneLine();
+        std::string res1 = async_calculate(p1.first);
+        outputFile->writeTofile(res1);
+        i++;
+    }*/
+
+
     delete(voroOutputFile);
     delete(outputFile);
     auto end = system_clock::now();

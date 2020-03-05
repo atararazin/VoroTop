@@ -18,7 +18,8 @@ GraphsFile::GraphsFile(string filePath) {
         file.open(filePath);
     }
     catch(char* excp){
-        cout << "Caught " << excp << endl;
+        cout << "Caught " << excp << "trying to open voro++ output file" << endl;
+        exit(-1);
     }
     string line;
     while(getline(file, line)){
@@ -32,15 +33,17 @@ int GraphsFile::getSize() {
     return size;
 }
 
-pair<string, int> GraphsFile::readOneLine() {
+std::string GraphsFile::readOneLine() {
     string line;
-    if(getline(file, line)){
-        upto++;
-        return pair<string, int>(line, upto);
+    try{
+        getline(file, line);
+        return line;
     }
-    else{
-        return pair<string, int>("",-1);
+    catch(char* excp){
+        cout << "Caught " << excp << "while trying to read from voro++ output file" << endl;
+        exit(-1);
     }
+
 }
 
 GraphsFile::~GraphsFile() {

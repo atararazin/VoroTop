@@ -6,18 +6,19 @@
 #define VOROTOP_GRAPHSFILE_H
 
 #include <fstream>
+#include <mutex>
+#include <future>
 
 using namespace std;
 
 class GraphsFile {
 public:
     GraphsFile(string line);
-    pair<string, int> readOneLine();
+    string readOneLine();
     int getSize();
     ~GraphsFile();
 private:
     fstream file;
-    int upto = 0;
     int size = 0;
 
 };
