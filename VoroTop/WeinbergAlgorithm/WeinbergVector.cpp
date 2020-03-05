@@ -5,6 +5,7 @@
 #include "WeinbergVector.h"
 #include <iostream>
 #include "WeinbergAlgorithm.h"
+#include "../ThreadPool.h"
 
 /**
  * constructor. Initializes the graph, vertices and edges all from the graph it gets.
@@ -65,6 +66,7 @@ template <typename T>
 void WeinbergVector<T>::reset() {
     for(WeinbergEdge<T>* edge : edges){
         edge->reset();
+
     }
     canonicalVector->resetIndex();
 }

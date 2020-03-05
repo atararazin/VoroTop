@@ -33,6 +33,10 @@ int GraphsFile::getSize() {
     return size;
 }
 
+/**
+ * reads one line aka one graph from the voro++ output file.
+ * @return the line
+ */
 std::string GraphsFile::readOneLine() {
     string line;
     try{
