@@ -12,11 +12,6 @@ using namespace std;
 
 
 class Input {
-private:
-    int xyzCols[3];
-    ofstream* inputFile;
-    string lineOnlyXYZ(string line);
-    void getXyzCols(string line);
 public:
     string max_x;
     string min_x;
@@ -26,9 +21,15 @@ public:
     string min_z;
     string runStr;
     string compileStr;
-    Input(fstream& originalFile);
-    void createInputFile(fstream&);
+    Input(std::string);
+    void createInputFile(std::string);
     void updateInputStr();
+private:
+    int xyzCols[3];
+    ofstream* inputFile;
+    fstream originalFile;
+    string lineOnlyXYZ(string line);
+    void getXyzCols(string line);
 
 };
 

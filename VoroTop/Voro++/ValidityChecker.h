@@ -11,10 +11,10 @@
 
 class ValidityChecker {
 public:
-    ValidityChecker(std::fstream* f);
+    ValidityChecker(std::string fileName);
     bool check();
 private:
-    std::fstream* file;
+    std::fstream file;
     bool checkTimeStep();
     bool checkNumAtoms();
     bool checkBoxBound();

@@ -32,20 +32,22 @@ int main(int argc, char *argv[]) {
     printf("running the program\n");
     fstream file;
     string inputFileName = argv[1];
-    file.open(inputFileName);
-    string str;
-    fstream* fref = &file;
-    ValidityChecker* validityChecker = new ValidityChecker(fref);
-    cout << validityChecker->check()<<endl;
+    //file.open(inputFileName);
+    //string str;
+    //fstream* fref = &file;
+    ValidityChecker* validityChecker = new ValidityChecker(inputFileName);
+    if(!validityChecker->check()){
+        return 0;
+    }
 
 
-    /*Input* input = new Input(fref);
-    input->max_x = argv[2];
-    input->min_x = argv[3];
-    input->max_y = argv[4];
-    input->min_y = argv[5];
-    input->max_z = argv[6];
-    input->min_z = argv[7];*/
+    Input* input = new Input(inputFileName);
+    //input->max_x = argv[2];
+    //input->min_x = argv[3];
+    //input->max_y = argv[4];
+    //input->min_y = argv[5];
+    //input->max_z = argv[6];
+    //input->min_z = argv[7];
     file.close();
 /*
     OutputFile* outputFile = new OutputFile();

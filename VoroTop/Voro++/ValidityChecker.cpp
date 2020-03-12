@@ -6,8 +6,9 @@
 #include <vector>
 #include "ValidityChecker.h"
 
-ValidityChecker::ValidityChecker(std::fstream* f) {
-    file = f;
+ValidityChecker::ValidityChecker(std::string fileName) {
+    std::cout << fileName << std::endl;
+    file.open(fileName);
 }
 
 bool ValidityChecker::check(){
@@ -29,11 +30,11 @@ bool ValidityChecker::check(){
 
 bool ValidityChecker::checkTimeStep() {
     std::string line;
-    getline(*file, line);
+    getline(file, line);
     if(line != "ITEM: TIMESTEP"){
         return false;
     }
-    getline(*file, line);
+    getline(file, line);
     try{
         std::stoi(line);
     }
@@ -50,11 +51,11 @@ bool ValidityChecker::checkTimeStep() {
 
 bool ValidityChecker::checkNumAtoms() {
     std::string line;
-    getline(*file,line);
+    getline(file,line);
     if(line != "ITEM: NUMBER OF ATOMS"){
         return false;
     }
-    getline(*file, line);
+    getline(file, line);
     try{
         std::stoi(line);
     }
@@ -71,12 +72,12 @@ bool ValidityChecker::checkNumAtoms() {
 
 bool ValidityChecker::checkBoxBound() {
     std::string line;
-    getline(*file,line);
+    getline(file,line);
     if(line != "ITEM: BOX BOUNDS pp pp pp"){
         return false;
     }
     for(int i = 0; i < 3; i++){
-        getline(*file,line);
+        getline(file,line);
         std::vector<std::string> result;
         std::istringstream iss(line);
         for(std::string s; iss >> s; )
@@ -102,12 +103,12 @@ bool ValidityChecker::checkBoxBound() {
 
 bool ValidityChecker::checkAtoms() {
     std::string line;
-    getline(*file,line);
+    getline(file,line);
     if(line != "ITEM: ATOMS id type x y z"){
         std:: cout << "missing atoms" << std::endl;
         return false;
     }
-    while(getline(*file,line)){
+    while(getline(file,line)){
         std::vector<std::string> result;
         std::istringstream iss(line);
         for(std::string s; iss >> s; )
@@ -127,6 +128,6 @@ bool ValidityChecker::checkAtoms() {
         }
     }
 
-
+    file.close();
     return true;
 }

@@ -4,16 +4,20 @@
 
 #include "Input.h"
 
-Input::Input(fstream& originalFile){
+Input::Input(std::string originalFile){
     this->createInputFile(originalFile);
     //this->updateInputStr();
 }
 
-void Input::createInputFile(fstream& originalFile) {
+void Input::createInputFile(std::string OFName) {
     ofstream file;
-    file.open("inputForVoro++.txt");
-
+    originalFile.open(OFName);
     string line;
+
+    while(getline(originalFile, line)){
+        cout << line << endl;
+    }
+    return;
     getline(originalFile, line);
     this->getXyzCols(line);
 
