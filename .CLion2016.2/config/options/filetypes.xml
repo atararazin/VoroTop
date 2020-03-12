@@ -5,6 +5,7 @@
       <mapping pattern="graphs" type="PLAIN_TEXT" />
       <mapping pattern="numbers_in" type="PLAIN_TEXT" />
       <mapping pattern="graphs1m" type="PLAIN_TEXT" />
+      <mapping pattern="voropptest" type="PLAIN_TEXT" />
       <mapping pattern="graph2" type="PLAIN_TEXT" />
       <mapping pattern="graphs1mi" type="PLAIN_TEXT" />
       <mapping pattern="test" type="PLAIN_TEXT" />

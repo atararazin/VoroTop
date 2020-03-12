@@ -9,6 +9,8 @@
 #include "OutputFile.h"
 #include "GraphsFile.h"
 #include "ThreadPool.h"
+#include "Voro++/ValidityChecker.h"
+
 using namespace std;
 //#include<gtest/gtest.h>
 //#include<gmock/gmock.h>
@@ -24,23 +26,28 @@ int main(int argc, char*argv[]){
 
 using namespace std::chrono;
 
-/*
+
 int main(int argc, char *argv[]) {
     auto start = high_resolution_clock::now();
+    printf("running the program\n");
     fstream file;
     string inputFileName = argv[1];
     file.open(inputFileName);
-    fstream& fref = file;
+    string str;
+    fstream* fref = &file;
+    ValidityChecker* validityChecker = new ValidityChecker(fref);
+    cout << validityChecker->check()<<endl;
 
-    Input* input = new Input(fref);
+
+    /*Input* input = new Input(fref);
     input->max_x = argv[2];
     input->min_x = argv[3];
     input->max_y = argv[4];
     input->min_y = argv[5];
     input->max_z = argv[6];
-    input->min_z = argv[7];
+    input->min_z = argv[7];*/
     file.close();
-
+/*
     OutputFile* outputFile = new OutputFile();
     outputFile->createFile(inputFileName);
 
@@ -60,17 +67,16 @@ int main(int argc, char *argv[]) {
     delete(input);
     delete(voronoiCell);
     delete(graphConverter);
-
+*/
     //for calculating time - delete after
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<microseconds>(stop - start);
     cout << duration.count() << "microseconds" << endl;
     cout << duration.count() * 0.000001 << "seconds" << endl;
-}*/
+}
 
 
-
-
+/*
 using namespace std::chrono;
 OutputFile *outputFile;
 GraphsFile *voroOutputFile;
@@ -125,10 +131,10 @@ int main()
     delete(voroOutputFile);
     delete(outputFile);
 
-    /*calculates time - delete after*/
+    calculates time - delete after
     auto end = system_clock::now();
     auto diff = duration_cast < microseconds > (end - start).count();
     std::cout << "Total Time Taken = " << diff << " Microseconds" << std::endl;
     std::cout << "                 = " << diff*1e-6 << " Seconds" << std::endl;
     return 0;
-}
+}*/

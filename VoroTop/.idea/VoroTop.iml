@@ -15,14 +15,16 @@
       <sourceFolder url="file://$MODULE_DIR$/ThreadPool.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ThreadPool.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Voro++/Input.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Voro++/VoronoiCell.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Voro++/Input.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Voro++/ValidityChecker.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Voro++/ValidityChecker.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Voro++/VoronoiCell.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/GraphsFile.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/WeinbergAlgorithm" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/OutputFile.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Voro++/Input.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Voro++/VoronoiCell.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Voro++/Input.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Voro++/VoronoiCell.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/.idea/GraphsFile.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/.idea/GraphsFile.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/OutputFile.h" isTestSource="false" />
