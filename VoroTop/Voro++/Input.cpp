@@ -6,33 +6,33 @@
 
 Input::Input(std::string originalFile){
     this->createInputFile(originalFile);
-    //this->updateInputStr();
+    this->updateInputStr();
 }
 
 void Input::createInputFile(std::string OFName) {
     ofstream file;
+    file.open("./voro++-0.4.6/src/inputVoro++");
     originalFile.open(OFName);
     string line;
 
-    while(getline(originalFile, line)){
-        cout << line << endl;
-    }
-    return;
+
+    do{
+        getline(originalFile, line);
+    }while(line.find("ITEM: BOX BOUNDS") != 0);
+
+
     getline(originalFile, line);
+    while(line.find("ITEM: ATOMS") != 0){
+        minMaxXYZStr += line;
+        minMaxXYZStr += " ";
+        getline(originalFile,line);
+    }
+
     this->getXyzCols(line);
-
-    try{
-        while (getline(originalFile, line)) {
-            file << lineOnlyXYZ(line) << endl;
-        }
+    while (getline(originalFile, line)) {
+        file << lineOnlyXYZ(line) << endl;
     }
-    catch(...){
-        cout << "error reading from file" << endl;
-        exit(-1);
-    }
-
     file.close();
-    this->inputFile = &file;
 }
 
 void Input::getXyzCols(string line) {
@@ -75,8 +75,11 @@ string Input::lineOnlyXYZ(string line) {
 
 void Input::updateInputStr() {
     std::stringstream ss;
-    ss << "./voro++ -p -c %t"<< " " << this->max_x << " " << this->min_x << " " << this->max_y << " " <<
-       this->min_y << " " << this->max_z << " " << this->min_z << " " << "inputForVoro++.txt";
+    ss << "./voro++ -p -c %t"<< " " << minMaxXYZStr << "inputVoro++";
     std::string s = ss.str();
-    this->runStr = s;
+    this->inputString = s;
+}
+
+std::string Input::getInputString() {
+    return inputString;
 }

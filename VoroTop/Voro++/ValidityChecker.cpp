@@ -7,7 +7,6 @@
 #include "ValidityChecker.h"
 
 ValidityChecker::ValidityChecker(std::string fileName) {
-    std::cout << fileName << std::endl;
     file.open(fileName);
 }
 

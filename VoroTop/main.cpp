@@ -42,13 +42,11 @@ int main(int argc, char *argv[]) {
 
 
     Input* input = new Input(inputFileName);
-    //input->max_x = argv[2];
-    //input->min_x = argv[3];
-    //input->max_y = argv[4];
-    //input->min_y = argv[5];
-    //input->max_z = argv[6];
-    //input->min_z = argv[7];
+    cout << input->getInputString() << endl;
     file.close();
+    VoronoiCell* voronoiCell = new VoronoiCell();
+    voronoiCell->calcVorCell(input);
+
 /*
     OutputFile* outputFile = new OutputFile();
     outputFile->createFile(inputFileName);

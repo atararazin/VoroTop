@@ -23,5 +23,5 @@ set(SOURCE_FILES main.cpp Voro++/VoronoiCell.cpp Voro++/Input.cpp Graph/FacesToG
 add_executable(VoroTop ${SOURCE_FILES})
 
 #target_link_libraries(VoroTop gtest gtest_main)
-target_link_libraries(VoroTop pthread)
+target_link_libraries(VoroTop pthread stdc++fs)
 
