@@ -38,11 +38,11 @@ bool ValidityChecker::checkTimeStep() {
         std::stoi(line);
     }
     catch(...){
-        std::cout << "TIMESTEP: not a number" << std::endl;
+        std::cout << "VoroTop: TIMESTEP: not a number" << std::endl;
         return false;
     }
     if(std::stoi(line) < 0){
-        std::cout << "TIMESTEP: negative number" << std::endl;
+        std::cout << "VoroTop: TIMESTEP: negative number" << std::endl;
         return false;
     }
     return true;
@@ -59,11 +59,11 @@ bool ValidityChecker::checkNumAtoms() {
         std::stoi(line);
     }
     catch(...){
-        std::cout << "NUMBER OF ATOMS: not a number" << std::endl;
+        std::cout << "VoroTop: NUMBER OF ATOMS: not a number" << std::endl;
         return false;
     }
     if(std::stoi(line) < 0){
-        std::cout << "NUMBER OF ATOMS: negative number" << std::endl;
+        std::cout << "VoroTop: NUMBER OF ATOMS: negative number" << std::endl;
         return false;
     }
     return true;
@@ -82,7 +82,7 @@ bool ValidityChecker::checkBoxBound() {
         for(std::string s; iss >> s; )
             result.push_back(s);
         if(result.size() != 2){
-            std::cout << "BOX BOUNDS: not 2 numbers per line" << std::endl;
+            std::cout << "VoroTop: BOX BOUNDS: not 2 numbers per line" << std::endl;
             return false;
         }
         for(std::string string: result){
@@ -90,7 +90,7 @@ bool ValidityChecker::checkBoxBound() {
                 std::stof(string);
             }
             catch(...){
-                std::cout << "BOX BOUNDS: not a number. " <<  "Error: " << string << std::endl;
+                std::cout << "VoroTop: BOX BOUNDS: not a number. " <<  "Error: " << string << std::endl;
                 return false;
             }
         }
@@ -103,8 +103,8 @@ bool ValidityChecker::checkBoxBound() {
 bool ValidityChecker::checkAtoms() {
     std::string line;
     getline(file,line);
-    if(line != "ITEM: ATOMS id type x y z"){
-        std:: cout << "missing atoms" << std::endl;
+    if(line != "ITEM: ATOMS id type x y z "){
+        std:: cout << "VoroTop: missing atoms" << std::endl;
         return false;
     }
     while(getline(file,line)){
@@ -113,7 +113,7 @@ bool ValidityChecker::checkAtoms() {
         for(std::string s; iss >> s; )
             result.push_back(s);
         if(result.size() != 5){
-            std::cout << "ATOMS: not 5 numbers per line" << std::endl;
+            std::cout << "VoroTop: ATOMS: not 5 numbers per line" << std::endl;
             return false;
         }
         for(std::string string: result){
@@ -121,7 +121,7 @@ bool ValidityChecker::checkAtoms() {
                 std::stof(string);
             }
             catch(...){
-                std::cout << "ATOMS: not a number. " <<  "Error: " << string << std::endl;
+                std::cout << "VoroTop: ATOMS: not a number. " <<  "Error: " << string << std::endl;
                 return false;
             }
         }

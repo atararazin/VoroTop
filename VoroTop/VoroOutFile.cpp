@@ -3,17 +3,12 @@
 //
 
 #include <iostream>
-#include "GraphsFile.h"
+#include "VoroOutFile.h"
 /***
- * class of the file that's the output from voro++
+ * voro++'s output file.
  */
 
-/***
- * constructor. opens the file.
- * @param filePath
- * @return
- */
-GraphsFile::GraphsFile(string filePath) {
+VoroOutFile::VoroOutFile(string filePath) {
     try{
         file.open(filePath);
     }
@@ -21,6 +16,15 @@ GraphsFile::GraphsFile(string filePath) {
         cout << "Caught " << excp << "trying to open voro++ output file" << endl;
         exit(-1);
     }
+
+    countLines();
+
+}
+
+/**
+ * counts the number of lines in the file.
+ */
+void VoroOutFile::countLines() {
     string line;
     while(getline(file, line)){
         size++;
@@ -29,7 +33,7 @@ GraphsFile::GraphsFile(string filePath) {
     file.seekg(0);
 }
 
-int GraphsFile::getSize() {
+int VoroOutFile::getSize() {
     return size;
 }
 
@@ -37,7 +41,7 @@ int GraphsFile::getSize() {
  * reads one line aka one graph from the voro++ output file.
  * @return the line
  */
-std::string GraphsFile::readOneLine() {
+std::string VoroOutFile::readOneLine() {
     string line;
     try{
         getline(file, line);
@@ -50,6 +54,6 @@ std::string GraphsFile::readOneLine() {
 
 }
 
-GraphsFile::~GraphsFile() {
+VoroOutFile::~VoroOutFile() {
     file.close();
 }

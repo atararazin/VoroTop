@@ -11,12 +11,13 @@
 
 using namespace std;
 
-class GraphsFile {
+class VoroOutFile {
 public:
-    GraphsFile(string line);
+    VoroOutFile(string line);
     string readOneLine();
     int getSize();
-    ~GraphsFile();
+    void countLines();
+    ~VoroOutFile();
 private:
     fstream file;
     int size = 0;

@@ -4,16 +4,19 @@
 
 #ifndef VOROTOP_VORONOICELL_H
 #define VOROTOP_VORONOICELL_H
+/***
+ * Runs Voro++ on file and returns the file voro++ creates
+ */
 
 #include <fstream>
 #include "Input.h"
+#include "../VoroOutFile.h"
 
 using namespace std;
 
-class VoronoiCell {
+class RunVoro {
 public:
-    void calcVorCell(Input* inputForVoro);
-    void openOutputFile();
+    VoroOutFile* calcVorCell(Input* inputForVoro);
 };
 
 

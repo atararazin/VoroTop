@@ -9,12 +9,12 @@
 
 using namespace std;
 
-class GraphsFile {
+class VoroOutFile {
 public:
-    GraphsFile(string filePath);
+    VoroOutFile(string filePath);
     bool endOfFile = false;
     string readOneLine();
-    ~GraphsFile();
+    ~VoroOutFile();
 
 private:
     fstream file;

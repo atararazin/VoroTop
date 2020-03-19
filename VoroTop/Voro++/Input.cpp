@@ -8,19 +8,26 @@ Input::Input(std::string originalFile){
     this->createInputFile(originalFile);
     this->updateInputStr();
 }
-
+/***
+ * using the inital input file, creates an input file that's compatible
+ * with voro++.
+ * @param OFName
+ */
 void Input::createInputFile(std::string OFName) {
     ofstream file;
+    //creates the new file - "inputVoro++" in the right directory
     file.open("./voro++-0.4.6/src/inputVoro++");
+    //opens the initial file
     originalFile.open(OFName);
     string line;
 
-
+    //read until the line that starts with "ITEM: BOX BOUNDS"
     do{
         getline(originalFile, line);
     }while(line.find("ITEM: BOX BOUNDS") != 0);
 
 
+    //read until the line that starts with
     getline(originalFile, line);
     while(line.find("ITEM: ATOMS") != 0){
         minMaxXYZStr += line;
