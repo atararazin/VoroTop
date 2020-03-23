@@ -25,7 +25,7 @@ int main(int argc, char*argv[]){
 using namespace std::chrono;
 std::string async_calculate(std::string recvdData);
 
-
+/*
 int main(int argc, char *argv[]) {
     auto start = high_resolution_clock::now();
     printf("running the program\n");
@@ -97,10 +97,10 @@ std::string async_calculate(std::string recvdData)
     delete(wvector);
     return result;
 }
+*/
 
 
 
-/*
 using namespace std::chrono;
 OutputFile *outputFile;
 VoroOutFile *voroOutputFile;
@@ -115,7 +115,6 @@ std::string async_calculate(std::string recvdData)
     delete(wvector);
     return result;
 }
-
 int main()
 {
     printf("running\n");
@@ -134,7 +133,8 @@ int main()
     if (numberOfThreads == 0) {
         numberOfThreads = 2;
     }
-    ThreadPool* pool = new ThreadPool(numberOfThreads);
+    cout << "8" << endl;
+    ThreadPool* pool = new ThreadPool(8);
     std::vector< std::future<string>> results;
 
     for(int i = 0; i < fileLen; ++i) {
@@ -155,10 +155,9 @@ int main()
     delete(voroOutputFile);
     delete(outputFile);
 
-    calculates time - delete after
     auto end = system_clock::now();
     auto diff = duration_cast < microseconds > (end - start).count();
     std::cout << "Total Time Taken = " << diff << " Microseconds" << std::endl;
     std::cout << "                 = " << diff*1e-6 << " Seconds" << std::endl;
     return 0;
-}*/
+}

@@ -14,7 +14,6 @@ WeinbergAlgorithm<T>::WeinbergAlgorithm(int u, int v, bool direction, vector<Wei
     this->vertices = vertices;
     this->firstIteration = firstIteration;
     this->canonicalVector = canonicalVector;
-    //this->dirPtr = this->getNeighbor();
     this->WeinbergNumVector = std::vector<int>(vertices.size(), -1);
     this->visitedVertex = std::vector<int>(vertices.size());
 
@@ -27,7 +26,16 @@ WeinbergAlgorithm<T>::WeinbergAlgorithm(int u, int v, bool direction, vector<Wei
         canonicalVector->addToVector(codeV);
     }
 }
-
+/**
+ * the recursive part of the algorithm. The algorithm runs like this:
+ * At every iteration, it has a node and the edge it came from. There are three cases:
+ * Case 1: the node is a new node that hasn't been visited yet. In this case, assign it as seen and get
+ * the right/left most neighbor.
+ * Case 2: the node has previously been discovered. If we havent visited the opposite direction
+ * as the direction we came from, traverse the opposite edge. Otherwise, get the right/left neighbor.
+ * @param node
+ * @param cameFrom
+ */
 template <typename T>
 void WeinbergAlgorithm<T>::recursiveCal(WeinbergVertex<int> *node, WeinbergEdge<int> *cameFrom) {
     //run until weve reached a node that we've already visited all neighbors
@@ -79,6 +87,13 @@ void WeinbergAlgorithm<T>::recursiveCal(WeinbergVertex<int> *node, WeinbergEdge<
     }
 }
 
+/***
+ * gets the Weinberg Number. If no number has been assigned, assign it with the
+ * next availble integer.
+ * Otherwise, return the existing number
+ * @param data
+ * @return
+ */
 template <typename T>
 int WeinbergAlgorithm<T>::getWeinNum(int* data) {
     int val = WeinbergNumVector[*data];

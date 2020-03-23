@@ -62,6 +62,10 @@ void WeinbergVector<T>::calculate() {
 }
 
 
+/**
+ * resets the edge's status.
+ * resets the canonical vector's index
+ */
 template <typename T>
 void WeinbergVector<T>::reset() {
     for(WeinbergEdge<T>* edge : edges){
@@ -82,6 +86,11 @@ void WeinbergVector<T>::print() {
             std::cout << i << " ,";
         }
 }
+
+/**
+ * puts the caninical vector in the string form.
+ * @return
+ */
 template<typename T>
 string WeinbergVector<T>::getString() {
     string str = "(";
