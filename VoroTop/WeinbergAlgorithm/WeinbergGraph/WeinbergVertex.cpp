@@ -7,54 +7,47 @@
 #include "WeinbergVertex.h"
 #include "WeinbergEdge.h"
 
-/*
-template <typename T>
-int WeinbergVertex<T>::getWeinNum(int* i) {
-    if(this->weinNum == -1){
-        this->weinNum = *i + 1;
-        *i+=1;
-    }
-    return this->weinNum;
-}*/
-
-/*
-template<typename T>
-vector<WeinbergEdge<T>*> WeinbergVertex<T>::getEdges() {
-    return listOfEdges;
-}*/
-
 template<typename T>
 void WeinbergVertex<T>::addEdge(WeinbergEdge<T> *e) {
     listOfEdges.push_back(e);
+    n++;
 }
 
+/**
+ * gets the next neighbor who's status is not OLD. loops around using modulo.
+ * @param cameFrom
+ * @return
+ */
 template<typename T>
 WeinbergEdge<T>* WeinbergVertex<T>::getRightMostNeighbor(WeinbergEdge<T>* cameFrom) {
-    int n = this->listOfEdges.size();
+    //get index of CameFrom
     int indexOfCameFrom = 0;
     while(listOfEdges[indexOfCameFrom] != cameFrom){
         indexOfCameFrom++;
     }
 
+    //get the next edge's index
     int i = (indexOfCameFrom + 1) % n;
+    //keep running until it gets back to cameFrom
     while(listOfEdges[i] != cameFrom){
+        //if the edge's status is not OLD, then return it
         if(listOfEdges[i]->getStatus() != WeinbergEdge<T>::OLD){
             return listOfEdges[i];
         }
+        //increases by 1
         i = (i +1) % n;
     }
+    //Not a valid situation
+    throw(errno);
     return NULL;
 }
 
 template<typename T>
 WeinbergEdge<T>* WeinbergVertex<T>::getLeftMostNeighbor(WeinbergEdge<T>* cameFrom) {
-    int n = this->listOfEdges.size();
     for(int i = 0; i < n; i++) {
         if (this->listOfEdges[i] == cameFrom) {
-           // if (this->listOfEdges[i]->forwardEdge() == cameFrom->forwardEdge()) {
             i = (n + (i - 1 % n)) % n;
             while(this->listOfEdges[i % n] != cameFrom){
-                //while(this->listOfEdges[i % n]->forwardEdge() != cameFrom->forwardEdge()){
                 if(this->listOfEdges[i % n]->getStatus() != WeinbergEdge<T >::OLD){
                     return this->listOfEdges[i % n];
                 }
@@ -64,14 +57,6 @@ WeinbergEdge<T>* WeinbergVertex<T>::getLeftMostNeighbor(WeinbergEdge<T>* cameFro
     }
     return NULL;
 }
-
-/*
-template<typename T>
-void WeinbergVertex<T>::reset() {
-    this->old = false;
-    this->weinNum = -1;
-}
-*/
 
 
 template class WeinbergVertex<int>;

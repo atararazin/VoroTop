@@ -19,8 +19,6 @@ void WeinbergAlgorithm<T>::init(int u, int v) {
     foundSmaller = false;
     this->WeinbergNumVector = std::vector<int>(vertices.size(), -1);
     this->visitedVertex = std::vector<int>(vertices.size());
-
-    this->firstIteration = firstIteration;
     visitedVertex[vertices[u]->data] = 1;
     int codeU = getWeinNum(&vertices[u]->data);
     int codeV = getWeinNum(&vertices[v]->data);
@@ -30,6 +28,10 @@ void WeinbergAlgorithm<T>::init(int u, int v) {
     }
 }
 
+/**
+ * changes the direction (left/right)
+ * @param d
+ */
 template <typename T>
 void WeinbergAlgorithm<T>::updateDir(int d) {
     this->direction = d;
@@ -42,8 +44,6 @@ void WeinbergAlgorithm<T>::updateDir(int d) {
  * the right/left most neighbor.
  * Case 2: the node has previously been discovered. If we havent visited the opposite direction
  * as the direction we came from, traverse the opposite edge. Otherwise, get the right/left neighbor.
- * @param node
- * @param cameFrom
  */
 template <typename T>
 void WeinbergAlgorithm<T>::recursiveCal(WeinbergVertex<int> *node, WeinbergEdge<int> *cameFrom) {
@@ -94,6 +94,8 @@ void WeinbergAlgorithm<T>::recursiveCal(WeinbergVertex<int> *node, WeinbergEdge<
 
         canonicalVector->incrementIndex();
     }
+
+    this->firstIteration = false;
 }
 
 /***

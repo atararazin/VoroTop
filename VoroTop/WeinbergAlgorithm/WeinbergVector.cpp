@@ -26,14 +26,14 @@ WeinbergVector<T>::WeinbergVector(WeinbergGraph<T> *g) {
 }
 
 
-
+/**
+ * the algorithm runs in each direction twice - left and right.
+ * then it runs on each edge and in both directions.
+ */
 template <typename T>
 void WeinbergVector<T>::calculate() {
     int u,v;
     WeinbergAlgorithm<int>* algorithm = new WeinbergAlgorithm<int>(vertices, canonicalVector);
-
-
-
     for(int dir = 0; dir < 2; dir++){
         algorithm->updateDir(dir);
         for(WeinbergEdge<int>* first : edges){
@@ -47,10 +47,10 @@ void WeinbergVector<T>::calculate() {
                     v = first->backwardEdge().second;
                 }
 
-                reset();
                 algorithm->init(u,v);
                 algorithm->recursiveCal(vertices[v], first);
-                algorithm->firstIteration = false;
+                reset();
+
             }
         }
     }
@@ -68,18 +68,6 @@ void WeinbergVector<T>::reset() {
         edge->reset();
     }
     canonicalVector->resetIndex();
-}
-
-template<typename T>
-vector<int>& WeinbergVector<T>::getCanonicalVector() {
-    return canonicalVector->getVector();
-}
-
-template<typename T>
-void WeinbergVector<T>::print() {
-     for(int i : canonicalVector->getVector()){
-            std::cout << i << " ,";
-        }
 }
 
 /**
