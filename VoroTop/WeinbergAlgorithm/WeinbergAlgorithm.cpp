@@ -8,16 +8,19 @@
 #include<algorithm>
 
 template <typename T>
-WeinbergAlgorithm<T>::WeinbergAlgorithm(int u, int v, bool direction, vector<WeinbergVertex<int>*> &vertices, bool firstIteration,
-                                     CanonicalVector *canonicalVector) {
-    this->direction = direction;
+WeinbergAlgorithm<T>::WeinbergAlgorithm(vector<WeinbergVertex<int>*> &vertices, CanonicalVector *canonicalVector) {
     this->vertices = vertices;
-    this->firstIteration = firstIteration;
     this->canonicalVector = canonicalVector;
+}
+
+template <typename T>
+void WeinbergAlgorithm<T>::init(int u, int v) {
+    this->i = 0;
+    foundSmaller = false;
     this->WeinbergNumVector = std::vector<int>(vertices.size(), -1);
     this->visitedVertex = std::vector<int>(vertices.size());
 
-    //initialize
+    this->firstIteration = firstIteration;
     visitedVertex[vertices[u]->data] = 1;
     int codeU = getWeinNum(&vertices[u]->data);
     int codeV = getWeinNum(&vertices[v]->data);
@@ -26,6 +29,12 @@ WeinbergAlgorithm<T>::WeinbergAlgorithm(int u, int v, bool direction, vector<Wei
         canonicalVector->addToVector(codeV);
     }
 }
+
+template <typename T>
+void WeinbergAlgorithm<T>::updateDir(int d) {
+    this->direction = d;
+}
+
 /**
  * the recursive part of the algorithm. The algorithm runs like this:
  * At every iteration, it has a node and the edge it came from. There are three cases:
@@ -120,5 +129,6 @@ WeinbergEdge<int>* WeinbergAlgorithm<T>::getNeighbor(WeinbergEdge<int> *e, Weinb
         return v->getLeftMostNeighbor(e);
     }
 }
+
 
 template class WeinbergAlgorithm<int>;

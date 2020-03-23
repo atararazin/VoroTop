@@ -30,11 +30,12 @@ WeinbergVector<T>::WeinbergVector(WeinbergGraph<T> *g) {
 template <typename T>
 void WeinbergVector<T>::calculate() {
     int u,v;
-    bool firstIter = true;
-    bool firstFlag;
+    WeinbergAlgorithm<int>* algorithm = new WeinbergAlgorithm<int>(vertices, canonicalVector);
+
 
 
     for(int dir = 0; dir < 2; dir++){
+        algorithm->updateDir(dir);
         for(WeinbergEdge<int>* first : edges){
             for(int iter = 0; iter < 2; iter++){
                 if(iter == 0){
@@ -45,20 +46,15 @@ void WeinbergVector<T>::calculate() {
                     u = first->backwardEdge().first;
                     v = first->backwardEdge().second;
                 }
-                if(firstIter){
-                    firstFlag = true;
-                    firstIter = false;
-                }
-                else{
-                    firstFlag = false;
-                }
+
                 reset();
-                WeinbergAlgorithm<int>* algorithm = new WeinbergAlgorithm<int>(u, v,dir, vertices, firstFlag, canonicalVector);
+                algorithm->init(u,v);
                 algorithm->recursiveCal(vertices[v], first);
-                delete(algorithm);
+                algorithm->firstIteration = false;
             }
         }
     }
+    delete(algorithm);
 }
 
 
@@ -70,7 +66,6 @@ template <typename T>
 void WeinbergVector<T>::reset() {
     for(WeinbergEdge<T>* edge : edges){
         edge->reset();
-
     }
     canonicalVector->resetIndex();
 }

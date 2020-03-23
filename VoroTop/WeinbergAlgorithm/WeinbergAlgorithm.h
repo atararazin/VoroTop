@@ -8,14 +8,16 @@
 template <typename T>
 class WeinbergAlgorithm{
 public:
-    WeinbergAlgorithm(int u, int v, bool direction, vector<WeinbergVertex<int>*> &vertices, bool firstIteration,
-                      CanonicalVector *canonicalVector);
-
+    WeinbergAlgorithm(vector<WeinbergVertex<int>*> &vertices, CanonicalVector *canonicalVector);
     void recursiveCal(WeinbergVertex<int> *node, WeinbergEdge<int> *cameFrom);
+    void init(int u, int v);
+    void updateDir(int d);
+    bool firstIteration = true;
+
+
 private:
     int direction;
     vector<WeinbergVertex<int>*> vertices;
-    bool firstIteration;
     CanonicalVector* canonicalVector;
     std::vector<int> WeinbergNumVector;
     std::vector<int> visitedVertex;

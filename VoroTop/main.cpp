@@ -122,8 +122,8 @@ int main()
 
     outputFile = new OutputFile();
     outputFile->createFile("graphs");
-    voroOutputFile = new VoroOutFile("/home/atara/VoroTop/tests/graphs100");
-    //voroOutputFile = new VoroOutFile("/home/atara/Downloads/big_data-1 (1)/PV-1000000-0-1.graphs");
+    //voroOutputFile = new VoroOutFile("/home/atara/VoroTop/tests/graphs100");
+    voroOutputFile = new VoroOutFile("/home/atara/Downloads/big_data-1 (1)/PV-1000000-0-1.graphs");
     int fileLen = voroOutputFile->getSize();
 
     // This returns the number of threads supported by the system. If the
