@@ -38,7 +38,6 @@ WeinbergEdge<T>* WeinbergVertex<T>::getRightMostNeighbor(WeinbergEdge<T>* cameFr
         i = (i +1) % n;
     }
     //Not a valid situation
-    throw(errno);
     return NULL;
 }
 

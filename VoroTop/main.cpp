@@ -115,6 +115,7 @@ std::string async_calculate(std::string recvdData)
     delete(wvector);
     return result;
 }
+
 int main()
 {
     printf("running\n");
